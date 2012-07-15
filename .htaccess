@@ -1,0 +1,44 @@
+# Protect the htaccess file
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+# Disable the server signature
+ServerSignature Off
+
+# Disable directory browsing
+Options All -Indexes
+
+# Make Drupal handle any 404 errors.
+#ErrorDocument 404 /index.php
+
+RewriteEngine On
+
+RewriteBase /
+
+#Removes index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1 [L]
+Redirect 301 /front http://charlie.dev/
+Redirect 301 /index http://charlie.dev/
+Redirect 301 /home http://charlie.dev/
+<FilesMatch "(\.(conf|info|inc|blk|md|tpl(\.php)?))$">
+
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+
+
+
+
+
+
+
+
+
+
+
+

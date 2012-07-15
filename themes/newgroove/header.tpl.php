@@ -1,0 +1,17 @@
+<?php
+
+////////////////////////////////////////////////////
+
+// HEADER Template
+
+////////////////////////////////////////////////////
+
+echo "New Groove Header";
+?>
+
+
+
+<br />
+<img src="<?php get_template_dir(); ?>/imgs/image1.png" />
+
+ <?php get_block('menu'); ?>

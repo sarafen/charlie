@@ -1,0 +1,10 @@
+[General_Info]
+
+maintenance_mode	= OFF
+info_handler		= OFF
+
+
+[Theme_Settings]
+
+theme				= newgroove
+
