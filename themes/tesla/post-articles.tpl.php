@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<body id="blog">
+<body id="article">
 
 
 <h1><a href="/" id="logo">Stephen Creates</a></h1>
@@ -8,12 +8,8 @@
 <?php get_partial('menu'); ?>
  
 <section id="main-content">
-
-	<h1>Blog Posts</h1>
 	
-	<ul>
-		<li><a href="/blog/one">One</a></li>
-	</ul>
+	<?php get_content(); ?>
 	
 	
 </section>

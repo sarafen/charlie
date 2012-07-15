@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+
+  <title>Stephen Lovell's Blog Feed</title>
+  <subtitle>Designer &#38; Thinker</subtitle>
+  <link href="http://sc.dev/stacey/feed/" hreflang="en" rel="self" type="application/atom+xml"/>
+  <link href="http://sc.dev/stacey/" hreflang="en" rel="alternate" type="text/html"/>
+  
+  <updated>2012-07-15T10:50:43+10:00</updated>
+
+  <author>
+    <name>Stephen Lovell</name>
+    <uri>http://sc.dev/stacey</uri>
+  </author>
+
+  <id>tag:sc.dev,2012:/feed/</id>
+  <rights> &copy; 2012 Stephen Lovell</rights>
+              <entry>
+   <title>Blog Post 2</title>
+   <id>tag:sc.dev,2012:/blog/blog-post-two/</id>
+   <updated>2012-07-12T12:48:52+10:00</updated>
+   <link rel="alternate" type="text/html" href="http://sc.dev/stacey/blog/blog-post-two/" />
+   <content type="xhtml" xml:lang="en">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+          
+          
+            <p>This one turned out to be the dud.</p>
+
+          
+      </div>
+   </content>
+</entry>
+      
+    
+            <entry>
+   <title>Blog Post 1</title>
+   <id>tag:sc.dev,2012:/blog/blog-post-one/</id>
+   <updated>2012-07-12T13:15:12+10:00</updated>
+   <link rel="alternate" type="text/html" href="http://sc.dev/stacey/blog/blog-post-one/" />
+   <content type="xhtml" xml:lang="en">
+      <div xmlns="http://www.w3.org/1999/xhtml">
+          
+          
+            <p>There will always be a little part of him that stays with me.</p>
+
+          
+      </div>
+   </content>
+</entry>
+      
+    
+  
+
+
+</feed>

@@ -177,16 +177,16 @@ function get_content() {
 
 ////////////////////////////////////////////////////
 
-// Construct the robust BLOCK region(s).
+// Construct the robust PARTIAL region(s).
 
 ////////////////////////////////////////////////////
 
-function get_block($name){
+function get_partial($name){
 
 // This would be used like a diet version of Drupal's block system
 
-	$file = './content/blocks/'.$name.'.blk';
-	
+	$file = './themes/'.$GLOBALS['theme'].'/partials/'.$name.'.tpl.php';
+		
 	include $file; 
 
 };
@@ -234,14 +234,14 @@ function render_page() {
 	
 		 $template = './themes/'.$GLOBALS['theme'].'/index.tpl.php';		 
 	}
-			
+				
 	
 	//Check for ARTICLE Content Type - Load 'article.tpl.php'
 	
-	if ($path_part[1] == 'articles' && $path_part[2] != null) {
+	//if ($path_part[1] == 'articles' && $path_part[2] != null) {
 	
-		 $template = './themes/'.$GLOBALS['theme'].'/article.tpl.php';		 
-	}  	 
+	//	 $template = './themes/'.$GLOBALS['theme'].'/article.tpl.php';		 
+	//}  	 
 	
 	
 	//Check for PAGE Content Type - Load 'page.tpl.php' default
@@ -268,6 +268,14 @@ function render_page() {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php';
 	}
+	
+	//Check for FEED Content Type - Load 'feed.tpl.php'
+	
+	if ($path_part[1] == 'feed' && empty($path_part[2])) {
+	
+		 $template = './themes/'.$GLOBALS['theme'].'/feed.tpl.php';		 
+	} 
+
 			
 	//Include the Appropriate Template		
 	
@@ -327,6 +335,22 @@ $raw_content = file_get_contents($file); $content = Markdown($raw_content);
 echo $content;
 
 }
+
+////////////////////////////////////////////////////
+
+// Parse FEED content
+
+////////////////////////////////////////////////////
+
+
+function feed($file) {
+
+$raw_content = file_get_contents($file);
+
+echo $raw_content;
+
+}
+
 
 
 ////////////////////////////////////////////////////

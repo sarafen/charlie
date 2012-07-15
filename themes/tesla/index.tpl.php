@@ -6,7 +6,7 @@
 
 <h1><a href="/" id="logo">Stephen Creates</a></h1>
 
-<?php get_block('menu'); ?>
+<?php get_partial('menu'); ?>
 
 <?php get_content(); ?>
 
