@@ -124,16 +124,23 @@ function get_content() {
 			$file = './content/pages/front.md';		 
 		}
 				
-		//Check for ARTICLE Content Type
+		//Check for ARTICLE Content Type - leading slug
 	
-		if ($path_part[1] == 'articles' && $path_part[2] != null) {
+		if ($path_part[1] == 'articles' && $path_part[2] != null && $path_part[3] == null) {
 		
 			 $file = './content/articles/'.$path_part[2].'.md';		 
-		}  	 
+		}  
 		
-		//Check for PAGE Content Type
+		//Check for BLOG Content Type - leading slug
+	
+		if ($path_part[1] == 'blog' && $path_part[2] != null && $path_part[3] == null) {
 		
-		if ($path_part[2] == null && $path_part[1] != null) {
+			 $file = './content/blog/'.$path_part[2].'.md';		 
+		} 	 
+		
+		//Check for PAGE Content Type - No leading slug
+		
+		if ($path_part[2] == null && $path_part[1] != null && $path_part[3] == null) {
 		
 			$file ='./content/pages/'.$path_part[1].'.md';			
 		}
