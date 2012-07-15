@@ -15,4 +15,4 @@ echo "New Groove Footer";
 
 <hr />
 
-<?php get_block('object-page'); ?>
+<?php //get_block('object-page'); ?>

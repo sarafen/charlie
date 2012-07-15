@@ -44,11 +44,14 @@ $settings = Settings::getInstance('./app/config.info');
 
 ////////////////////////////////////////////////////
 
-$theme_dir = './themes/'.$theme;
+
+$theme_dir = 'themes/'.$theme;
 
 function get_template_dir() {
 
-	echo $GLOBALS["theme_dir"];
+	$site_url = $_SERVER['SERVER_NAME'];
+
+	echo 'http://'.$site_url.'/'.$GLOBALS["theme_dir"];
 
 };
 
@@ -115,39 +118,41 @@ function get_content() {
 
 	$uri = $_SERVER['REQUEST_URI'];
 	$path_part = explode('/', $uri);
-	$path = end($tmp);
+	//$path = end($tmp);
+	
+	$file = "";
 	 
 		//Check for FRONT Page
 		
-		if ($path_part[1] == null) {
+		if ($path_part[1] == null || !isset($path_part[1])) {
 		
 			$file = './content/pages/front.md';		 
 		}
 				
 		//Check for ARTICLE Content Type - leading slug
 	
-		if ($path_part[1] == 'articles' && $path_part[2] != null && $path_part[3] == null) {
+		if ($path_part[1] == 'articles' && $path_part[2] != null && empty($path_part[3])) {
 		
 			 $file = './content/articles/'.$path_part[2].'.md';		 
 		}  
 		
 		//Check for BLOG Content Type - leading slug
 	
-		if ($path_part[1] == 'blog' && $path_part[2] != null && $path_part[3] == null) {
+		if ($path_part[1] == 'blog' && $path_part[2] != null && empty($path_part[3])) {
 		
 			 $file = './content/blog/'.$path_part[2].'.md';		 
 		} 	 
 		
 		//Check for PAGE Content Type - No leading slug
 		
-		if ($path_part[2] == null && $path_part[1] != null && $path_part[3] == null) {
+		if (empty($path_part[2]) && $path_part[1] != null && empty($path_part[3])) {
 		
 			$file ='./content/pages/'.$path_part[1].'.md';			
 		}
 			
 		//Include the Appropriate Content		
 		
-		if (file_exists($file)) {md($file);} else {include './themes/default/404.tpl.php';}	
+		if (file_exists($file) && $file != null) {md($file);} else {include './themes/default/404.tpl.php';}	
 };
 
 ////////////////////////////////////////////////////
@@ -174,7 +179,7 @@ function get_block($name){
 
 // This would be used like a diet version of Drupal's block system
 
-	$file = './content/blocks/'.$name.'.inc';
+	$file = './content/blocks/'.$name.'.blk';
 	
 	include $file; 
 
@@ -214,6 +219,8 @@ function render_page() {
 	$path_part = explode('/', $uri);
 	//$path = end($tmp);
 	
+	$template = "";
+	
 	
 	//Check for FRONT Page - Load 'index.tpl.php'
 	
@@ -237,18 +244,24 @@ function render_page() {
 	
 	//$file = 'templates/'.$GLOBALS['template'].'/page-'.$path_part[1].'.tpl.php';
 	
-	if ($path_part[2] == null && $path_part[1] != null && !file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
+	if (empty($path_part[2]) && $path_part[1] != null && !file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 	
 		$template ='./themes/'.$GLOBALS['theme'].'/page.tpl.php';	
 	} 
 	
 	//Check for PAGE Content Type - Load 'page.tpl.php' specific
 	
-	if 	($path_part[2] == null && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
+	if 	(empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php';
 	}
 	
+	//Check for POST Content Type - Load 'page.tpl.php' specific
+	
+	if 	(isset($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php')) {
+		
+		$template = './themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php';
+	}
 			
 	//Include the Appropriate Template		
 	
@@ -257,11 +270,11 @@ function render_page() {
 
 	// INFO Reporting
 	
-	if ( $GLOBALS['switch'] == TRUE) {
+	//if ( $GLOBALS['switch'] == TRUE) {
 	
 
 	
-	}				
+	//}				
 };
 
 
@@ -328,5 +341,5 @@ function info_handler($switch = FALSE){
 		echo 'Theme Directory: '.$GLOBALS["theme_dir"].'<br />';
 		echo '<hr />';
 	
-	} else {}
+	} else {$switch = "";}
 };

@@ -8,6 +8,9 @@ function bootstrap_full() {
 
 ////////////////////////////////////////////////////
 
+include "./app/inc/json_caches.php";
+
 include "./app/parsers/template_engine.inc";
+
 
 };
