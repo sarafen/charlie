@@ -152,7 +152,13 @@ function get_content() {
 			
 		//Include the Appropriate Content		
 		
-		if (file_exists($file) && $file != null) {md($file);} else {include './themes/default/404.tpl.php';}	
+		if (file_exists($file) && $file != null) {md($file);} 
+		
+		else if (file_exists($GLOBALS["theme_dir"].'/404.tpl.php')) {
+			include $GLOBALS["theme_dir"].'/404.tpl.php';
+		}
+		
+		else {include './themes/default/404.tpl.php';}	
 };
 
 ////////////////////////////////////////////////////
