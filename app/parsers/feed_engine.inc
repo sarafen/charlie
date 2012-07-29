@@ -65,7 +65,8 @@ function feed_looper($content_type) {
 	
 	$dir = "content/".$content_type."/";
 
-	function compare_time($a, $b) {
+	/*
+function compare_time($a, $b) {
 	
 	    global $dir;
 	
@@ -76,9 +77,10 @@ function feed_looper($content_type) {
 	
 	    return ($timeA < $timeB) ? -1 : 1;
 	}
+*/
 	
 	$files = scandir($dir);
-	usort($files, 'compare_time');
+	//usort($files, 'compare_time');
 	
 	$files = array_diff($files, array('.', '..', '.DS_Store'));
 	

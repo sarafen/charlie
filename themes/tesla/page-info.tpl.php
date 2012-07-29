@@ -8,11 +8,9 @@
 <?php get_partial('menu'); ?>
  
 <section id="main-content">
-
-	<h1>Info Template</h1>
 	
 	
-	<p>Info Content</p>
+	<?php get_content(); ?>
 	
 	
 </section>
