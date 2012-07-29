@@ -2,7 +2,7 @@
 
 //feed('./themes/'.$GLOBALS['theme'].'/feed.atom');
 
-function entry($file,$path) {
+function feed_entry($file,$path) {
 
 	//Get URI
 	$domain = 'http://charlie.dev';
@@ -61,7 +61,7 @@ echo $entry;
 }
 
 
-function looper($content_type) {
+function feed_looper($content_type) {
 	
 	$dir = "content/".$content_type."/";
 
@@ -93,7 +93,7 @@ function looper($content_type) {
 		//echo "</br>";
 		//md("./content/blog/".$filename);
 		
-		entry($dir.$filename,$filename);
+		feed_entry($dir.$filename,$filename);
 				
 	}
 
@@ -141,6 +141,6 @@ function feed_content($type) {
 	
 	//Render FEED
 	feed_header();
-	looper($type);
+	feed_looper($type);
 	feed_footer();
 }

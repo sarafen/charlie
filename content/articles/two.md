@@ -1,5 +1,2 @@
-<br />
+# Article Two
 
-Article Two
-
-<br />

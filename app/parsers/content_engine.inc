@@ -57,5 +57,83 @@ function get_content() {
 
 ////////////////////////////////////////////////////
 
+//Build ENTRY
+function item($file,$path) {
 
-// This would be used like a diet version of the WP loop system. 
+	//Get URI
+	$domain = 'http://charlie.dev';
+	
+	//Get Path
+	$info = pathinfo($path);
+	$path = basename($path,'.'.$info['extension']);
+	$path = '/blog/'.$path.'/';
+
+	//$file = "./content/blog/one.md";
+	$html = return_md($file);
+
+	//Get TITLE
+    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
+    $title = $matches[1][0];		
+	
+	
+	//Get DATE
+	$date = date('l jS \of F Y h:i:s A', filemtime($file));
+	//$date_year = date('Y',filemtime($file));
+	
+	//Assemble ID
+	//$id = 'tag:'.$domain.','.$date_year.':'.$path;
+	$link = $domain.$path;
+	
+	//Get TEASER
+	preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
+    $teaser = $matches[1][0];
+	
+	
+	
+	
+	//Render ENTRY
+	$item = '
+		<h2><a href="'.$link.'" >'.$title.'</a></h2>
+		<span>'.$date.'</span>
+			  
+				<p>'.$teaser.'</p>
+			  
+	';
+	
+	return $item;	
+}
+
+//Build LOOP
+function looper($content_type) {
+	
+	$dir = "content/".$content_type."/";
+
+	function compare_time($a, $b) {
+	
+	    global $dir;
+	
+	    $timeA = filemtime("$dir/$a");
+	    $timeB = filemtime("$dir/$b");
+	
+	    if($timeA == $timeB) return 0;
+	
+	    return ($timeA < $timeB) ? -1 : 1;
+	}
+	
+	$files = scandir($dir);
+	usort($files, 'compare_time');
+	
+	$files = array_diff($files, array('.', '..', '.DS_Store'));
+	
+	//print_r($files);
+	
+	
+	foreach($files as $key => $val) {
+	
+		$filename = $val;
+		
+		echo item($dir.$filename,$filename);
+				
+	}
+
+}

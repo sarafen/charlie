@@ -11,9 +11,8 @@
 
 	<h1>Blog Posts</h1>
 	
-	<ul>
-		<li><a href="/blog/one">One</a></li>
-	</ul>
+	
+	<?php looper('blog'); ?>
 	
 	
 </section>
