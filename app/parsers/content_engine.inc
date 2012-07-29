@@ -27,7 +27,7 @@ function get_content() {
 			
 	//Check for [ANYTHING] Content Type - leading slug
 
-	if (isset($path_part[1]) && $path_part[2] != null && empty($path_part[3])) {
+	if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) {
 		
 		$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';		 
 	} 
