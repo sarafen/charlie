@@ -14,8 +14,8 @@
   </author>
 
   <id>tag:sc.dev,2012:/feed/</id>
-  <rights> &copy; 2012 Stephen Lovell</rights>
-              <entry>
+  <rights> 2012 Stephen Lovell</rights>
+<entry>
    <title>Blog Post 2</title>
    <id>tag:sc.dev,2012:/blog/blog-post-two/</id>
    <updated>2012-07-12T12:48:52+10:00</updated>

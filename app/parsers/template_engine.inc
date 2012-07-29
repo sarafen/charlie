@@ -7,7 +7,7 @@
 
 ////////////////////////////////////////////////////
 
-include_once "./app/classes.inc";
+include_once "./app/classes/class.settings.inc";
 
 ////////////////////////////////////////////////////
 
@@ -18,7 +18,6 @@ include_once "./app/classes.inc";
 $settings = Settings::getInstance('./app/config.info');
 
 	//General Info
-	
 	$setting_maintenance = strip_tags($settings->General_Info['maintenance_mode']); // ! This and others throw ERROR because of direct property access.!
 	
 	if ($setting_maintenance == 'ON,1') {
@@ -34,7 +33,6 @@ $settings = Settings::getInstance('./app/config.info');
 	}
 	
 	//Theme Settings
-	
 	$theme = strip_tags($settings->Theme_Settings['theme']); 
 
 
@@ -43,7 +41,6 @@ $settings = Settings::getInstance('./app/config.info');
 // Set THEME directory
 
 ////////////////////////////////////////////////////
-
 
 $theme_dir = 'themes/'.$theme;
 
@@ -65,7 +62,7 @@ if (!file_exists($theme_dir) && !is_dir($theme_dir)) {
 
 	$theme = "default";
 	
-	}
+}
 
 ////////////////////////////////////////////////////
 
@@ -73,17 +70,14 @@ if (!file_exists($theme_dir) && !is_dir($theme_dir)) {
 
 ////////////////////////////////////////////////////
 
-
 $header = 'themes/'.$theme.'/header.tpl.php';
 $footer = 'themes/'.$theme.'/footer.tpl.php';
-
 
 ////////////////////////////////////////////////////
 
 // GLOBALS
 
 ////////////////////////////////////////////////////
-
 
 $GLOBALS["theme"]=$theme;
 $GLOBALS["theme_dir"]=$theme_dir;
@@ -103,77 +97,6 @@ function error_handler($type,$description){
 	echo 'Error '.$type.' '.$description;
 };
 
-////////////////////////////////////////////////////
-
-// Construct the basic CONTENT region.
-
-////////////////////////////////////////////////////
-
-// This section needs expansion to accomodate broader
-// customization. AND allow more flexible MD conversion.
-
-function get_content() {	
-
-	//Grab the URL
-
-	$uri = $_SERVER['REQUEST_URI'];
-	$path_part = explode('/', $uri);
-	//$path = end($tmp);
-	
-	$file = "";
-	 
-		//Check for FRONT Page
-		
-		if ($path_part[1] == null || !isset($path_part[1])) {
-		
-			$file = './content/pages/front.md';		 
-		}
-				
-		//Check for ARTICLE Content Type - leading slug
-	
-		if ($path_part[1] == 'articles' && $path_part[2] != null && empty($path_part[3])) {
-		
-			 $file = './content/articles/'.$path_part[2].'.md';		 
-		}  
-		
-		//Check for BLOG Content Type - leading slug
-	
-		if ($path_part[1] == 'blog' && $path_part[2] != null && empty($path_part[3])) {
-		
-			 $file = './content/blog/'.$path_part[2].'.md';		 
-		} 	 
-		
-		//Check for PAGE Content Type - No leading slug
-		
-		if (empty($path_part[2]) && $path_part[1] != null && empty($path_part[3])) {
-		
-			$file ='./content/pages/'.$path_part[1].'.md';			
-		}
-			
-		//Include the Appropriate Content		
-		
-		if (file_exists($file) && $file != null) {md($file);} 
-		
-		else if (file_exists($GLOBALS["theme_dir"].'/404.tpl.php')) {
-			include $GLOBALS["theme_dir"].'/404.tpl.php';
-		}
-		
-		else {include './themes/default/404.tpl.php';}	
-};
-
-////////////////////////////////////////////////////
-
-// Construct the robust CONTENT loop.
-
-////////////////////////////////////////////////////
-
-
-
-
-// This would be used like a diet version of the WP loop system. 
-
-
-
 
 ////////////////////////////////////////////////////
 
@@ -183,8 +106,7 @@ function get_content() {
 
 function get_partial($name){
 
-// This would be used like a diet version of Drupal's block system
-
+	// This would be used like a diet version of Drupal's block system
 	$file = './themes/'.$GLOBALS['theme'].'/partials/'.$name.'.tpl.php';
 		
 	include $file; 
@@ -217,78 +139,54 @@ function get_header(){
 
 ////////////////////////////////////////////////////
 
-function render_page() {	
+function render_template() {	
 
 	//Grab the URL
-	
 	$uri = $_SERVER['REQUEST_URI'];
 	$path_part = explode('/', $uri);
-	//$path = end($tmp);
+	$path = end($path_part);
 	
 	$template = "";
 	
 	
 	//Check for FRONT Page - Load 'index.tpl.php'
-	
 	if ($path_part[1] == null) {
 	
 		 $template = './themes/'.$GLOBALS['theme'].'/index.tpl.php';		 
 	}
-				
-	
-	//Check for ARTICLE Content Type - Load 'article.tpl.php'
-	
-	//if ($path_part[1] == 'articles' && $path_part[2] != null) {
-	
-	//	 $template = './themes/'.$GLOBALS['theme'].'/article.tpl.php';		 
-	//}  	 
-	
-	
+					
 	//Check for PAGE Content Type - Load 'page.tpl.php' default
 	
 	//Establish 'page-[pagename].tpl.php' Template File Name Scheme
 	
 	//$file = 'templates/'.$GLOBALS['template'].'/page-'.$path_part[1].'.tpl.php';
-	
 	if (empty($path_part[2]) && $path_part[1] != null && !file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 	
 		$template ='./themes/'.$GLOBALS['theme'].'/page.tpl.php';	
 	} 
 	
 	//Check for PAGE Content Type - Load 'page.tpl.php' specific
-	
 	if 	(empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php';
 	}
 	
 	//Check for POST Content Type - Load 'page.tpl.php' specific
-	
 	if 	(isset($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php')) {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php';
 	}
 	
 	//Check for FEED Content Type - Load 'feed.tpl.php'
-	
 	if ($path_part[1] == 'feed' && empty($path_part[2])) {
 	
 		 $template = './themes/'.$GLOBALS['theme'].'/feed.tpl.php';		 
 	} 
-
-			
+		
 	//Include the Appropriate Template		
-	
 	if ($GLOBALS['setting_maintenance'] == TRUE) {include './themes/'.$GLOBALS['theme'].'/maintenance.tpl.php';} 
 	elseif (file_exists($template)) {include $template;} else {include './themes/'.$GLOBALS['theme'].'/index.tpl.php';}
-
-	// INFO Reporting
-	
-	//if ( $GLOBALS['switch'] == TRUE) {
-	
-
-	
-	//}				
+			
 };
 
 
@@ -317,7 +215,7 @@ function get_footer(){
 ////////////////////////////////////////////////////
 
 		
-render_page();
+render_template();
 
 
 ////////////////////////////////////////////////////
@@ -326,13 +224,21 @@ render_page();
 
 ////////////////////////////////////////////////////
 
-
 function md($file) {
 
-include_once "markdown.inc";
-$raw_content = file_get_contents($file); $content = Markdown($raw_content);
+	include_once "markdown.inc";
+	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
+	
+	echo $content;
 
-echo $content;
+}
+
+function return_md($file) {
+
+	include_once "markdown.inc";
+	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
+	
+	return $content;
 
 }
 
@@ -342,23 +248,21 @@ echo $content;
 
 ////////////////////////////////////////////////////
 
-
 function feed($file) {
 
-$raw_content = file_get_contents($file);
-
-echo $raw_content;
+	$raw_content = file_get_contents($file);
+	
+	header('Content-type: text/xml');
+	
+	echo $raw_content;
 
 }
-
-
 
 ////////////////////////////////////////////////////
 
 // Construct the INFO handler.
 
 ////////////////////////////////////////////////////
-
 
 function info_handler($switch = FALSE){
 
