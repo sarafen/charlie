@@ -165,14 +165,14 @@ function render_template() {
 		$template ='./themes/'.$GLOBALS['theme'].'/page.tpl.php';	
 	} 
 	
-	//Check for PAGE Content Type - Load 'page.tpl.php' specific
+	//Check for PAGE Content Type - Load 'page[type].tpl.php' specific
 	if 	(empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php';
 	}
 	
-	//Check for POST Content Type - Load 'page.tpl.php' specific
-	if 	(isset($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php')) {
+	//Check for POST Content Type - Load 'post-[type].tpl.php' specific
+	if 	(!empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php')) {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php';
 	}
