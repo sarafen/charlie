@@ -159,17 +159,19 @@ function render_template() {
 	
 	//Establish 'page-[pagename].tpl.php' Template File Name Scheme
 	
-	//$file = 'templates/'.$GLOBALS['template'].'/page-'.$path_part[1].'.tpl.php';
-	if (empty($path_part[2]) && $path_part[1] != null && !file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 	
-		$template ='./themes/'.$GLOBALS['theme'].'/page.tpl.php';	
-	} 
 	
 	//Check for PAGE Content Type - Load 'page[type].tpl.php' specific
-	if 	(empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
+	if 	(isset($path_part[2]) || empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
 		
 		$template = './themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php';
 	}
+	
+	//Fallback to default PAGE template - Load 'page.tpl.php' generic
+	if (isset($path_part[2]) && $path_part[1] != null && !file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$path_part[1].'.tpl.php')) {
+	
+		$template ='./themes/'.$GLOBALS['theme'].'/page.tpl.php';	
+	} 
 	
 	//Check for POST Content Type - Load 'post-[type].tpl.php' specific
 	if 	(!empty($path_part[2]) && $path_part[1] != null && file_exists('./themes/'.$GLOBALS['theme'].'/post-'.$path_part[1].'.tpl.php')) {
