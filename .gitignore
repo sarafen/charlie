@@ -54,4 +54,6 @@ Thumbs.db
 tests/
 tests/*
 fonts/
+_deprecated/
+_deprecated/*
 
