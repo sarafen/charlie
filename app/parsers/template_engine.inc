@@ -23,7 +23,8 @@ $page = new Page();
 ////////////////////////////////////////////////////
 
 // Construct the robust CONTENT loop.
-// But really we're doing a lot of test stuff with this.
+// But really we're doing a lot of test stuff with 
+// this.
 
 ////////////////////////////////////////////////////
 

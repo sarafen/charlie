@@ -10,6 +10,7 @@
 
 // This section needs expansion to accomodate broader
 // customization. AND allow more flexible MD conversion.
+// Future possibility of adding variables like Stacey.
 
 function get_content() {	
 
@@ -90,9 +91,7 @@ function item($file,$path) {
 	preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
     $teaser = $matches[1][0];
 	
-	
-	
-	
+
 	//Render ENTRY
 	$item = '
 		<h2><a href="'.$link.'" >'.$title.'</a></h2>
