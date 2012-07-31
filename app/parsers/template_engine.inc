@@ -1,19 +1,31 @@
 <?php
 
+// Template ENGINE
+
+
+////////////////////////////////////////////////////
+
+// Include CLASSES
+
+////////////////////////////////////////////////////
+
+require_once('./app/classes/class.page.inc');
+
+////////////////////////////////////////////////////
+
+// Create PAGE Object
+
+////////////////////////////////////////////////////
+
+//Create page object
+$page = new Page();
+
 ////////////////////////////////////////////////////
 
 // Construct the robust CONTENT loop.
 // But really we're doing a lot of test stuff with this.
 
 ////////////////////////////////////////////////////
-
-require_once('./app/classes/class.page.inc');
-
-
- 
-//Create page object
-$page = new Page();
-
 
 //Test output the path
 $page->the_path();
@@ -28,94 +40,6 @@ $page->the_title();
 //Test output parent
 echo 'Parent:'.$page->get_parent();
 
-
-
-
-////////////////////////////////////////////////////
-
-// Include CLASSES
-
-////////////////////////////////////////////////////
-
-require_once "./app/classes/class.settings.inc";
-require_once('./app/classes/class.page.inc');
-
-////////////////////////////////////////////////////
-
-// Parse & Pass In INI SETTINGS
-
-////////////////////////////////////////////////////
- 
-$settings = Settings::getInstance('./app/config.info');
-
-	//General Info
-	$setting_maintenance = strip_tags($settings->General_Info['maintenance_mode']); // ! This and others throw ERROR because of direct property access.!
-	
-	if ($setting_maintenance == 'ON,1') {
-	
-		$setting_maintenance = TRUE;
-	}
-	
-	$setting_info_handler = strip_tags($settings->General_Info['info_handler']);
-	
-	if ($setting_info_handler == 'ON,1') {
-	
-		$setting_info_handler = TRUE;
-	}
-	
-	//Theme Settings
-	$theme = strip_tags($settings->Theme_Settings['theme']); 
-
-
-////////////////////////////////////////////////////
-
-// Set THEME directory
-
-////////////////////////////////////////////////////
-
-$theme_dir = 'themes/'.$theme;
-
-function get_template_dir() {
-
-	$site_url = $_SERVER['SERVER_NAME'];
-
-	echo 'http://'.$site_url.'/'.$GLOBALS["theme_dir"];
-
-};
-
-////////////////////////////////////////////////////
-
-// Set Default Template.
-
-////////////////////////////////////////////////////
-
-if (!file_exists($theme_dir) && !is_dir($theme_dir)) {
-
-	$theme = "default";
-	
-}
-
-////////////////////////////////////////////////////
-
-// Establish the primitive TEMPLATE Assembly.
-
-////////////////////////////////////////////////////
-
-$header = 'themes/'.$theme.'/header.tpl.php';
-$footer = 'themes/'.$theme.'/footer.tpl.php';
-
-////////////////////////////////////////////////////
-
-// GLOBALS
-
-////////////////////////////////////////////////////
-
-$GLOBALS["theme"]=$theme;
-$GLOBALS["theme_dir"]=$theme_dir;
-$GLOBALS["header"]=$header;
-$GLOBALS["footer"]=$footer;	
-$GLOBALS["setting_info_handler"]=$setting_info_handler;
-$GLOBALS["setting_maintenance"]=$setting_maintenance;
 
 ////////////////////////////////////////////////////
 
@@ -135,14 +59,17 @@ function error_handler($type,$description){
 
 ////////////////////////////////////////////////////
 
-function get_partial($name){
+function get_partial($name) {
+
+	global $config;
 
 	// This would be used like a diet version of Drupal's block system
-	$file = './themes/'.$GLOBALS['theme'].'/partials/'.$name.'.tpl.php';
+	$file = './themes/'.THEME.'/partials/'.$name.'.tpl.php';
 		
 	include $file; 
 
 };
+
 
 ////////////////////////////////////////////////////
 
@@ -152,11 +79,11 @@ function get_partial($name){
 
 function get_header(){	
 
-	if (file_exists($GLOBALS['header'])) {
+	if (file_exists(HEADER)) {
 		
-		info_handler($GLOBALS['setting_info_handler']); //Display Config INFO
+		info_handler(INFO_HANDLER_TOGGLE); //Display Config INFO
 	
-		include $GLOBALS['header'];
+		include HEADER;
 		
 	} else {
 	
@@ -184,7 +111,7 @@ function render_template($page,$settings) {
 	//Check for FRONT Page - Load 'index.tpl.php'
 	if ($page->get_type() == 'index') {
 	
-		 $template = './themes/'.$GLOBALS['theme'].'/index.tpl.php';		 
+		 $template = './themes/'.THEME.'/index.tpl.php';		 
 	}
 					
 	//Check for PAGE Content Type - Load 'page.tpl.php' default
@@ -193,32 +120,32 @@ function render_template($page,$settings) {
 	
 	
 	//Check for PAGE Content Type - Load 'page[type].tpl.php' specific
-	if 	($page->get_type() == 'page' && file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$page->get_path().'.tpl.php')) {
+	if 	($page->get_type() == 'page' && file_exists('./themes/'.THEME.'/page-'.$page->get_path().'.tpl.php')) {
 		
-		$template = './themes/'.$GLOBALS['theme'].'/page-'.$page->get_path().'.tpl.php';
+		$template = './themes/'.THEME.'/page-'.$page->get_path().'.tpl.php';
 	}
 	
 	//Fallback to default PAGE template - Load 'page.tpl.php' generic
-	if ($page->get_type() == 'page' && !file_exists('./themes/'.$GLOBALS['theme'].'/page-'.$page->get_path().'.tpl.php')) {
+	if ($page->get_type() == 'page' && !file_exists('./themes/'.THEME.'/page-'.$page->get_path().'.tpl.php')) {
 	
-		$template ='./themes/'.$GLOBALS['theme'].'/page.tpl.php';	
+		$template ='./themes/'.THEME.'/page.tpl.php';	
 	} 
 	
 	//Check for POST Content Type - Load 'post-[type].tpl.php' specific
-	if 	($page->get_type() == 'post' && file_exists('./themes/'.$GLOBALS['theme'].'/post-'.$page->get_parent().'.tpl.php')) {
+	if 	($page->get_type() == 'post' && file_exists('./themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php')) {
 		
-		$template = './themes/'.$GLOBALS['theme'].'/post-'.$page->get_parent().'.tpl.php';
+		$template = './themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php';
 	}
 	
 	//Check for FEED Content Type - Load 'feed.tpl.php'
 	if ($page->get_type() == 'feed' && empty($path)) {
 	
-		 $template = './themes/'.$GLOBALS['theme'].'/feed.tpl.php';		 
+		 $template = './themes/'.THEME.'/feed.tpl.php';		 
 	} 
 		
 	//Include the Appropriate Template		
-	if ($GLOBALS['setting_maintenance'] == TRUE) {include './themes/'.$GLOBALS['theme'].'/maintenance.tpl.php';} 
-	elseif (file_exists($template)) {include $template;} else {include './themes/'.$GLOBALS['theme'].'/page.tpl.php';}
+	if ($GLOBALS['setting_maintenance'] == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';} 
+	elseif (file_exists($template)) {include $template;} else {include './themes/'.THEME.'/page.tpl.php';}
 			
 };
 
@@ -231,9 +158,9 @@ function render_template($page,$settings) {
 
 function get_footer(){	
 
-	if (file_exists($GLOBALS['footer'])) {
+	if (file_exists(FOOTER)) {
 	
-		include $GLOBALS['footer'];
+		include FOOTER;
 		
 	} else {
 	

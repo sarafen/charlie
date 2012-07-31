@@ -13,7 +13,7 @@
 <link rel="shortcut icon" href="imgs/favicon.ico" />
 
 <!--[if ! lte IE 6]><!-->
-<link rel="stylesheet" media="screen, projection" href="<?php get_template_dir(); ?>/css/style.css" />
+<link rel="stylesheet" media="screen, projection" href="<?php get_theme_dir(); ?>/css/style.css" />
 
 <!--<![endif]-->
 

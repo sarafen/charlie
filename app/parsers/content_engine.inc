@@ -1,5 +1,7 @@
 <?php
 
+// Content ENGINE
+
 ////////////////////////////////////////////////////
 
 // Construct the basic CONTENT region.
@@ -27,7 +29,7 @@ function get_content() {
 			
 	//Check for [ANYTHING] Content Type - leading slug
 
-	if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) {
+	if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) { //wierd offset bug here.
 		
 		$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';		 
 	} 
@@ -44,8 +46,8 @@ function get_content() {
 	
 	if (file_exists($file) && $file != null) {md($file);} 
 	
-	else if (file_exists($GLOBALS["theme_dir"].'/404.tpl.php')) {
-		include $GLOBALS["theme_dir"].'/404.tpl.php';
+	else if (file_exists(THEME_DIR.'/404.tpl.php')) {
+		include THEME_DIR.'/404.tpl.php';
 	}
 	
 	else {include './themes/default/404.tpl.php';}	
