@@ -5,7 +5,7 @@ A simple, lightweight, no db cms with a templating system.
 
 ## To Do
 
-* 		Add template_part() function
+* [X]	Add template_part() function (already there, doh!)
 * 		Add draft ability. Files with draft_ prepended are ignored and not accessible.
 * 		Fully functional info handler
 * 		Page Content Object (with variable parsing?)
