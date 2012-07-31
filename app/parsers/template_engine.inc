@@ -27,18 +27,27 @@ $page = new Page();
 
 ////////////////////////////////////////////////////
 
-//Test output the path
-$page->the_path();
 
+if (INFO_HANDLER_TOGGLE == TRUE) {
 
-//Test output template
-$page->the_type();
-
-//Test output title
-$page->the_title();
-
-//Test output parent
-echo 'Parent:'.$page->get_parent();
+	//Test output the path
+	echo 'PATH: ',$page->the_path(),',';
+	//echo '<br />';
+	
+	//Test output template
+	echo 'TEMPLATE: ',$page->the_type(),',';
+	//echo '<br />';
+	
+	//Test output title
+	echo 'TITLE: ',$page->the_title(),',';
+	//echo '<br />';
+	
+	//Test output parent
+	echo 'PARENT: ',$page->get_parent();
+	//echo '<br />';
+	
+	echo '<hr />';
+}
 
 
 ////////////////////////////////////////////////////
@@ -220,12 +229,13 @@ function feed($file) {
 
 ////////////////////////////////////////////////////
 
-// Construct the INFO handler.
+// Construct the INFO handler. // Needs a good reworking
 
 ////////////////////////////////////////////////////
 
 function info_handler($switch = FALSE){
 
+/*
 	if ($switch == TRUE) {
 
 		$GLOBALS["switch"] = $switch;
@@ -236,5 +246,6 @@ function info_handler($switch = FALSE){
 		echo '<hr />';
 	
 	} else {$switch = "";}
+*/
 };
 
