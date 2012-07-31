@@ -91,7 +91,7 @@ charlie()->set_info_handler_toggle($setting_info_handler);
 
 Config::set_theme($theme);
 Config::set_theme_dir($theme_dir);
-Config::set_maintenance_toggle($settings_maintenance);
+Config::set_maintenance_toggle($setting_maintenance);
 Config::set_info_handler_toggle($setting_info_handler);
 
 

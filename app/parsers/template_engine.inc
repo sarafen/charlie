@@ -144,7 +144,7 @@ function render_template($page,$settings) {
 	} 
 		
 	//Include the Appropriate Template		
-	if ($GLOBALS['setting_maintenance'] == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';} 
+	if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';} 
 	elseif (file_exists($template)) {include $template;} else {include './themes/'.THEME.'/page.tpl.php';}
 			
 };
