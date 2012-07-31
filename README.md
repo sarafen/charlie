@@ -11,3 +11,4 @@ A simple, lightweight, no db cms with a templating system.
 * Page Content Object (with variable parsing?)
 * Image Handling
 * Agnostic Loop function (diet WP loop)
+* Proper 404 handling (pass back to index.php via .htaccess)
