@@ -8,7 +8,16 @@ function bootstrap_full() {
 
 ////////////////////////////////////////////////////
 
-include "./app/inc/json_caches.php";
+require_once "./app/inc/json_caches.php";
+
+////////////////////////////////////////////////////
+
+// register MUSTACHE engine
+
+////////////////////////////////////////////////////
+
+//require './app/parsers/mustache/Autoloader.php';
+//Mustache_Autoloader::register();
 
 ////////////////////////////////////////////////////
 
@@ -16,7 +25,7 @@ include "./app/inc/json_caches.php";
 
 ////////////////////////////////////////////////////
 
-include "./app/parsers/content_engine.inc";
+require_once "./app/parsers/content_engine.inc";
 
 ////////////////////////////////////////////////////
 
@@ -24,7 +33,7 @@ include "./app/parsers/content_engine.inc";
 
 ////////////////////////////////////////////////////
 
-include "./app/parsers/feed_engine.inc";
+require_once "./app/parsers/feed_engine.inc";
 
 ////////////////////////////////////////////////////
 
@@ -32,7 +41,7 @@ include "./app/parsers/feed_engine.inc";
 
 ////////////////////////////////////////////////////
 
-include "./app/parsers/config_engine.inc";
+require_once "./app/parsers/config_engine.inc";
 
 ////////////////////////////////////////////////////
 
@@ -40,6 +49,6 @@ include "./app/parsers/config_engine.inc";
 
 ////////////////////////////////////////////////////
 
-include "./app/parsers/template_engine.inc";
+require_once "./app/parsers/template_engine.inc";
 
 };

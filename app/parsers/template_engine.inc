@@ -20,6 +20,20 @@ require_once('./app/classes/class.page.inc');
 //Create page object
 $page = new Page();
 
+
+////////////////////////////////////////////////////
+
+// Create MUSTACHE_INGINE Object
+
+////////////////////////////////////////////////////
+
+//$m = new Mustache_Engine;
+
+$template_file = './themes/'.THEME.'/partials/test.tpl.php';
+
+//echo $m->render($template_file, $page);
+//echo $m->render('Hello, {{planet}}!', array('planet' => 'World')); // "Hello, world!"
+
 ////////////////////////////////////////////////////
 
 // Construct the robust CONTENT loop.
