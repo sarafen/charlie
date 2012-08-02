@@ -220,11 +220,13 @@ function render_template($page,$view,$data) {
 	
 	elseif (file_exists($template)) {
 	
-		//include $template; //default implementation
+		// Add a config.info toggle for which templating engine to use.
+	
+		include $template; //default implementation
 		
 		//echo $view->render('test',$data); //mustache implementation
 		
-		$view->display('index.tpl.php', array('data' => $data)); //twig implimentation
+		//$view->display('index.tpl.php', array('data' => $data)); //twig implimentation
 			
 	} else {
 	

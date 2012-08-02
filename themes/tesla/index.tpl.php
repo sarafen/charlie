@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-{% include 'header.tpl.php' %}
+<!-- {% include 'header.tpl.php' %} -->
 
 <body id="front">
 
@@ -9,11 +9,13 @@
 
 <?php get_partial('menu'); ?>
 
+<!--
 {{ data.title }}
 
 {% autoescape false %}
 {{ data.content }}
 {% endautoescape %}
+-->
 <section id="news">
 	
 </section>
