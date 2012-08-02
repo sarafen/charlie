@@ -16,8 +16,8 @@ require_once "./app/inc/json_caches.php";
 
 ////////////////////////////////////////////////////
 
-//require './app/parsers/mustache/Autoloader.php';
-//Mustache_Autoloader::register();
+require './app/parsers/mustache/Autoloader.php';
+Mustache_Autoloader::register();
 
 ////////////////////////////////////////////////////
 

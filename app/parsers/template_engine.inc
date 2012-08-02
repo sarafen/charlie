@@ -10,6 +10,7 @@
 ////////////////////////////////////////////////////
 
 require_once('./app/classes/class.page.inc');
+require_once('./app/classes/class.view_data.inc');
 
 ////////////////////////////////////////////////////
 
@@ -17,22 +18,36 @@ require_once('./app/classes/class.page.inc');
 
 ////////////////////////////////////////////////////
 
-//Create page object
 $page = new Page();
 
+////////////////////////////////////////////////////
+
+// Create VIEW DATA Object
 
 ////////////////////////////////////////////////////
 
-// Create MUSTACHE_INGINE Object
+$data = new viewData();
 
 ////////////////////////////////////////////////////
 
-//$m = new Mustache_Engine;
+// Create MUSTACHE_ENGINE Object
 
-$template_file = './themes/'.THEME.'/partials/test.tpl.php';
+////////////////////////////////////////////////////
 
-//echo $m->render($template_file, $page);
-//echo $m->render('Hello, {{planet}}!', array('planet' => 'World')); // "Hello, world!"
+$m = new Mustache_Engine(array(
+    'template_class_prefix' => '__MyTemplates_',
+    //'cache' => dirname(__FILE__).'/tmp/cache/mustache',
+    'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
+    'partials_loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
+    'escape' => function($value) {
+        return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
+    },
+));
+
+//$m = new Mustache_Engine(array(
+	//'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials')
+
+//));
 
 ////////////////////////////////////////////////////
 
@@ -121,13 +136,26 @@ function get_header(){
 
 ////////////////////////////////////////////////////
 
-function render_template($page,$settings) {	
+function render_template($page,$data,$m) {	
 
+	$view = $m;
 
 	//Grab the URL
 	//$uri = $_SERVER['REQUEST_URI'];
 	//$path_part = explode('/', $uri);
 	//$path = end($path_part);
+
+
+	//$tpl = $m->loadTemplate('test');
+	//$tpl = '{{title}} {{name}}';
+	//$tpl = file_get_contents('./themes/'.THEME.'/partials/test.mustache');
+	//$partials = array(
+    	//'header' => file_get_contents('./themes/tesla/partials/header.mustache')
+    //);
+	
+	//echo $m->render($tpl, $view);
+	//echo $m->render('Hello, {{planet}}!', array('planet' => 'World')); // "Hello, world!"
+
 	
 	$template = "";
 	
@@ -135,7 +163,9 @@ function render_template($page,$settings) {
 	//Check for FRONT Page - Load 'index.tpl.php'
 	if ($page->get_type() == 'index') {
 	
-		 $template = './themes/'.THEME.'/index.tpl.php';		 
+		 $template = './themes/'.THEME.'/index.tpl.php';
+		 //$partials;
+
 	}
 					
 	//Check for PAGE Content Type - Load 'page.tpl.php' default
@@ -169,9 +199,20 @@ function render_template($page,$settings) {
 		
 	//Include the Appropriate Template		
 	if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';} 
-	elseif (file_exists($template)) {include $template;} else {include './themes/'.THEME.'/page.tpl.php';}
+	
+	elseif (file_exists($template)) {
+	
+		//include $template;
+		
+		echo $view->render('test',$data);
 			
+	} else {
+	
+		include './themes/'.THEME.'/page.tpl.php';		
+	}			
 };
+
+
 
 
 ////////////////////////////////////////////////////
@@ -199,7 +240,7 @@ function get_footer(){
 ////////////////////////////////////////////////////
 
 		
-render_template($page,$settings);
+render_template($page,$data,$m);
 
 
 ////////////////////////////////////////////////////
