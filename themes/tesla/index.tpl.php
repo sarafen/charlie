@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 
+{% include 'header.tpl.php' %}
 
 <body id="front">
 
@@ -8,8 +9,11 @@
 
 <?php get_partial('menu'); ?>
 
-<?php get_content(); ?>
+{{ data.title }}
 
+{% autoescape false %}
+{{ data.content }}
+{% endautoescape %}
 <section id="news">
 	
 </section>

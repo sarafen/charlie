@@ -30,24 +30,42 @@ $data = new viewData();
 
 ////////////////////////////////////////////////////
 
-// Create MUSTACHE_ENGINE Object
+// Create MUSTACHE_ENGINE VIEW Object
 
 ////////////////////////////////////////////////////
 
-$m = new Mustache_Engine(array(
+/*
+$view = new Mustache_Engine(array(
     'template_class_prefix' => '__MyTemplates_',
-    //'cache' => dirname(__FILE__).'/tmp/cache/mustache',
+    'cache' => dirname(__FILE__).'/tmp/cache/mustache',
     'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
     'partials_loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
     'escape' => function($value) {
         return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
     },
 ));
+*/
+
 
 //$m = new Mustache_Engine(array(
 	//'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials')
 
 //));
+
+////////////////////////////////////////////////////
+
+// Create TWIG_ENGINE VIEW Object
+
+////////////////////////////////////////////////////
+
+$loader = new Twig_Loader_Filesystem(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME);
+
+$view = new Twig_Environment($loader, array(
+    'cache' => dirname(dirname(dirname(__FILE__))).'/cache/templates',
+    'debug' => true,
+));
+
+//$view->removeExtension('escaper');
 
 ////////////////////////////////////////////////////
 
@@ -136,9 +154,9 @@ function get_header(){
 
 ////////////////////////////////////////////////////
 
-function render_template($page,$data,$m) {	
+function render_template($page,$view,$data) {	
 
-	$view = $m;
+	//$view = $m;
 
 	//Grab the URL
 	//$uri = $_SERVER['REQUEST_URI'];
@@ -202,9 +220,11 @@ function render_template($page,$data,$m) {
 	
 	elseif (file_exists($template)) {
 	
-		//include $template;
+		//include $template; //default implementation
 		
-		echo $view->render('test',$data);
+		//echo $view->render('test',$data); //mustache implementation
+		
+		$view->display('index.tpl.php', array('data' => $data)); //twig implimentation
 			
 	} else {
 	
@@ -240,7 +260,7 @@ function get_footer(){
 ////////////////////////////////////////////////////
 
 		
-render_template($page,$data,$m);
+render_template($page,$view,$data);
 
 
 ////////////////////////////////////////////////////
