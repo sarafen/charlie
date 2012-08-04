@@ -1,7 +1,7 @@
 charlie
 ==================
 
-A simple, lightweight, no db cms using [mustache][1].
+A simple, no DB cms using [mustache][1].
 
 ## To Do
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
