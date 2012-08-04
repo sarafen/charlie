@@ -7,4 +7,5 @@ info_handler		= OFF
 [Theme_Settings]
 
 theme				= tesla
+template_engine		= mustache
 

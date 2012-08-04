@@ -1,18 +1,22 @@
-<?php get_header(); ?>
+{{>header}}
 
 <body id="blog">
 
 
 <h1><a href="/" id="logo">Stephen Creates</a></h1>
 
-<?php get_partial('menu'); ?>
+{{>menu}}
  
 <section id="main-content">
 
 	<h1>Blog Posts</h1>
 	
 	
-	<?php looper('blog'); ?>
+	{{#blog_looper}}
+		{{#items}}
+			{{{item}}}
+		{{/items}}
+	{{/blog_looper}}
 	
 	
 </section>
@@ -32,7 +36,7 @@
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
-<script src="<?php get_template_dir(); ?>/js/fixie.min.js"></script> 
-<script src="<?php get_template_dir(); ?>/js/bundle.js"></script> 
+<script src="{{theme_dir}}/js/fixie.min.js"></script> 
+<script src="{{theme_dir}}/js/bundle.js"></script> 
 </body>
 </html>

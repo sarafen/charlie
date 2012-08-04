@@ -1,16 +1,18 @@
-<?php get_header(); ?>
 
-<body id="blog">
+{{>header}}
+
+
+<body id="page">
 
 
 <h1><a href="/" id="logo">Stephen Creates</a></h1>
 
-<?php get_partial('menu'); ?>
+{{>menu}}
  
 <section id="main-content">
 	
 	
-	<?php get_content(); ?>
+	{{{content}}}
 	
 	
 </section>
@@ -30,7 +32,7 @@
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
-<script src="<?php get_theme_dir(); ?>/js/fixie.min.js"></script> 
-<script src="<?php get_theme_dir(); ?>/js/bundle.js"></script> 
+<script src="{{theme_dir}}/js/fixie.min.js"></script> 
+<script src="{{theme_dir}}/js/bundle.js"></script> 
 </body>
 </html>

@@ -9,6 +9,7 @@ class Config {
     static $theme_dir;
     static $maintenance_toggle;
     static $info_handler_toggle;
+    static $template_engine;
     
     // METHODS       
         
@@ -70,6 +71,22 @@ class Config {
     public function the_info_handler_toggle() {
 	    
 	    echo self::$info_handler_toggle;
+    }
+    
+    public function set_template_engine($template_engine) {
+	    
+	    self::$template_engine = $template_engine;
+    }
+    
+    public function  get_template_engine() {
+    
+	    return self::$template_engine;
+	    
+    }
+    
+    public function the_template_engine() {
+    
+	    echo self::$template_engine = $template_engine;
     }
 
 } 

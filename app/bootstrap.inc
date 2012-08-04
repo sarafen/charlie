@@ -25,8 +25,8 @@ Mustache_Autoloader::register();
 
 ////////////////////////////////////////////////////
 
-require_once './app/parsers/twig/Autoloader.php';
-Twig_Autoloader::register();
+//require_once './app/parsers/twig/Autoloader.php';
+//Twig_Autoloader::register();
 
 ////////////////////////////////////////////////////
 
@@ -34,7 +34,7 @@ Twig_Autoloader::register();
 
 ////////////////////////////////////////////////////
 
-require_once "./app/parsers/content_engine.inc";
+//require_once "./app/parsers/content_engine.inc";
 
 ////////////////////////////////////////////////////
 

@@ -56,4 +56,8 @@ tests/*
 fonts/
 app/_deprecated/
 app/_deprecated/*
+themes/_deprecated/
+themes/_deprecated/*
+app/parsers/tmp/cache/mustache/
+app/parsers/tmp/cache/mustache/*
 

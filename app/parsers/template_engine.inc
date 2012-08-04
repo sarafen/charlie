@@ -10,7 +10,6 @@
 ////////////////////////////////////////////////////
 
 require_once('./app/classes/class.page.inc');
-require_once('./app/classes/class.view_data.inc');
 
 ////////////////////////////////////////////////////
 
@@ -26,7 +25,7 @@ $page = new Page();
 
 ////////////////////////////////////////////////////
 
-$data = new viewData();
+//$data = new viewData();
 
 ////////////////////////////////////////////////////
 
@@ -34,23 +33,20 @@ $data = new viewData();
 
 ////////////////////////////////////////////////////
 
-/*
-$view = new Mustache_Engine(array(
-    'template_class_prefix' => '__MyTemplates_',
-    'cache' => dirname(__FILE__).'/tmp/cache/mustache',
-    'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
-    'partials_loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
-    'escape' => function($value) {
-        return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
-    },
-));
-*/
+if (Config::get_template_engine() == 'mustache') {
 
+	$view = new Mustache_Engine(array(
+	    'template_class_prefix' => '__MyTemplates_',
+	    'cache' => dirname(__FILE__).'/tmp/cache/mustache',
+	    'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME),
+	    'partials_loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials'),
+	    'escape' => function($value) {
+	        return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
+	    },
+	));
 
-//$m = new Mustache_Engine(array(
-	//'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME.'/partials')
+}
 
-//));
 
 ////////////////////////////////////////////////////
 
@@ -58,12 +54,18 @@ $view = new Mustache_Engine(array(
 
 ////////////////////////////////////////////////////
 
-$loader = new Twig_Loader_Filesystem(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME);
+/*
+if (Config::get_template_engine() == 'twig') {
 
-$view = new Twig_Environment($loader, array(
-    'cache' => dirname(dirname(dirname(__FILE__))).'/cache/templates',
-    'debug' => true,
-));
+	$loader = new Twig_Loader_Filesystem(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME);
+	
+	$view = new Twig_Environment($loader, array(
+	    'cache' => dirname(dirname(dirname(__FILE__))).'/cache/templates',
+	    'debug' => true,
+	));
+
+}
+*/
 
 //$view->removeExtension('escaper');
 
@@ -156,32 +158,15 @@ function get_header(){
 
 function render_template($page,$view,$data) {	
 
-	//$view = $m;
-
-	//Grab the URL
-	//$uri = $_SERVER['REQUEST_URI'];
-	//$path_part = explode('/', $uri);
-	//$path = end($path_part);
-
-
-	//$tpl = $m->loadTemplate('test');
-	//$tpl = '{{title}} {{name}}';
-	//$tpl = file_get_contents('./themes/'.THEME.'/partials/test.mustache');
-	//$partials = array(
-    	//'header' => file_get_contents('./themes/tesla/partials/header.mustache')
-    //);
-	
-	//echo $m->render($tpl, $view);
-	//echo $m->render('Hello, {{planet}}!', array('planet' => 'World')); // "Hello, world!"
-
-	
-	$template = "";
-	
+	$template;
 	
 	//Check for FRONT Page - Load 'index.tpl.php'
 	if ($page->get_type() == 'index') {
 	
-		 $template = './themes/'.THEME.'/index.tpl.php';
+		 //$template = './themes/'.THEME.'/index.tpl.php';
+		 //$template = 'index.tpl.php';
+		 
+		 $template = 'index';
 		 //$partials;
 
 	}
@@ -194,66 +179,56 @@ function render_template($page,$view,$data) {
 	//Check for PAGE Content Type - Load 'page[type].tpl.php' specific
 	if 	($page->get_type() == 'page' && file_exists('./themes/'.THEME.'/page-'.$page->get_path().'.tpl.php')) {
 		
-		$template = './themes/'.THEME.'/page-'.$page->get_path().'.tpl.php';
+		//$template = './themes/'.THEME.'/page-'.$page->get_path().'.tpl.php';
+		$template = 'page-'.$page->get_path();
+		
 	}
 	
 	//Fallback to default PAGE template - Load 'page.tpl.php' generic
 	if ($page->get_type() == 'page' && !file_exists('./themes/'.THEME.'/page-'.$page->get_path().'.tpl.php')) {
 	
-		$template ='./themes/'.THEME.'/page.tpl.php';	
+		//$template ='./themes/'.THEME.'/page.tpl.php';	
+		$template = 'page';
 	} 
 	
 	//Check for POST Content Type - Load 'post-[type].tpl.php' specific
 	if 	($page->get_type() == 'post' && file_exists('./themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php')) {
 		
-		$template = './themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php';
+		//$template = './themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php';
+		$template = 'post-'.$page->get_parent();
 	}
 	
 	//Check for FEED Content Type - Load 'feed.tpl.php'
 	if ($page->get_type() == 'feed' && empty($path)) {
 	
-		 $template = './themes/'.THEME.'/feed.tpl.php';		 
+		 //$template = './themes/'.THEME.'/feed.tpl.php';
+		 $template = 'feed';	 
 	} 
 		
 	//Include the Appropriate Template		
 	if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';} 
 	
-	elseif (file_exists($template)) {
+	elseif (file_exists('./themes/'.THEME.'/'.$template.'.ms')) { //make extension configurable
+	
+		$template_engine = Config::get_template_engine();
 	
 		// Add a config.info toggle for which templating engine to use.
+		
+		if ($template_engine == 'mustache') {echo $view->render($template,$page);} //mustache implementation
+		
+/* 		else if ($template_engine == 'twig') {$view->display($template, array('data' => $data));} //twig implimentation */
+		
+		
+		else {include $template;} //default implementation
 	
-		include $template; //default implementation
-		
-		//echo $view->render('test',$data); //mustache implementation
-		
-		//$view->display('index.tpl.php', array('data' => $data)); //twig implimentation
 			
 	} else {
 	
-		include './themes/'.THEME.'/page.tpl.php';		
+		//include './themes/'.THEME.'/page.tpl.php';	
+		echo $view->render('page',$data);	
 	}			
 };
 
-
-
-
-////////////////////////////////////////////////////
-
-// Construct the FOOTER area.
-
-////////////////////////////////////////////////////
-
-function get_footer(){	
-
-	if (file_exists(FOOTER)) {
-	
-		include FOOTER;
-		
-	} else {
-	
-		error_handler("404","Template File Not Found");
-	}
-};
 
 ////////////////////////////////////////////////////
 
@@ -262,7 +237,7 @@ function get_footer(){
 ////////////////////////////////////////////////////
 
 		
-render_template($page,$view,$data);
+render_template($page,$view,$page);
 
 
 ////////////////////////////////////////////////////

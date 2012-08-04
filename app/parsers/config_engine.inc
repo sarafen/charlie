@@ -36,6 +36,8 @@ $settings = Settings::getInstance('./app/config.info');
 	
 	//Theme Settings
 	$theme = strip_tags($settings->Theme_Settings['theme']); 
+	
+	$template_engine = strip_tags($settings->Theme_Settings['template_engine']);
 
 
 ////////////////////////////////////////////////////
@@ -72,28 +74,11 @@ if (!file_exists($theme_dir) && !is_dir($theme_dir)) {
 
 ////////////////////////////////////////////////////
 
-/*
-define('CONFIG', 'configuration');
-
-${CONFIG} = new Config();
-
-function charlie() {
-    return $GLOBALS[CONFIG];
-}
-
-
-charlie()->set_theme($theme);
-charlie()->set_theme_dir($theme_dir);
-charlie()->set_maintenance_toggle($settings_maintenance);
-charlie()->set_info_handler_toggle($setting_info_handler);
-*/
-
-
 Config::set_theme($theme);
 Config::set_theme_dir($theme_dir);
 Config::set_maintenance_toggle($setting_maintenance);
 Config::set_info_handler_toggle($setting_info_handler);
-
+Config::set_template_engine($template_engine);
 
 ////////////////////////////////////////////////////
 
@@ -116,10 +101,3 @@ define('HEADER', $header);
 define('FOOTER', $footer);
 define('INFO_HANDLER_TOGGLE', Config::get_info_handler_toggle());
 define('MAINTENANCE_TOGGLE',  Config::get_maintenance_toggle());
-
-//$GLOBALS["theme"]=Config::get_theme();
-//$GLOBALS["theme_dir"]=Config::get_theme_dir();
-//$GLOBALS["header"]=$header;
-//$GLOBALS["footer"]=$footer;	
-//$GLOBALS["setting_info_handler"]=Config::get_info_handler_toggle();
-//$GLOBALS["setting_maintenance"]=Config::get_maintenance_toggle();
