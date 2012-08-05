@@ -9,15 +9,7 @@
  
 <section id="main-content">
 
-	<h1>Blog Posts</h1>
-	
-	
-	{{#blog_looper}}
-		{{#items}}
-			{{{item}}}
-		{{/items}}
-	{{/blog_looper}}
-	
+	{{>blog-list}}	
 	
 </section>
 

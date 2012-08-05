@@ -7,6 +7,7 @@ if(phpversion() < 5) {
 
 } else {
 
+
   require_once "./app/bootstrap.inc"; 
   bootstrap_full(); 
   

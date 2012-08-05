@@ -11,6 +11,13 @@
 require_once "./app/classes/class.ini_settings.inc";
 require_once "./app/classes/class.config_settings.inc";
 
+
+////////////////////////////////////////////////////
+
+// Get DOMAIN
+
+////////////////////////////////////////////////////
+
 ////////////////////////////////////////////////////
 
 // Parse & Pass In INI SETTINGS
@@ -95,6 +102,7 @@ $footer = 'themes/'.Config::get_theme().'/footer.tpl.php';
 
 ////////////////////////////////////////////////////
 
+define('DOMAIN', 'http://'.$_SERVER['SERVER_NAME']);
 define('THEME', Config::get_theme());
 define('THEME_DIR', Config::get_theme_dir());
 define('HEADER', $header);

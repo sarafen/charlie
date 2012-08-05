@@ -1,18 +1,18 @@
-<?php get_header(); ?>
+{{>header}}
 
 <body id="page">
 
 
 <h1><a href="/" id="logo">Stephen Creates</a></h1>
 
-<?php get_block('menu'); ?>
+{{>menu}}
  
 <section id="main-content">
 
 	<h1>Under Maintenance</h1>
 	
-	<p>The Website is currently under Maintenance <br /> 
-	We apologize for the inconvenience 
+	<p>The Website is currently under Maintenance. <br /> 
+	We apologize for the inconvenience. 
 	</p>
 	
 	
@@ -33,7 +33,7 @@
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
-<script src="<?php get_theme_dir(); ?>/js/fixie.min.js"></script> 
-<script src="<?php get_theme_dir(); ?>/js/bundle.js"></script> 
+<script src="{{theme_dir}}/js/fixie.min.js"></script> 
+<script src="{{theme_dir}}/js/bundle.js"></script> 
 </body>
 </html>

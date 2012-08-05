@@ -103,34 +103,56 @@ class Page {
 		$this->content = return_md($file);
 		} 
 		
-		else if (file_exists(THEME_DIR.'/404.tpl.php')) {
+		/*
+else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			//include THEME_DIR.'/404.tpl.php';
 			$this->content = file_get_contents(THEME_DIR.'/404.tpl.php');
+		}
+*/
+		
+		else if (file_exists('./content/pages/404.md')) {
+			//include THEME_DIR.'/404.tpl.php';
+			//$this->content = file_get_contents('./content/pages/404.md');
+			
+			header('HTTP/1.0 404 Not Found'); 
+			$this->content = return_md('./content/pages/404.md');
 		}
 		
 		else {
 		
 			//include './themes/default/404.tpl.php';
-			$this->content = file_get_contents('./themes/default/404.tpl.php');
-		}	
-        
-        
+			//$this->content = file_get_contents('./themes/default/404.tpl.php');
+			
+			header('HTTP/1.0 404 Not Found'); 
+			$this->content = return_md('./themes/default/404.tpl.php');
+		}	     
     } 
     
-    
-    
-	
+    //Used for tweet.js for custom caching
+    public function news() {
+
+		include_once('./app/inc/cache_flow.php');
+		
+		cache_money(
+			'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=stephencreates&count=40&page=1&include_entities=1&callback=?', //API src
+			'./cache/twitter.js', //Cache file dir
+			'1000', //Cache life in seconds
+			'twitter',//Cache src format
+			'off' //debug?
+			);
+	}
+
 	//Build LOOP
-	public function blog_looper($content_type) {
-	
-		//Build ENTRY
-		function item($file,$path) {
+	public function blog_looper() {
+			
+		//Build POST
+		function the_post($file,$path) {
 		
 			//Get URI
 			
 			//URI
 	    	
-			$domain = 'http://charlie.dev';
+			//$domain = 'http://charlie.dev'; //need to get more dynamically.
 			
 			//Get Path
 			$info = pathinfo($path);
@@ -151,26 +173,22 @@ class Page {
 			
 			//Assemble ID
 			//$id = 'tag:'.$domain.','.$date_year.':'.$path;
-			$link = $domain.$path;
+			$link = DOMAIN.$path;
 			
 			//Get TEASER
 			preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
 		    $teaser = $matches[1][0];
+					
+			$postObject = array();
 			
-		
-			//Render ENTRY
-			$item = '
-				<h2><a href="'.$link.'" >'.$title.'</a></h2>
-				<span>'.$date.'</span>
-					  
-						<p>'.$teaser.'</p>
-					  
-			';
+			$postObject['title'] = $title;
+			$postObject['teaser'] = $teaser;
+			$postObject['link'] = $link;
+			$postObject['date'] = $date;
+				
+			return $postObject;		
 			
-			return $item;	
 		}
-	
-	
 	
 	
 		//Render LOOP
@@ -192,17 +210,140 @@ class Page {
 		foreach($files as $key => $val) {
 		
 			$filename = $val;
-			$num = $i++;		
-			
-			$items['items'][$num] = array('item' => item($dir.$filename,$filename));
+			$num = $i++;
+			$postObject = the_post($dir.$filename,$filename);
+				
+		
+			$items['item'][$num] = array(
+				'title' => $postObject['title'],
+				'link' => $postObject['link'],
+				'date' => $postObject['date'],
+				'teaser' => $postObject['teaser']
+			);
 													
 		}
 		
 		return $items;		
 	}
 	
+	public function feed_header() {
+				header('Content-type: application/atom+xml');
+	}
 	
-    
+	
+	// Feed LOOPER	
+/*
+	public function feed_looper() {
+	
+	
+		$content_type = 'blog';
+	
+		function feed_entry($file,$path) {
+		
+			//Get URI
+			//$domain = 'http://charlie.dev';
+			
+			//Get Path
+			$info = pathinfo($path);
+			$path = basename($path,'.'.$info['extension']);
+			$path = '/blog/'.$path.'/';
+		
+			//$file = "./content/blog/one.md";
+			$html = return_md($file);
+		
+			//Get TITLE
+		    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
+		    $title = $matches[1][0];		
+			
+			
+			//Get DATE
+			$date = date(DATE_ATOM, filemtime($file));
+			$date_year = date('Y',filemtime($file));
+			
+			//Assemble ID
+			$id = 'tag:'.DOMAIN.','.$date_year.':'.$path;
+			$link = DOMAIN.$path;
+			
+			//Get TEASER
+			preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
+		    $teaser = $matches[1][0];
+					
+			//Render ENTRY
+			$entry = '
+				<entry>
+				<title>'.$title.'</title>
+				<id>'.$id.'</id>
+				<updated>'.$date.'</updated>
+				<link rel="alternate" type="text/html" href="'.$link.'" />
+				<content type="xhtml" xml:lang="en">
+					<div xmlns="http://www.w3.org/1999/xhtml">
+					  
+					  
+						<p>'.$teaser.'</p>
+					
+					  
+					</div>
+			   </content>
+			</entry>
+			
+			';
+			
+			$feed_entryObject = array();
+				
+			$feed_entryObject['entry'] = $entry;
+			
+			return $feed_entryObject;		
+			
+			//echo $entry;
+			//return $entry;			
+			
+		}
+			
+		$dir = "content/".$content_type."/";
+		
+		$files = scandir($dir);
+		//usort($files, 'compare_time');
+		
+		$files = array_diff($files, array('.', '..', '.DS_Store'));
+		
+		//print_r($files);
+		
+		
+		$items = array('items' => array());
+	
+		$i = 0;
+		
+		foreach($files as $key => $val) {
+		
+			$filename = $val;
+			$num = $i++;
+			$feed_entryObject = feed_entry($dir.$filename,$filename);
+				
+		
+			$items['item'][$num] = array(
+				'entry' => $feed_entryObject['entry']
+			);
+													
+		}
+		
+		return $items;	
+			
+		
+	}
+	
+	
+	function feed() {
+
+		$raw_content = file_get_contents('./themes/tesla/feed.ms');
+	
+		//header('Content-type: text/xml');
+	
+		return $raw_content;
+
+	}
+*/
+	
+	   
     
     //public function set_path() {}
     

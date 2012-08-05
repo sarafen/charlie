@@ -11,8 +11,8 @@ class Config {
     static $info_handler_toggle;
     static $template_engine;
     
-    // METHODS       
-        
+    // METHODS 
+             
     public function set_theme($theme) {
 	    
 	    self::$theme = $theme;

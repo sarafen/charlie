@@ -111,45 +111,6 @@ function error_handler($type,$description){
 	echo 'Error '.$type.' '.$description;
 };
 
-
-////////////////////////////////////////////////////
-
-// Construct the robust PARTIAL region(s).
-
-////////////////////////////////////////////////////
-
-function get_partial($name) {
-
-	global $config;
-
-	// This would be used like a diet version of Drupal's block system
-	$file = './themes/'.THEME.'/partials/'.$name.'.tpl.php';
-		
-	include $file; 
-
-};
-
-
-////////////////////////////////////////////////////
-
-// Construct the HEADER area.
-
-////////////////////////////////////////////////////
-
-function get_header(){	
-
-	if (file_exists(HEADER)) {
-		
-		info_handler(INFO_HANDLER_TOGGLE); //Display Config INFO
-	
-		include HEADER;
-		
-	} else {
-	
-		error_handler("404","Template File Not Found");
-	}
-};
-
 ////////////////////////////////////////////////////
 
 // Construct the BODY area.
@@ -158,7 +119,8 @@ function get_header(){
 
 function render_template($page,$view,$data) {	
 
-	$template;
+	$template = "";
+	$ext = '.ms';
 	
 	//Check for FRONT Page - Load 'index.tpl.php'
 	if ($page->get_type() == 'index') {
@@ -177,7 +139,7 @@ function render_template($page,$view,$data) {
 	
 	
 	//Check for PAGE Content Type - Load 'page[type].tpl.php' specific
-	if 	($page->get_type() == 'page' && file_exists('./themes/'.THEME.'/page-'.$page->get_path().'.tpl.php')) {
+	if 	($page->get_type() == 'page' && file_exists('./themes/'.THEME.'/page-'.$page->get_path().$ext)) {
 		
 		//$template = './themes/'.THEME.'/page-'.$page->get_path().'.tpl.php';
 		$template = 'page-'.$page->get_path();
@@ -185,14 +147,14 @@ function render_template($page,$view,$data) {
 	}
 	
 	//Fallback to default PAGE template - Load 'page.tpl.php' generic
-	if ($page->get_type() == 'page' && !file_exists('./themes/'.THEME.'/page-'.$page->get_path().'.tpl.php')) {
+	if ($page->get_type() == 'page' && !file_exists('./themes/'.THEME.'/page-'.$page->get_path().$ext)) {
 	
 		//$template ='./themes/'.THEME.'/page.tpl.php';	
 		$template = 'page';
 	} 
 	
 	//Check for POST Content Type - Load 'post-[type].tpl.php' specific
-	if 	($page->get_type() == 'post' && file_exists('./themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php')) {
+	if 	($page->get_type() == 'post' && file_exists('./themes/'.THEME.'/post-'.$page->get_parent().$ext)) {
 		
 		//$template = './themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php';
 		$template = 'post-'.$page->get_parent();
@@ -202,11 +164,15 @@ function render_template($page,$view,$data) {
 	if ($page->get_type() == 'feed' && empty($path)) {
 	
 		 //$template = './themes/'.THEME.'/feed.tpl.php';
+		 //include $template;
+		 
 		 $template = 'feed';	 
 	} 
 		
 	//Include the Appropriate Template		
-	if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';} 
+	//if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';}
+	
+	if (MAINTENANCE_TOGGLE == TRUE) {$template = 'maintenance';echo $view->render($template,$page);}  
 	
 	elseif (file_exists('./themes/'.THEME.'/'.$template.'.ms')) { //make extension configurable
 	
@@ -219,7 +185,7 @@ function render_template($page,$view,$data) {
 /* 		else if ($template_engine == 'twig') {$view->display($template, array('data' => $data));} //twig implimentation */
 		
 		
-		else {include $template;} //default implementation
+		else {include ($template);} //default implementation
 	
 			
 	} else {

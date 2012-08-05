@@ -25,7 +25,8 @@
 
 </footer>
 
-<?php news(); ?>
+
+{{news}}
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
 <script src="{{theme_dir}}/js/fixie.min.js"></script> 
