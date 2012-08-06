@@ -27,7 +27,6 @@
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="http://use.typekit.com/mko1ywr.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 	
 </head>

@@ -1,12 +1,11 @@
 <h1>Blog Posts</h1>
+
+{{#looper}}
+	{{#item}}
 	
-	
-	{{#blog_looper}}
-		{{#item}}
+		<h2><a href="{{{link}}}">{{title}}</a></h2>
+		<span>{{date}}</span>  
+		<p>{{{teaser}}}</p>
 		
-			<h2><a href="{{{link}}}" >{{title}}</a></h2>
-			<span>{{date}}</span>  
-			<p>{{{teaser}}}</p>
-			
-		{{/item}}
-	{{/blog_looper}}
+	{{/item}}
+{{/looper}}

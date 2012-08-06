@@ -144,10 +144,11 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 	}
 
 	//Build LOOP
-	public function blog_looper() {
+	public function looper() {
+	
 			
 		//Build POST
-		function the_post($file,$path) {
+		function the_post($file,$path,$content_type) {
 		
 			//Get URI
 			
@@ -158,7 +159,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			//Get Path
 			$info = pathinfo($path);
 			$path = basename($path,'.'.$info['extension']);
-			$path = '/blog/'.$path.'/';
+			$path = '/'.$content_type.'/'.$path.'/';
 		
 			//$file = "./content/blog/one.md";
 			$html = return_md($file);
@@ -212,7 +213,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 			$filename = $val;
 			$num = $i++;
-			$postObject = the_post($dir.$filename,$filename);
+			$postObject = the_post($dir.$filename,$filename,$content_type);
 				
 		
 			$items['item'][$num] = array(
