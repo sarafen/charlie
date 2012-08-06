@@ -73,6 +73,7 @@ class Page {
         
         //Content			
 		$file = "";
+				
 		 
 		//Check for FRONT Page
 		
@@ -110,7 +111,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		}
 */
 		
-		else if (file_exists('./content/pages/404.md')) {
+		else if (file_exists('./content/pages/404.md') && $path_part[1] != 'feed') { //better job of feed error handling
 			//include THEME_DIR.'/404.tpl.php';
 			//$this->content = file_get_contents('./content/pages/404.md');
 			
@@ -118,7 +119,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			$this->content = return_md('./content/pages/404.md');
 		}
 		
-		else {
+		else if ($path_part[1] != 'feed') { //better job of feed 404 handling
 		
 			//include './themes/default/404.tpl.php';
 			//$this->content = file_get_contents('./themes/default/404.tpl.php');
@@ -226,19 +227,15 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		return $items;		
 	}
 	
-	public function feed_header() {
-				header('Content-type: application/atom+xml');
-	}
-	
 	
 	// Feed LOOPER	
-/*
+
 	public function feed_looper() {
 	
 	
 		$content_type = 'blog';
 	
-		function feed_entry($file,$path) {
+		function feed_item($file,$path) {
 		
 			//Get URI
 			//$domain = 'http://charlie.dev';
@@ -279,7 +276,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 					<div xmlns="http://www.w3.org/1999/xhtml">
 					  
 					  
-						<p>'.$teaser.'</p>
+						<summary>'.$teaser.'</summary>
 					
 					  
 					</div>
@@ -317,7 +314,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 			$filename = $val;
 			$num = $i++;
-			$feed_entryObject = feed_entry($dir.$filename,$filename);
+			$feed_entryObject = feed_item($dir.$filename,$filename);
 				
 		
 			$items['item'][$num] = array(
@@ -326,23 +323,14 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 													
 		}
 		
+		header('Content-type: application/atom+xml');
 		return $items;	
 			
 		
 	}
 	
 	
-	function feed() {
-
-		$raw_content = file_get_contents('./themes/tesla/feed.ms');
-	
-		//header('Content-type: text/xml');
-	
-		return $raw_content;
-
-	}
-*/
-	
+		
 	   
     
     //public function set_path() {}
