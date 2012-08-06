@@ -20,12 +20,7 @@
 
 
 
-<footer role="contentinfo">
-<p>Created by Stephen Lovell</p>
-
-<!-- <p>&copy; 2012</p> -->
-
-</footer>
+{{>footer}}
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 

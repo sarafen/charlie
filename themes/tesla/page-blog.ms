@@ -11,21 +11,19 @@
 
 	{{>blog-list}}	
 	
+	{{#dynamic_looper}}bob{{/dynamic_looper}}
+	
 </section>
 
+<a href="/feed">Feed</a>
 
 
 
 
 
 
-<footer role="contentinfo">
-<p>Created by Stephen Lovell</p>
 
-<!-- <p>&copy; 2012</p> -->
-
-</footer>
-
+{{>footer}}
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
 <script src="{{theme_dir}}/js/fixie.min.js"></script> 

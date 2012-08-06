@@ -2,7 +2,7 @@
 
 // Sets up the Page Object 
 
-class Page {  
+class Charlie_Data {  
 
 	// PROPERTIES
     private $_path;
@@ -111,7 +111,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		}
 */
 		
-		else if (file_exists('./content/pages/404.md') && $path_part[1] != 'feed') { //better job of feed error handling
+		else if (file_exists('./content/pages/404.md') && $path_part[1] != 'feed') { //do better job of feed error handling
 			//include THEME_DIR.'/404.tpl.php';
 			//$this->content = file_get_contents('./content/pages/404.md');
 			
@@ -119,7 +119,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			$this->content = return_md('./content/pages/404.md');
 		}
 		
-		else if ($path_part[1] != 'feed') { //better job of feed 404 handling
+		else if ($path_part[1] != 'feed') { //do better job of feed 404 handling
 		
 			//include './themes/default/404.tpl.php';
 			//$this->content = file_get_contents('./themes/default/404.tpl.php');
@@ -128,20 +128,6 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			$this->content = return_md('./themes/default/404.tpl.php');
 		}	     
     } 
-    
-    //Used for tweet.js for custom caching
-    public function news() {
-
-		include_once('./app/inc/cache_flow.php');
-		
-		cache_money(
-			'https://api.twitter.com/1/statuses/user_timeline.json?screen_name=stephencreates&count=40&page=1&include_entities=1&callback=?', //API src
-			'./cache/twitter.js', //Cache file dir
-			'1000', //Cache life in seconds
-			'twitter',//Cache src format
-			'off' //debug?
-			);
-	}
 
 	//Build LOOP
 	public function looper() {
@@ -201,7 +187,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 		$files = scandir($dir);
 		
-		$files = array_diff($files, array('.', '..', '.DS_Store'));
+		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
 		
 		//print_r($files);
 		
@@ -220,13 +206,24 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 				'title' => $postObject['title'],
 				'link' => $postObject['link'],
 				'date' => $postObject['date'],
-				'teaser' => $postObject['teaser']
+				'teaser' => $postObject['teaser'],
+				//'lower' => function($value) { return strtolower((string) $value); }, //this is how you pass a param.
 			);
 													
 		}
 		
 		return $items;		
 	}
+	
+	// Dynamic LOOPER
+	
+	public function dynamic_looper() {
+		
+	
+		
+		
+	}
+	
 	
 	
 	// Feed LOOPER	
@@ -302,7 +299,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		$files = scandir($dir);
 		//usort($files, 'compare_time');
 		
-		$files = array_diff($files, array('.', '..', '.DS_Store'));
+		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
 		
 		//print_r($files);
 		

@@ -8,7 +8,7 @@
 <meta name="author" content="Stephen Lovell" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-<title>stephen creates</title>
+<title>{{#title}} {{title}} |{{/title}} stephen creates</title>
 
 <link rel="shortcut icon" href="imgs/favicon.ico" />
 
