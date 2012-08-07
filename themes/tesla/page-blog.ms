@@ -8,10 +8,10 @@
 {{>menu}}
  
 <section id="main-content">
-
-	{{>blog-list}}	
 	
-	{{#dynamic_looper}}bob{{/dynamic_looper}}
+
+{{>blog-list}}
+	
 	
 </section>
 
@@ -25,8 +25,18 @@
 
 {{>footer}}
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
-<script src="{{theme_dir}}/js/fixie.min.js"></script> 
-<script src="{{theme_dir}}/js/bundle.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+<script src="{{theme_dir}}/js/jq.flexipage.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$('.paginate').flexipage({
+		perpage:10,
+		parent: 'section',
+		element: 'article',
+		showcounter: true,
+   });
+});
+</script>
 </body>
 </html>

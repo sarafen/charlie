@@ -45,6 +45,8 @@ if (Config::get_template_engine() == 'mustache') {
 	        return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
 	    },
 	));
+	
+	//$view->addHelper('list', array('paginate' => function($value) { return '<div><span class="paginate">' .$value. '</span></div>'; }));
 
 }
 
