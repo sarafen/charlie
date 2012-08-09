@@ -12,6 +12,7 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * More OOP and Class usage, omit orphaned functions or group into master toolbox class.
 * Add .js pagination to core.
 * Add optional feed formats (rss,xml,…)
+* Sterilize everything from core and move into stephencreates.com or some such.
 
 ## Done
 * [X] Proper 404 handling (pass back to index.php via .htaccess)
