@@ -128,7 +128,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			//$this->content = file_get_contents('./themes/default/404.tpl.php');
 			
 			header('HTTP/1.0 404 Not Found'); 
-			$this->content = return_md('./themes/default/404.tpl.php');
+			$this->content = return_md('./app/404.php');
 		}
 		
 		//Date(s)
