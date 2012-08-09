@@ -135,69 +135,51 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 		$this->current_year = date("Y");	     
     } 
-
-	//Build LOOP
-	public function looper() {
+    
+    //Build base POST
+    protected function the_post($file,$path,$content_type) {
+		
+		//Get Path
+		$info = pathinfo($path);
+		$path = basename($path,'.'.$info['extension']);
+		$path = '/'.$content_type.'/'.$path.'/';
 	
-			
-		//Build POST
-		function the_post($file,$path,$content_type) {
+		//$file = "./content/blog/one.md";
+		$html = return_md($file);
+	
+		//Get TITLE
+	    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
+	    $title = $matches[1][0];		
 		
-			//Get URI
-			
-			//URI
-	    	
-			//$domain = 'http://charlie.dev'; //need to get more dynamically.
-			
-			//Get Path
-			$info = pathinfo($path);
-			$path = basename($path,'.'.$info['extension']);
-			$path = '/'.$content_type.'/'.$path.'/';
+		//Get DATE
+		$date = date('l jS \of F Y h:i:s A', filemtime($file));
 		
-			//$file = "./content/blog/one.md";
-			$html = return_md($file);
+		$link = DOMAIN.$path;
 		
-			//Get TITLE
-		    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
-		    $title = $matches[1][0];		
-			
-			
-			//Get DATE
-			$date = date('l jS \of F Y h:i:s A', filemtime($file));
-			//$date_year = date('Y',filemtime($file));
-			
-			//Assemble ID
-			//$id = 'tag:'.$domain.','.$date_year.':'.$path;
-			$link = DOMAIN.$path;
-			
-			//Get TEASER
-			preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
-		    $teaser = $matches[1][0];
-					
-			$postObject = array();
-			
-			$postObject['title'] = $title;
-			$postObject['teaser'] = $teaser;
-			$postObject['link'] = $link;
-			$postObject['date'] = $date;
+		//Get TEASER
+		preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
+	    $teaser = $matches[1][0];
 				
-			return $postObject;		
+		$postObject = array();
+		
+		$postObject['title'] = $title;
+		$postObject['teaser'] = $teaser;
+		$postObject['link'] = $link;
+		$postObject['date'] = $date;
 			
-		}
-	
-	
-		//Render LOOP
-		
-		$content_type = 'blog'; //testing
-		
+		return $postObject;		
+			
+    }
+    
+    //Build base LOOPER   
+    protected function looper($content_type) {
+    	    
+	    //Render LOOP
+		//$content_type = 'blog'; //testing
 		$dir = "content/".$content_type."/";
-		
 		$files = scandir($dir);
-		
 		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
-		
-		//print_r($files);
-		
+			
 		$items = array('items' => array());
 		
 		$i = 0;
@@ -206,9 +188,8 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 			$filename = $val;
 			$num = $i++;
-			$postObject = the_post($dir.$filename,$filename,$content_type);
+			$postObject = $this->the_post($dir.$filename,$filename,$content_type);
 				
-		
 			$items['item'][$num] = array(
 				'title' => $postObject['title'],
 				'link' => $postObject['link'],
@@ -219,24 +200,13 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 													
 		}
 		
-		return $items;		
-	}
-	
-	// Dynamic LOOPER
-	
-	public function dynamic_looper() {
-		
-	
-		
-		
-	}
-	
-	
-	
+		return $items;		    
+	    
+    }
+    
+  	
 	// Feed LOOPER	
-
 	public function feed_looper() {
-	
 	
 		$content_type = 'blog';
 	

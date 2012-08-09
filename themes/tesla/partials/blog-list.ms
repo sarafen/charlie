@@ -1,6 +1,6 @@
 <h1>Blog Posts</h1>
 
-{{#looper}}	
+{{#blog_looper}}	
 <div class="paginate">
 {{#item}}
 	<article>
@@ -10,4 +10,4 @@
 	</article>
 {{/item}}
 </div>
-{{/looper}}
+{{/blog_looper}}

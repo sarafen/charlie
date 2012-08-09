@@ -1,9 +1,7 @@
 <?php
 
 // Sets up the Page Object 
-
 class Data extends Charlie_Data {  
-
 
  //Used for tweet.js for custom caching
     public function news_cache() {
@@ -17,6 +15,25 @@ class Data extends Charlie_Data {
 			'twitter',//Cache src format
 			'off' //debug?
 			);
+	}
+	
+	// Build Custom LOOPERS
+	
+	//Blog LOOPER
+	public function blog_looper() {
+		
+		$items = $this->looper('blog');
+		
+		return $items;
+	
+	}
+	
+	//Work LOOPER
+	public function work_looper() {
+		
+		$items = $this->looper('work');
+		
+		return $items;
 	}
 
 
