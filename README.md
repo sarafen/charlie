@@ -1,7 +1,7 @@
 charlie
 ==================
 
-A simple, no DB cms using [mustache][1].
+A simple, no DB cms using [mustache][1] & [markdown][2].
 
 ## To Do
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
@@ -23,3 +23,4 @@ A simple, no DB cms using [mustache][1].
 
 
 [1]: http://mustache.github.com/  "Logic-less templates"
+[2]: http://daringfireball.net/projects/markdown/ "Markdown"
