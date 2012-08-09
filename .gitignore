@@ -56,8 +56,6 @@ cache/*
 tests/
 tests/*
 fonts/
-themes/*/imgs/
-themes/*/imgs/*
 app/_deprecated/
 app/_deprecated/*
 themes/_deprecated/
