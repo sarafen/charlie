@@ -10,6 +10,8 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * Page Caching
 * Dropbox integration w/ content folder.
 * More OOP and Class usage, omit orphaned functions or group into master toolbox class.
+* Add .js pagination to core.
+* Add optional feed formats (rss,xml,…)
 
 ## Done
 * [X] Proper 404 handling (pass back to index.php via .htaccess)
