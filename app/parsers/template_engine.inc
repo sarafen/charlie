@@ -34,7 +34,7 @@ $page = new Data();
 
 ////////////////////////////////////////////////////
 
-if (Config::get_template_engine() == 'mustache') {
+if (Charlie_Config::get_template_engine() == 'mustache') {
 
 	$view = new Mustache_Engine(array(
 	    'template_class_prefix' => '__MyTemplates_',
@@ -58,7 +58,7 @@ if (Config::get_template_engine() == 'mustache') {
 ////////////////////////////////////////////////////
 
 /*
-if (Config::get_template_engine() == 'twig') {
+if (Charlie_Config::get_template_engine() == 'twig') {
 
 	$loader = new Twig_Loader_Filesystem(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME);
 	
@@ -179,7 +179,7 @@ function render_template($page,$view,$data) {
 	
 	elseif (file_exists('./themes/'.THEME.'/'.$template.'.ms')) { //make extension configurable
 	
-		$template_engine = Config::get_template_engine();
+		$template_engine = Charlie_Config::get_template_engine();
 	
 		// Add a config.info toggle for which templating engine to use.
 		

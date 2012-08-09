@@ -16,6 +16,9 @@ class Charlie_Data {
 	public $title;
 	public $content;
 	
+	
+	public $current_year;
+	
     
     // METHODS       
     public function __construct() { 
@@ -126,7 +129,11 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			
 			header('HTTP/1.0 404 Not Found'); 
 			$this->content = return_md('./themes/default/404.tpl.php');
-		}	     
+		}
+		
+		//Date(s)
+		
+		$this->current_year = date("Y");	     
     } 
 
 	//Build LOOP

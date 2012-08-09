@@ -2,7 +2,7 @@
 
 // Sets up the Config Object 
 
-class Config {  
+class Charlie_Config {  
 
 	// PROPERTIES
 	static $theme;

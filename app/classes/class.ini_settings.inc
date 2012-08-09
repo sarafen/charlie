@@ -1,6 +1,6 @@
 <?php
 
-class settings { 
+class Charlie_Settings { 
 
 /////////////////////////////////////
 //  PROPERTIES
@@ -19,7 +19,7 @@ class settings {
     
     public static function getInstance($ini_file) { 
         if(! isset(self::$instance)) { 
-            self::$instance = new Settings($ini_file);            
+            self::$instance = new Charlie_Settings($ini_file);            
         } 
         return self::$instance; 
     } 

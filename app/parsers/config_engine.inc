@@ -24,7 +24,7 @@ require_once "./app/classes/class.config_settings.inc";
 
 ////////////////////////////////////////////////////
  
-$settings = Settings::getInstance('./app/config.info');
+$settings = Charlie_Settings::getInstance('./app/config.info');
 
 	//General Info
 	$setting_maintenance = strip_tags($settings->General_Info['maintenance_mode']); // ! This and others throw ERROR because of direct property access.!
@@ -59,7 +59,7 @@ function get_theme_dir() {
 
 	$site_url = $_SERVER['SERVER_NAME'];
 
-	echo 'http://'.$site_url.'/'.Config::get_theme_dir();;
+	echo 'http://'.$site_url.'/'.Charlie_Config::get_theme_dir();;
 
 };
 
@@ -81,11 +81,11 @@ if (!file_exists($theme_dir) && !is_dir($theme_dir)) {
 
 ////////////////////////////////////////////////////
 
-Config::set_theme($theme);
-Config::set_theme_dir($theme_dir);
-Config::set_maintenance_toggle($setting_maintenance);
-Config::set_info_handler_toggle($setting_info_handler);
-Config::set_template_engine($template_engine);
+Charlie_Config::set_theme($theme);
+Charlie_Config::set_theme_dir($theme_dir);
+Charlie_Config::set_maintenance_toggle($setting_maintenance);
+Charlie_Config::set_info_handler_toggle($setting_info_handler);
+Charlie_Config::set_template_engine($template_engine);
 
 ////////////////////////////////////////////////////
 
@@ -93,8 +93,8 @@ Config::set_template_engine($template_engine);
 
 ////////////////////////////////////////////////////
 
-$header = 'themes/'.Config::get_theme().'/header.tpl.php';
-$footer = 'themes/'.Config::get_theme().'/footer.tpl.php';
+$header = 'themes/'.Charlie_Config::get_theme().'/header.tpl.php';
+$footer = 'themes/'.Charlie_Config::get_theme().'/footer.tpl.php';
 
 ////////////////////////////////////////////////////
 
@@ -103,9 +103,9 @@ $footer = 'themes/'.Config::get_theme().'/footer.tpl.php';
 ////////////////////////////////////////////////////
 
 define('DOMAIN', 'http://'.$_SERVER['SERVER_NAME']);
-define('THEME', Config::get_theme());
-define('THEME_DIR', Config::get_theme_dir());
+define('THEME', Charlie_Config::get_theme());
+define('THEME_DIR', Charlie_Config::get_theme_dir());
 define('HEADER', $header);
 define('FOOTER', $footer);
-define('INFO_HANDLER_TOGGLE', Config::get_info_handler_toggle());
-define('MAINTENANCE_TOGGLE',  Config::get_maintenance_toggle());
+define('INFO_HANDLER_TOGGLE', Charlie_Config::get_info_handler_toggle());
+define('MAINTENANCE_TOGGLE',  Charlie_Config::get_maintenance_toggle());
