@@ -4,6 +4,3 @@
 <p>&copy; {{current_year}}</p>
 
 </footer>
-
-</body>
-</html>

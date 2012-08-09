@@ -3,7 +3,7 @@
 <body id="article">
 
 
-<h1><a href="/" id="logo">Stephen Creates</a></h1>
+{{>logo}}
 
 {{>menu}}
  

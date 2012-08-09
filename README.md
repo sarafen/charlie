@@ -6,8 +6,6 @@ A simple, no DB cms using [mustache][1].
 ## To Do
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
 * Fully functional info handler
-* Image Handling
-* Agnostic Loop function (diet WP loop)
 * Add hooks to inject at certain points. (info handler ?)
 * Page Caching
 * Dropbox integration w/ content folder.
@@ -18,6 +16,10 @@ A simple, no DB cms using [mustache][1].
 * [X] Add template_part() function (already there, doh!)
 * [X] Page Content Object (with variable parsing?)
 * [X] Add template language - mustache
+* [X] Agnostic Loop function (diet WP loop)
+* [X] Image Handling
+
+
 
 
 [1]: http://mustache.github.com/  "Logic-less templates"

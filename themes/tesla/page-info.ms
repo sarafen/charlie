@@ -1,9 +1,9 @@
 {{>header}}
 
-<body id="blog">
+<body id="page">
 
 
-<h1><a href="/" id="logo">Stephen Creates</a></h1>
+{{>logo}}
 
 {{>menu}}
  
@@ -15,13 +15,7 @@
 </section>
 
 
-
-
-
-
-
 {{>footer}}
-
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
 <script src="{{theme_dir}}/js/fixie.min.js"></script> 

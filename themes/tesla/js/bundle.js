@@ -9,7 +9,6 @@ $(document).ready(function(){
 
 //Tweet.js Settings
 
-
 	$("#news").tweet({
 		username: 'stephencreates',
 		count: 1,

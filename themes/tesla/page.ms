@@ -5,7 +5,7 @@
 <body id="page">
 
 
-<h1><a href="/" id="logo">Stephen Creates</a></h1>
+{{>logo}}
 
 {{>menu}}
  
@@ -18,3 +18,6 @@
 
 
 {{>footer}} 
+
+</body>
+</html>
