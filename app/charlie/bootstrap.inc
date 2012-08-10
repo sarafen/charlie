@@ -10,7 +10,7 @@ function bootstrap_full() {
 
 ////////////////////////////////////////////////////
 
-require_once './app/parsers/mustache/Autoloader.php';
+require_once './app/charlie/parsers/mustache/Autoloader.php';
 Mustache_Autoloader::register();
 
 ////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ Mustache_Autoloader::register();
 
 ////////////////////////////////////////////////////
 
-require_once "./app/parsers/config_engine.inc";
+require_once './app/charlie/parsers/config_engine.inc';
 
 ////////////////////////////////////////////////////
 
@@ -52,6 +52,6 @@ require_once "./app/parsers/config_engine.inc";
 
 ////////////////////////////////////////////////////
 
-require_once "./app/parsers/template_engine.inc";
+require_once './app/charlie/parsers/template_engine.inc';
 
 };

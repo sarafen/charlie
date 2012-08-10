@@ -8,8 +8,8 @@
 
 ////////////////////////////////////////////////////
 
-require_once "./app/classes/class.ini_settings.inc";
-require_once "./app/classes/class.config_settings.inc";
+require_once './app/charlie/classes/class.ini_settings.inc';
+require_once './app/charlie/classes/class.config_settings.inc';
 
 
 ////////////////////////////////////////////////////

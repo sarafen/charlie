@@ -1,6 +1,6 @@
 <?php
 
-include_once ('./app/inc/get_data.php');
+include_once ('./app/custom/inc/get_data.php');
 
 function cache_money ($api_file,$cache_file,$cache_life,$src,$debug) {
 
