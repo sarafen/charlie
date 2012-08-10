@@ -6,6 +6,6 @@ info_handler		= OFF
 
 [Theme_Settings]
 
-theme				= tesla
+theme				= default
 template_engine		= mustache
 
