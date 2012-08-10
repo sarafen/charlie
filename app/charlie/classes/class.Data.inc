@@ -71,7 +71,7 @@ class Charlie_Data {
         $this->title = $title;
         
         //Theme_dir
-        $this->theme_dir = 'http://charlie.dev/themes/'.THEME;
+         $this->theme_dir = 'http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME;
         
         
         //Content			
