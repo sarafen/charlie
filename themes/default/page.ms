@@ -3,7 +3,8 @@
 
 <body>
 
-This is the Front Page
+
+{{{content}}}
 
 
 {{>footer}}
