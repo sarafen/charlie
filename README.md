@@ -11,8 +11,10 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * Dropbox integration w/ content folder.
 * More OOP and Class usage, omit orphaned functions or group into master toolbox class.
 * Add .js pagination to core.
-* Add optional feed formats (rss,xml,…)
+* Add optional feed formats (rss, xml,…)
 * Sterilize everything from core and move into stephencreates.com or some such.
+* Change Post Array sorting to something other than alphabetical by filename.
+* Create default theme with information default content.
 
 ## Done
 * [X] Proper 404 handling (pass back to index.php via .htaccess)
