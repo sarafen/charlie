@@ -22,7 +22,10 @@ class Data extends Charlie_Data {
 	//Blog LOOPER
 	public function blog_looper() {
 		
-		$items = $this->looper('blog');
+		$items = $this->looper(
+			$type = 'blog',
+			$date_format = 'F jS Y'
+		);
 		
 		return $items;
 	
@@ -31,7 +34,10 @@ class Data extends Charlie_Data {
 	//Work LOOPER
 	public function work_looper() {
 		
-		$items = $this->looper('work');
+		$items = $this->looper(
+			$type = 'work',
+			$date_format = 'F jS Y'
+		);
 		
 		return $items;
 	}

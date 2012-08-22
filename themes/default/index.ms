@@ -5,6 +5,8 @@
 
 {{{content}}}
 
+{{>blog-list}}
+
 
 {{>footer}}
 
