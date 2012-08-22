@@ -140,7 +140,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
     } 
     
     //Build base POST
-    protected function the_post($file,$path,$content_type) {
+    protected function the_post($file,$path,$content_type,$date_format) {
 		
 		//Get Path
 		$info = pathinfo($path);
@@ -156,7 +156,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 	    $title = $matches[1][0];		
 		
 		//Get DATE
-		$date = date('l jS \of F Y h:i:s A', filemtime($file));
+		$date = date($date_format, filemtime($file));
 		
 		$link = DOMAIN.$path;
 		
@@ -176,7 +176,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
     }
     
     //Build base LOOPER   
-    protected function looper($content_type) {
+    protected function looper($content_type,$date_format = 'l jS \of F Y h:i:s A') {
     	    
 	    //Render LOOP
 		//$content_type = 'blog'; //testing
@@ -194,7 +194,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 			$filename = $val;
 			$num = $i++;
-			$postObject = $this->the_post($dir.$filename,$filename,$content_type);
+			$postObject = $this->the_post($dir.$filename,$filename,$content_type,$date_format);
 				
 			$items['item'][$num] = array(
 				'title' => $postObject['title'],
