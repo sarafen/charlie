@@ -12,8 +12,6 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * More OOP and Class usage, omit orphaned functions or group into master toolbox class.
 * Add .js pagination to core.
 * Add optional feed formats (rss, xml,…)
-* Sterilize everything from core and move into stephencreates.com or some such.
-* Change Post Array sorting to something other than alphabetical by filename.
 * Create default theme with information default content.
 
 ## Done
@@ -23,6 +21,10 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * [X] Add template language - mustache
 * [X] Agnostic Loop function (diet WP loop)
 * [X] Image Handling
+* [X] Change Post Array sorting to something other than alphabetical by filename.
+* [X] Sterilize everything from core and move into stephencreates.com or some such.
+
+
 
 
 
