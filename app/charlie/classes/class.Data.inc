@@ -89,7 +89,10 @@ class Charlie_Data {
 	
 		if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) { //wierd offset bug here.
 			
-			$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';		 
+			//$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';
+			$file = glob('./content/'.$path_part[1].'/*.'.$path_part[2].'.md');
+			
+			$file = $file[0];		 
 		} 
 		
 			 
@@ -142,6 +145,7 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		//Get Path
 		$info = pathinfo($path);
 		$path = basename($path,'.'.$info['extension']);
+		$path = preg_replace("/^[0-9\\.\\s]+/", '', $path);
 		$path = '/'.$content_type.'/'.$path.'/';
 	
 		//$file = "./content/blog/one.md";
@@ -178,6 +182,8 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		//$content_type = 'blog'; //testing
 		$dir = "content/".$content_type."/";
 		$files = scandir($dir);
+		$files = array_reverse($files);
+		//usort($files, 'compare_time');
 		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
 			
 		$items = array('items' => array());
