@@ -64,5 +64,3 @@ app/charlie/parsers/tmp/cache/mustache/
 app/charlie/parsers/tmp/cache/mustache/*
 app/charlie/parsers/twig/
 app/charlie/parsers/twig/*
-
-content/01.one.md
