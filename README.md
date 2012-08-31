@@ -6,6 +6,9 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 ## To Do (Bugs, Issues)
 
 * Template is inherited on 404 errors for post pages (which results in tweet footer.
+* Update Feed Loop to match regular Content Looper.
+* Make Feed Looper themeable with mustache parts (load feed object)
+* Add Post Dates as parts of file titles? (other ideas?)
 
 ## Roadmap (Features, Dreams, Wishes)
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
