@@ -3,7 +3,7 @@
 # Markdown  -  A text-to-HTML conversion tool for web writers
 #
 # PHP Markdown
-# Copyright (c) 2004-2009 Michel Fortin  
+# Copyright (c) 2004-2012 Michel Fortin  
 # <http://michelf.com/projects/php-markdown/>
 #
 # Original Markdown
@@ -12,7 +12,7 @@
 #
 
 
-define( 'MARKDOWN_VERSION',  "1.0.1n" ); # Sat 10 Oct 2009
+define( 'MARKDOWN_VERSION',  "1.0.1o" ); # Sun 8 Jan 2012
 
 
 #
@@ -31,8 +31,8 @@ define( 'MARKDOWN_VERSION',  "1.0.1n" ); # Sat 10 Oct 2009
 #
 
 # Change to false to remove Markdown from posts and/or comments.
-@define( 'MARKDOWN_WP_POSTS',      false );
-@define( 'MARKDOWN_WP_COMMENTS',   false );
+@define( 'MARKDOWN_WP_POSTS',      true );
+@define( 'MARKDOWN_WP_COMMENTS',   true );
 
 
 
@@ -62,7 +62,7 @@ function Markdown($text) {
 Plugin Name: Markdown
 Plugin URI: http://michelf.com/projects/php-markdown/
 Description: <a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a> allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by <a href="http://daringfireball.net/">John Gruber</a>. <a href="http://michelf.com/projects/php-markdown/">More...</a>
-Version: 1.0.1n
+Version: 1.0.1o
 Author: Michel Fortin
 Author URI: http://michelf.com/
 */
@@ -207,8 +207,8 @@ class Markdown_Parser {
 	var $tab_width = MARKDOWN_TAB_WIDTH;
 	
 	# Change to `true` to disallow markup or entities.
-	var $no_markup = true;
-	var $no_entities = true;
+	var $no_markup = false;
+	var $no_entities = false;
 	
 	# Predefined urls and titles for reference links and images.
 	var $predef_urls = array();
@@ -926,7 +926,7 @@ class Markdown_Parser {
 
 		# Re-usable patterns to match list item bullets and number markers:
 		$marker_ul_re  = '[*+-]';
-		$marker_ol_re  = '\d+[.]';
+		$marker_ol_re  = '\d+[\.]';
 		$marker_any_re = "(?:$marker_ul_re|$marker_ol_re)";
 
 		$markers_relist = array(
@@ -987,7 +987,7 @@ class Markdown_Parser {
 	function _doLists_callback($matches) {
 		# Re-usable patterns to match list item bullets and number markers:
 		$marker_ul_re  = '[*+-]';
-		$marker_ol_re  = '\d+[.]';
+		$marker_ol_re  = '\d+[\.]';
 		$marker_any_re = "(?:$marker_ul_re|$marker_ol_re)";
 		
 		$list = $matches[1];
@@ -1117,17 +1117,17 @@ class Markdown_Parser {
 
 
 	var $em_relist = array(
-		''  => '(?:(?<!\*)\*(?!\*)|(?<!_)_(?!_))(?=\S|$)(?![.,:;]\s)',
+		''  => '(?:(?<!\*)\*(?!\*)|(?<!_)_(?!_))(?=\S|$)(?![\.,:;]\s)',
 		'*' => '(?<=\S|^)(?<!\*)\*(?!\*)',
 		'_' => '(?<=\S|^)(?<!_)_(?!_)',
 		);
 	var $strong_relist = array(
-		''   => '(?:(?<!\*)\*\*(?!\*)|(?<!_)__(?!_))(?=\S|$)(?![.,:;]\s)',
+		''   => '(?:(?<!\*)\*\*(?!\*)|(?<!_)__(?!_))(?=\S|$)(?![\.,:;]\s)',
 		'**' => '(?<=\S|^)(?<!\*)\*\*(?!\*)',
 		'__' => '(?<=\S|^)(?<!_)__(?!_)',
 		);
 	var $em_strong_relist = array(
-		''    => '(?:(?<!\*)\*\*\*(?!\*)|(?<!_)___(?!_))(?=\S|$)(?![.,:;]\s)',
+		''    => '(?:(?<!\*)\*\*\*(?!\*)|(?<!_)___(?!_))(?=\S|$)(?![\.,:;]\s)',
 		'***' => '(?<=\S|^)(?<!\*)\*\*\*(?!\*)',
 		'___' => '(?<=\S|^)(?<!_)___(?!_)',
 		);
