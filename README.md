@@ -9,6 +9,8 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * Update Feed Loop to match regular Content Looper.
 * Make Feed Looper themeable with mustache parts (load feed object)
 * Add Post Dates as parts of file titles? (other ideas?)
+* Isolate Charlie into one directory. [charlie][public] (.htaccess). That way git can be used to easily update charlie. Public folder will contain [themes] & [content]. charlie will have a default themes and content folder within it, for when the site is first setup. Will need add a few IF statements to check for public stuff. 
+* Needs a license.
 
 ## Roadmap (Features, Dreams, Wishes)
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
