@@ -1,12 +1,36 @@
 <?php
 
 
+//include frontmatter
+include_once('./app/charlie/parsers/frontmatter.php');
 
 
 // Sets up the Page Object 
-class Data extends Charlie_Data {  
+class Data extends Charlie_Data { 
 
- //Used for tweet.js for custom caching
+	public $infinity;
+
+
+	public function __construct() {
+		
+		parent::__construct();
+		
+		//Setup frontpage Object
+		$fm = new FrontMatter('./content/pages/front.md');
+		
+		
+		// Set Infinity
+		$this->infinity = $fm->fetch('date');
+		
+			
+		// Set Content
+		$this->content = Markdown($fm->fetch('content'));
+		
+	}
+	
+	
+
+	//Used for tweet.js for custom caching
     public function news_cache() {
 
 		include_once('./app/custom/inc/cache_flow.php');
@@ -19,25 +43,7 @@ class Data extends Charlie_Data {
 			'off' //debug?
 			);
 	}
-	
-	
-
-	
-	// Play w/ frontmatter
-	
-		public function infinity() {
-		
-			include_once('./app/charlie/parsers/frontmatter.php');
-	
-			$fm = new FrontMatter('./content/pages/front.md');
-			$this->infinity = $fm->fetch('date');
-			
-			return $this->infinity;
-		
-		}
-		
-		
-			
+				
 	
 	// Build Custom LOOPERS
 	
