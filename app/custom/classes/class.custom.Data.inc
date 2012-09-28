@@ -9,14 +9,16 @@ include_once('./app/charlie/parsers/frontmatter.php');
 class Data extends Charlie_Data { 
 
 	public $infinity;
+	public $published;
 
 
 	public function __construct() {
 		
+		// Bring in Parent Constructor
 		parent::__construct();
 		
-		//Setup frontpage Object
-		$fm = new FrontMatter('./content/pages/front.md');
+		// Setup frontpage Object
+		$fm = new FrontMatter($this->filename);
 		
 		
 		// Set Infinity
@@ -24,7 +26,16 @@ class Data extends Charlie_Data {
 		
 			
 		// Set Content
-		$this->content = Markdown($fm->fetch('content'));
+/* 		$this->content = Markdown($fm->fetch('content')); */
+		//$this->content = $fm->fetch('content');
+
+
+		$m = new Mustache_Engine;
+		$this->content = Markdown($m->render($fm->fetch('content'), $fm->data));
+		
+					
+		// Set Published Status
+		$this->published = $fm->fetch('published');
 		
 	}
 	

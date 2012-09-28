@@ -15,6 +15,7 @@ class Charlie_Data {
 	public $theme_dir;
 	public $title;
 	public $content;
+	public $filename;
 	
 	
 	public $current_year;
@@ -108,6 +109,8 @@ class Charlie_Data {
 		if (file_exists($file) && $file != null) {
 		
 		$this->content = return_md($file);
+		
+		$this->filename = $file;
 		} 
 		
 		/*

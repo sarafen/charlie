@@ -7,6 +7,8 @@
 
 Date: {{infinity}}
 
+Published?: {{published}}
+
 {{>blog-list}}
 
 
