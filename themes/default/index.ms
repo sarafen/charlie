@@ -5,6 +5,8 @@
 
 {{{content}}}
 
+Date: {{infinity}}
+
 {{>blog-list}}
 
 

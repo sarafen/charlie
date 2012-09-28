@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 // Sets up the Page Object 
 class Data extends Charlie_Data {  
 
@@ -16,6 +19,25 @@ class Data extends Charlie_Data {
 			'off' //debug?
 			);
 	}
+	
+	
+
+	
+	// Play w/ frontmatter
+	
+		public function infinity() {
+		
+			include_once('./app/charlie/parsers/frontmatter.php');
+	
+			$fm = new FrontMatter('./content/pages/front.md');
+			$this->infinity = $fm->fetch('date');
+			
+			return $this->infinity;
+		
+		}
+		
+		
+			
 	
 	// Build Custom LOOPERS
 	
