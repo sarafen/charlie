@@ -7,5 +7,3 @@ info_handler		= OFF
 [Theme_Settings]
 
 theme				= default
-template_engine		= mustache
-

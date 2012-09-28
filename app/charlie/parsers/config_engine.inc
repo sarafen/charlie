@@ -44,7 +44,6 @@ $settings = Charlie_Settings::getInstance('./app/config.info');
 	//Theme Settings
 	$theme = strip_tags($settings->Theme_Settings['theme']); 
 	
-	$template_engine = strip_tags($settings->Theme_Settings['template_engine']);
 
 
 ////////////////////////////////////////////////////
@@ -85,7 +84,6 @@ Charlie_Config::set_theme($theme);
 Charlie_Config::set_theme_dir($theme_dir);
 Charlie_Config::set_maintenance_toggle($setting_maintenance);
 Charlie_Config::set_info_handler_toggle($setting_info_handler);
-Charlie_Config::set_template_engine($template_engine);
 
 ////////////////////////////////////////////////////
 

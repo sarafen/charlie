@@ -24,21 +24,20 @@ $page = new Data();
 
 ////////////////////////////////////////////////////
 
-if (Charlie_Config::get_template_engine() == 'mustache') {
 
-	$view = new Mustache_Engine(array(
-	    'template_class_prefix' => '__MyTemplates_',
-	    'cache' => dirname(__FILE__).'/tmp/cache/mustache',
-	    'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(dirname(__FILE__)))).'/themes/'.THEME),
-	    'partials_loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(dirname(__FILE__)))).'/themes/'.THEME.'/partials'),
-	    'escape' => function($value) {
-	        return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
-	    },
-	));
-	
-	//$view->addHelper('list', array('paginate' => function($value) { return '<div><span class="paginate">' .$value. '</span></div>'; }));
+$view = new Mustache_Engine(array(
+    'template_class_prefix' => '__MyTemplates_',
+    'cache' => dirname(__FILE__).'/tmp/cache/mustache',
+    'loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(dirname(__FILE__)))).'/themes/'.THEME),
+    'partials_loader' => new Mustache_Loader_FilesystemLoader(dirname(dirname(dirname(dirname(__FILE__)))).'/themes/'.THEME.'/partials'),
+    'escape' => function($value) {
+        return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
+    },
+));
 
-}
+//$view->addHelper('list', array('paginate' => function($value) { return '<div><span class="paginate">' .$value. '</span></div>'; }));
+
+
 
 
 ////////////////////////////////////////////////////
