@@ -15,7 +15,6 @@ class Charlie_Data {
 	public $theme_dir;
 	public $title;
 	public $content;
-	public $filename;
 	
 	
 	public $current_year;
@@ -83,7 +82,8 @@ class Charlie_Data {
 		
 		if ($path_part[1] == null || !isset($path_part[1])) {
 		
-			$file = './content/pages/front.md';		 
+			$file = './content/pages/front.md';	
+			
 		}
 				
 		//Check for [ANYTHING] Content Type - leading slug
@@ -93,7 +93,9 @@ class Charlie_Data {
 			//$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';
 			$file = glob('./content/'.$path_part[1].'/*.'.$path_part[2].'.md');
 			
-			$file = $file[0];		 
+			if (is_array($file)) {$file = reset($file);}
+						
+			
 		} 
 		
 			 
@@ -101,16 +103,21 @@ class Charlie_Data {
 		
 		if (empty($path_part[2]) && $path_part[1] != null && empty($path_part[3])) {
 		
-			$file ='./content/pages/'.$path_part[1].'.md';			
-		}
+			$file = './content/pages/'.$path_part[1].'.md';	
 			
+		}
+		
+					
 		//Include the Appropriate Content		
 		
 		if (file_exists($file) && $file != null) {
 		
-		$this->content = return_md($file);
+		//$this->content = return_md($file);
 		
-		$this->filename = $file;
+		$fm = new FrontMatter($file);
+		$m = new Mustache_Engine;
+		$this->content = Markdown($m->render($fm->fetch('content'), $fm->data));
+		
 		} 
 		
 		/*
@@ -139,11 +146,19 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 		//Date(s)
 		
-		$this->current_year = date("Y");	     
+		$this->current_year = date("Y");
+		
+		
+		
     } 
+    
+    	
     
     //Build base POST
     protected function the_post($file,$path,$content_type,$date_format) {
+    
+    	//Get frontmatter
+    	$post_fm = new FrontMatter($file);
 		
 		//Get Path
 		$info = pathinfo($path);
@@ -156,7 +171,8 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 	
 		//Get TITLE
 	    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
-	    $title = $matches[1][0];		
+	    $title = $matches[1][0];
+	    
 		
 		//Get DATE
 		$date = date($date_format, filemtime($file));
@@ -167,14 +183,23 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
 	    $teaser = $matches[1][0];
 				
-		$postObject = array();
+		//$postObject = array();
+		$postObject = $post_fm->data;
 		
-		$postObject['title'] = $title;
-		$postObject['teaser'] = $teaser;
+		
+		//$postObject['title'] = $post_fm->fetch('title');
+		//$postObject['teaser'] = $teaser;
 		$postObject['link'] = $link;
-		$postObject['date'] = $date;
+		//$postObject['date'] = $post_fm->fetch('date');
+		
+		if ($post_fm->fetch('status') == 'draft') {
 			
-		return $postObject;		
+			return '';	
+		
+		}	else {
+			
+			return $postObject;
+		}
 			
     }
     
@@ -197,16 +222,9 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		
 			$filename = $val;
 			$num = $i++;
-			$postObject = $this->the_post($dir.$filename,$filename,$content_type,$date_format);
 				
-			$items['item'][$num] = array(
-				'title' => $postObject['title'],
-				'link' => $postObject['link'],
-				'date' => $postObject['date'],
-				'teaser' => $postObject['teaser'],
-				//'lower' => function($value) { return strtolower((string) $value); }, //this is how you pass a param.
-			);
-													
+			$items['item'][$num] = $this->the_post($dir.$filename,$filename,$content_type,$date_format);
+										
 		}
 		
 		return $items;		    

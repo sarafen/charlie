@@ -2,16 +2,6 @@
 
 // Template ENGINE
 
-
-////////////////////////////////////////////////////
-
-// Include CLASSES
-
-////////////////////////////////////////////////////
-
-require_once './app/charlie/classes/class.Data.inc';
-require_once './app/custom/classes/class.custom.Data.inc';
-
 //load custom classes
 /*
 foreach (glob("./app/custom/classes/class.*.inc") as $filename)
@@ -27,14 +17,6 @@ foreach (glob("./app/custom/classes/class.*.inc") as $filename)
 ////////////////////////////////////////////////////
 
 $page = new Data();
-
-////////////////////////////////////////////////////
-
-// Create VIEW DATA Object
-
-////////////////////////////////////////////////////
-
-//$data = new viewData();
 
 ////////////////////////////////////////////////////
 
@@ -58,27 +40,6 @@ if (Charlie_Config::get_template_engine() == 'mustache') {
 
 }
 
-
-////////////////////////////////////////////////////
-
-// Create TWIG_ENGINE VIEW Object
-
-////////////////////////////////////////////////////
-
-/*
-if (Charlie_Config::get_template_engine() == 'twig') {
-
-	$loader = new Twig_Loader_Filesystem(dirname(dirname(dirname(__FILE__))).'/themes/'.THEME);
-	
-	$view = new Twig_Environment($loader, array(
-	    'cache' => dirname(dirname(dirname(__FILE__))).'/cache/templates',
-	    'debug' => true,
-	));
-
-}
-*/
-
-//$view->removeExtension('escaper');
 
 ////////////////////////////////////////////////////
 
@@ -186,23 +147,16 @@ function render_template($page,$view,$data) {
 	if (MAINTENANCE_TOGGLE == TRUE) {$template = 'maintenance';echo $view->render($template,$page);}  
 	
 	elseif (file_exists('./themes/'.THEME.'/'.$template.'.ms')) { //make extension configurable
-	
-		$template_engine = Charlie_Config::get_template_engine();
-	
+		
 		// Add a config.info toggle for which templating engine to use.
 		
-		if ($template_engine == 'mustache') {echo $view->render($template,$page);} //mustache implementation
-		
-/* 		else if ($template_engine == 'twig') {$view->display($template, array('data' => $data));} //twig implimentation */
-		
-		
-		else {include ($template);} //default implementation
+		echo $view->render($template,$page);
+	}
 	
-			
-	} else {
+	else {
 	
-		//include './themes/'.THEME.'/page.tpl.php';	
-		echo $view->render('page',$data);	
+		//include './themes/'.THEME.'/page.ms';	
+		echo $view->render('page',$page);	
 	}			
 };
 
@@ -225,7 +179,6 @@ render_template($page,$view,$page);
 
 function md($file) {
 
-	include_once "markdown.inc";
 	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
 	
 	echo $content;
@@ -234,7 +187,6 @@ function md($file) {
 
 function return_md($file) {
 
-	include_once "markdown.inc";
 	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
 	
 	return $content;

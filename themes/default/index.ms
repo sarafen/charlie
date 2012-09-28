@@ -3,11 +3,10 @@
 
 <body>
 
+{{bob}}
+
 {{{content}}}
 
-Date: {{infinity}}
-
-Published?: {{published}}
 
 {{>blog-list}}
 
