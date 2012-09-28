@@ -88,7 +88,7 @@ class Charlie_Data {
 				
 		//Check for [ANYTHING] Content Type - leading slug
 	
-		if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) { //wierd offset bug here.
+		if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) { //wierd offset bug here only on 404.
 			
 			//$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';
 			$file = glob('./content/'.$path_part[1].'/*.'.$path_part[2].'.md');
