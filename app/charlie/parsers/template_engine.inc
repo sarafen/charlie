@@ -18,6 +18,11 @@ foreach (glob("./app/custom/classes/class.*.inc") as $filename)
 
 $page = new Data();
 
+
+//Load Custom Loops
+require_once './themes/'.THEME.'/loops.inc';
+
+
 ////////////////////////////////////////////////////
 
 // Create MUSTACHE_ENGINE VIEW Object
@@ -35,7 +40,7 @@ $view = new Mustache_Engine(array(
     },
 ));
 
-//$view->addHelper('list', array('paginate' => function($value) { return '<div><span class="paginate">' .$value. '</span></div>'; }));
+$view->addHelper('list', array('paginate' => function($value) { return '<div><span class="paginate">' .$value. '</span></div>'; }));
 
 
 ////////////////////////////////////////////////////

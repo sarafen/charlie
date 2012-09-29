@@ -1,19 +1,30 @@
 <?php
 
 // Sets up the Page Object 
-class Data extends Charlie_Data { 
+class Data extends Charlie_Data {
+ 
 
 	public function __construct() {
 		
 		parent::__construct();
 		
 		//custom construct stuff here
+		
+		/*
+$this->blog_looper = $items = looper(
+			$type = 'blog',
+			$date_format = 'F jS Y'
+		);
+*/
 			
 	}
+	
+	
 	
 	// Build Custom LOOPERS
 	
 	//Blog LOOPER
+/*
 	public function blog_looper() {
 		
 		$items = looper(
@@ -35,6 +46,7 @@ class Data extends Charlie_Data {
 		
 		return $items;
 	}
+*/
 
 
 }

@@ -244,19 +244,6 @@ class Charlie_Data {
 		
 	}
 	
-	
-	
-	
-	
-	public function __call($method, $args) {
-        if (isset($this->$method) === true) {
-            $func = $this->$method;
-            $func();
-        }
-    }
-	
-	
-		
 	   
     
     //public function set_path() {}

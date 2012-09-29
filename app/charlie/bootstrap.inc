@@ -86,7 +86,6 @@ require_once './app/custom/classes/class.custom.Data.inc';
 
 require_once './app/charlie/parsers/loop_engine.inc';
 
-
 ////////////////////////////////////////////////////
 
 // Setup TEMPLATING engine

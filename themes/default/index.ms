@@ -3,11 +3,6 @@
 
 <body>
 
-{{title}}
-
-{{bar}}
-
-{{date}}
 
 {{{content}}}
 
