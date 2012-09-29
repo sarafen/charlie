@@ -3,7 +3,11 @@
 
 <body>
 
-{{bob}}
+{{title}}
+
+{{bar}}
+
+{{date}}
 
 {{{content}}}
 

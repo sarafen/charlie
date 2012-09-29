@@ -33,7 +33,6 @@ class Charlie_Data {
         $this->_path = $path;
         
         //Type
-        
         if ($path == 'feed') {
 	        
 	        $type = 'feed';
@@ -68,18 +67,17 @@ class Charlie_Data {
         
         //Title
         $title = ucwords(str_replace('-', ' ', $path));
-        $this->title = $title;
+        $this->title = $title; 
         
         //Theme_dir
          $this->theme_dir = 'http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME;
         
-        
-        //Content			
+             
+        //Establish the file we are working with for CONTENT			
 		$file = "";
 				
 		 
 		//Check for FRONT Page
-		
 		if ($path_part[1] == null || !isset($path_part[1])) {
 		
 			$file = './content/pages/front.md';	
@@ -87,20 +85,17 @@ class Charlie_Data {
 		}
 				
 		//Check for [ANYTHING] Content Type - leading slug
-	
 		if (!empty($path_part[1]) && $path_part[2] != null && empty($path_part[3])) { //wierd offset bug here only on 404.
 			
 			//$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';
 			$file = glob('./content/'.$path_part[1].'/*.'.$path_part[2].'.md');
 			
 			if (is_array($file)) {$file = reset($file);}
-						
-			
+					
 		} 
 		
-			 
+		 
 		//Check for PAGE Content Type - No leading slug
-		
 		if (empty($path_part[2]) && $path_part[1] != null && empty($path_part[3])) {
 		
 			$file = './content/pages/'.$path_part[1].'.md';	
@@ -108,24 +103,22 @@ class Charlie_Data {
 		}
 		
 					
-		//Include the Appropriate Content		
-		
+		//Include the Appropriate Content & Fields		
 		if (file_exists($file) && $file != null) {
-		
-		//$this->content = return_md($file);
-		
-		$fm = new FrontMatter($file);
-		$m = new Mustache_Engine;
-		$this->content = Markdown($m->render($fm->fetch('content'), $fm->data));
+				
+			$fm = new FrontMatter($file);
+			$m = new Mustache_Engine;
+			
+			//Include frontmatter fields
+			foreach ($fm->data as $key => $value) {
+			
+				$this->$key = $value;
+	        }
+			
+			//Treat the Content field with Markdown and Mustache
+			$this->content = Markdown($m->render($fm->fetch('content'), $fm->data));
 		
 		} 
-		
-		/*
-else if (file_exists(THEME_DIR.'/404.tpl.php')) {
-			//include THEME_DIR.'/404.tpl.php';
-			$this->content = file_get_contents(THEME_DIR.'/404.tpl.php');
-		}
-*/
 		
 		else if (file_exists('./content/pages/404.md') && $path_part[1] != 'feed') { //do better job of feed error handling
 			//include THEME_DIR.'/404.tpl.php';
@@ -145,93 +138,13 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 		}
 		
 		//Date(s)
-		
 		$this->current_year = date("Y");
 		
-		
-		
+		//Title 
+					
     } 
     
     	
-    
-    //Build base POST
-    protected function the_post($file,$path,$content_type,$date_format) {
-    
-    	//Get frontmatter
-    	$post_fm = new FrontMatter($file);
-		
-		//Get Path
-		$info = pathinfo($path);
-		$path = basename($path,'.'.$info['extension']);
-		$path = preg_replace("/^[0-9\\.\\s]+/", '', $path);
-		$path = '/'.$content_type.'/'.$path.'/';
-	
-		//$file = "./content/blog/one.md";
-		$html = return_md($file);
-	
-		//Get TITLE
-	    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
-	    $title = $matches[1][0];
-	    
-		
-		//Get DATE
-		$date = date($date_format, filemtime($file));
-		
-		$link = DOMAIN.$path;
-		
-		//Get TEASER
-		preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
-	    $teaser = $matches[1][0];
-				
-		//$postObject = array();
-		$postObject = $post_fm->data;
-		
-		
-		//$postObject['title'] = $post_fm->fetch('title');
-		//$postObject['teaser'] = $teaser;
-		$postObject['link'] = $link;
-		//$postObject['date'] = $post_fm->fetch('date');
-		
-		if ($post_fm->fetch('status') == 'draft') {
-			
-			return '';	
-		
-		}	else {
-			
-			return $postObject;
-		}
-			
-    }
-    
-    //Build base LOOPER   
-    protected function looper($content_type,$date_format = 'l jS \of F Y h:i:s A') {
-    	    
-	    //Render LOOP
-		//$content_type = 'blog'; //testing
-		$dir = "content/".$content_type."/";
-		$files = scandir($dir);
-		$files = array_reverse($files);
-		//usort($files, 'compare_time');
-		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
-			
-		$items = array('items' => array());
-		
-		$i = 0;
-		
-		foreach($files as $key => $val) {
-		
-			$filename = $val;
-			$num = $i++;
-				
-			$items['item'][$num] = $this->the_post($dir.$filename,$filename,$content_type,$date_format);
-										
-		}
-		
-		return $items;		    
-	    
-    }
-    
-  	
 	// Feed LOOPER	
 	public function feed_looper() {
 	
@@ -330,6 +243,17 @@ else if (file_exists(THEME_DIR.'/404.tpl.php')) {
 			
 		
 	}
+	
+	
+	
+	
+	
+	public function __call($method, $args) {
+        if (isset($this->$method) === true) {
+            $func = $this->$method;
+            $func();
+        }
+    }
 	
 	
 		

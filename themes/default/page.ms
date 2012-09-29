@@ -4,6 +4,7 @@
 <body>
 
 
+{{title}}
 {{{content}}}
 
 

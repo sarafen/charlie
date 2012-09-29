@@ -11,13 +11,12 @@ class Data extends Charlie_Data {
 			
 	}
 	
-	
 	// Build Custom LOOPERS
 	
 	//Blog LOOPER
 	public function blog_looper() {
 		
-		$items = $this->looper(
+		$items = looper(
 			$type = 'blog',
 			$date_format = 'F jS Y'
 		);
@@ -29,7 +28,7 @@ class Data extends Charlie_Data {
 	//Work LOOPER
 	public function work_looper() {
 		
-		$items = $this->looper(
+		$items = looper(
 			$type = 'work',
 			$date_format = 'F jS Y'
 		);

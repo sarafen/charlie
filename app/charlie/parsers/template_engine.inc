@@ -38,8 +38,6 @@ $view = new Mustache_Engine(array(
 //$view->addHelper('list', array('paginate' => function($value) { return '<div><span class="paginate">' .$value. '</span></div>'; }));
 
 
-
-
 ////////////////////////////////////////////////////
 
 // Construct the robust CONTENT loop.

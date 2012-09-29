@@ -13,5 +13,5 @@
 <link rel="shortcut icon" href="imgs/favicon.ico" />
 
 <link rel="stylesheet" media="screen, projection" href="{{theme_dir}}/css/style.css" />
-	
+
 </head>
