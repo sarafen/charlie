@@ -19,6 +19,9 @@ foreach (glob("./app/custom/classes/class.*.inc") as $filename)
 $page = new Data();
 
 
+//Load Default Loops
+//$page->feed_looper = feed_looper();
+
 //Load Custom Loops
 require_once './themes/'.THEME.'/loops.inc';
 

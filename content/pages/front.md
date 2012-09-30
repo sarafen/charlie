@@ -1,6 +1,5 @@
 ---
 title: Front Page
-date: September 27, 2012
 ---
 
 # {{title}}

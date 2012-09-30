@@ -20,7 +20,19 @@
 {{#feed_looper}}
 		{{#item}}
 		
-			{{{entry}}}
+		<entry>
+			<title>'.$title.'</title>
+			<id>'.$id.'</id>
+			<updated>'.$date.'</updated>
+			<link rel="alternate" type="text/html" href="'.$link.'" />
+			<content type="xhtml" xml:lang="en">
+				<div xmlns="http://www.w3.org/1999/xhtml">
+				  	  
+					<summary>'.$teaser.'</summary>
+				  
+				</div>
+		   </content>
+		</entry>
 			
 		{{/item}}
 {{/feed_looper}}

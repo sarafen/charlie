@@ -4,6 +4,17 @@
 <body>
 
 
+{{title}}
+
+<br />
+
+{{date}}
+
+<br />
+
+
+<br />
+
 {{{content}}}
 
 

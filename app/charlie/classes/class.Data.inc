@@ -8,6 +8,7 @@ class Charlie_Data {
     private $_path;
     private $_type;
     private $_parent; //Applies to Post Pages mostly
+    private $_content_file;
     private $_template;
     private $_date;
     private $_teaser;
@@ -15,29 +16,38 @@ class Charlie_Data {
 	public $theme_dir;
 	public $title;
 	public $content;
-	
-	
+		
 	public $current_year;
 	
     
     // METHODS       
     public function __construct() { 
-    
-    	//URI
+    	
+		//////////////////////////////////////////////
+        //
+        // Path
+        //
+        //////////////////////////////////////////////
+        
+        //URI
     	$uri = $_SERVER['REQUEST_URI'];
 		$path_part = explode('/', $uri);
 		$path = end($path_part); 
 		if ($path == null) {$path = prev($path_part);}
-		
-		//Path
+        
         $this->_path = $path;
         
-        //Type
-        if ($path == 'feed') {
+        //////////////////////////////////////////////
+        //
+        // Type
+        //
+        //////////////////////////////////////////////
+        
+        if ($path == $path_part[1] && $path == 'feed') {
 	        
 	        $type = 'feed';
 	        
-        } else if(!empty($path) && $path == $path_part[1]) {
+        } else if(!empty($path) && $path == $path_part[1] && $path_part[1] != '404') {
 	        
 	        $type = 'page'; 
 	        
@@ -46,17 +56,19 @@ class Charlie_Data {
 	        $type = 'post';
 	        
         } else if(empty($path_part[2])) {
+        
 	        $type = 'index';
 	        
-        } else {
-        	
-        	$type = '404';
-	        
-        } //else {$type = '404';}
+        }
         
-        $this->_type = $type; 
+        $this->_type = $type;
         
-        //Parent
+        //////////////////////////////////////////////
+        //
+        // Parent
+        //
+        //////////////////////////////////////////////
+        
         if ($type == 'post') {
         
         	$parent = $path_part[1];
@@ -65,23 +77,26 @@ class Charlie_Data {
         
         $this->_parent = $parent;
         
-        //Title
-        $title = ucwords(str_replace('-', ' ', $path));
-        $this->title = $title; 
+        //////////////////////////////////////////////
+        //
+        // Theme Dir // Should be moved to config
+        //
+        //////////////////////////////////////////////
         
-        //Theme_dir
-         $this->theme_dir = 'http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME;
+        $this->theme_dir = 'http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME;
         
-             
-        //Establish the file we are working with for CONTENT			
+        //////////////////////////////////////////////
+        //
+        // Content File
+        //
+        //////////////////////////////////////////////
+			
 		$file = "";
-				
-		 
+					 
 		//Check for FRONT Page
 		if ($path_part[1] == null || !isset($path_part[1])) {
 		
-			$file = './content/pages/front.md';	
-			
+			$file = './content/pages/front.md';			
 		}
 				
 		//Check for [ANYTHING] Content Type - leading slug
@@ -90,30 +105,54 @@ class Charlie_Data {
 			//$file = './content/'.$path_part[1].'/'.$path_part[2].'.md';
 			$file = glob('./content/'.$path_part[1].'/*.'.$path_part[2].'.md');
 			
-			if (is_array($file)) {$file = reset($file);}
-					
+			if (is_array($file)) {$file = reset($file);}	
+						
 		} 
-		
-		 
+			 
 		//Check for PAGE Content Type - No leading slug
 		if (empty($path_part[2]) && $path_part[1] != null && empty($path_part[3])) {
 		
 			$file = './content/pages/'.$path_part[1].'.md';	
-			
-		}
-		
 					
-		//Include the Appropriate Content & Fields		
-		if (file_exists($file) && $file != null) {
-				
-			$fm = new FrontMatter($file);
-			$m = new Mustache_Engine;
+		}		
 			
-			//Include frontmatter fields
+		$this->_content_file = $file;
+			
+		//////////////////////////////////////////////
+        //
+        // Title Default (before frontmatter)
+        //
+        //////////////////////////////////////////////
+ 
+	    $this->title = ucwords(str_replace('-', ' ', $path));
+
+		//////////////////////////////////////////////
+        //
+        // Frontmatter Fields
+        //
+        //////////////////////////////////////////////
+        
+        if (file_exists($this->_content_file)) {
+		
+			$fm = new FrontMatter($this->_content_file);
+			
 			foreach ($fm->data as $key => $value) {
 			
 				$this->$key = $value;
-	        }
+			}
+		
+		}
+				
+		//////////////////////////////////////////////
+        //
+        // Content
+        //
+        //////////////////////////////////////////////
+					
+		//Include Content & Parse Inline Fields		
+		if (file_exists($this->_content_file) && $this->_content_file != null) {
+				
+			$m = new Mustache_Engine;
 			
 			//Treat the Content field with Markdown and Mustache
 			$this->content = Markdown($m->render($fm->fetch('content'), $fm->data));
@@ -121,32 +160,36 @@ class Charlie_Data {
 		} 
 		
 		else if (file_exists('./content/pages/404.md') && $path_part[1] != 'feed') { //do better job of feed error handling
-			//include THEME_DIR.'/404.tpl.php';
-			//$this->content = file_get_contents('./content/pages/404.md');
 			
 			header('HTTP/1.0 404 Not Found'); 
 			$this->content = return_md('./content/pages/404.md');
 		}
 		
 		else if ($path_part[1] != 'feed') { //do better job of feed 404 handling
-		
-			//include './themes/default/404.tpl.php';
-			//$this->content = file_get_contents('./themes/default/404.tpl.php');
-			
+					
 			header('HTTP/1.0 404 Not Found'); 
 			$this->content = return_md('./app/charlie/404.php');
 		}
 		
-		//Date(s)
-		$this->current_year = date("Y");
-		
-		//Title 
-					
+		//////////////////////////////////////////////
+        //
+        // Date(s)
+        //
+        //////////////////////////////////////////////
+        
+		$this->current_year = date("Y"); 				
     } 
     
-    	
-	// Feed LOOPER	
-	public function feed_looper() {
+   
+   
+   
+   
+   
+   
+   
+   
+   // Feed LOOPER	
+   public function feed_looper() {
 	
 		$content_type = 'blog';
 	
@@ -204,10 +247,7 @@ class Charlie_Data {
 				
 			$feed_entryObject['entry'] = $entry;
 			
-			return $feed_entryObject;		
-			
-			//echo $entry;
-			//return $entry;			
+			return $feed_entryObject;					
 			
 		}
 			
@@ -217,9 +257,6 @@ class Charlie_Data {
 		//usort($files, 'compare_time');
 		
 		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
-		
-		//print_r($files);
-		
 		
 		$items = array('items' => array());
 	
@@ -239,10 +276,12 @@ class Charlie_Data {
 		}
 		
 		header('Content-type: application/atom+xml');
-		return $items;	
-			
-		
+		return $items;		
 	}
+   
+   
+   
+  
 	
 	   
     
