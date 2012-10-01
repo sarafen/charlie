@@ -163,9 +163,7 @@ class Charlie_Data {
 			header('HTTP/1.0 404 Not Found'); 
 			$this->content = return_md('./app/charlie/404.php');
 		}
-		
-		echo $this->content_file;
-		    	
+				    	
     } 
     
     public function add_value($name,$args) {
@@ -176,9 +174,9 @@ class Charlie_Data {
     public function add_looper($name,$args) {
     
 	    $this->$name = looper(
-    		$args[loop_type],
-    		$args[content_type],
-    		$args[date_format]
+    		$args['loop_type'],
+    		$args['content_type'],
+    		$args['date_format']
 	    );    		      
     }
          

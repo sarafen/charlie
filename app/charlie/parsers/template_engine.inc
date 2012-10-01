@@ -27,7 +27,8 @@ $page->add_looper(
 	'feed_looper',
 	array(
 		'loop_type' => 'feed',
-		'content_type' => 'blog'
+		'content_type' => 'blog',
+		'date_format' => ''
 	)
 );
 
