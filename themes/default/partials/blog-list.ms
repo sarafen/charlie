@@ -5,7 +5,7 @@
 		<article>
 			<h2><a href="{{{link}}}">{{title}}</a></h2>
 			<time class="article-date">{{date}}</time>
-			<p>{{teaser}}</p>
+			
 		</article>
 	</li>
 {{/item}}

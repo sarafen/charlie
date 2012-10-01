@@ -45,6 +45,7 @@ class Charlie_Data {
         
         if ($path == $path_part[1] && $path == 'feed') {
 	        
+	        header('Content-type: application/atom+xml');
 	        $type = 'feed';
 	        
         } else if(!empty($path) && $path == $path_part[1] && $path_part[1] != '404') {
@@ -180,113 +181,16 @@ class Charlie_Data {
 		$this->current_year = date("Y"); 				
     } 
     
-   
-   
-   
-   
-   
-   
-   
-   
-   // Feed LOOPER	
-   public function feed_looper() {
-	
-		$content_type = 'blog';
-	
-		function feed_item($file,$path) {
-		
-			//Get URI
-			//$domain = 'http://charlie.dev';
-			
-			//Get Path
-			$info = pathinfo($path);
-			$path = basename($path,'.'.$info['extension']);
-			$path = '/blog/'.$path.'/';
-		
-			//$file = "./content/blog/one.md";
-			$html = return_md($file);
-		
-			//Get TITLE
-		    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);
-		    $title = $matches[1][0];		
-			
-			
-			//Get DATE
-			$date = date(DATE_ATOM, filemtime($file));
-			$date_year = date('Y',filemtime($file));
-			
-			//Assemble ID
-			$id = 'tag:'.DOMAIN.','.$date_year.':'.$path;
-			$link = DOMAIN.$path;
-			
-			//Get TEASER
-			preg_match_all("/<p>(.*?)<\/p>/", $html, $matches);
-		    $teaser = $matches[1][0];
-					
-			//Render ENTRY
-			$entry = '
-				<entry>
-				<title>'.$title.'</title>
-				<id>'.$id.'</id>
-				<updated>'.$date.'</updated>
-				<link rel="alternate" type="text/html" href="'.$link.'" />
-				<content type="xhtml" xml:lang="en">
-					<div xmlns="http://www.w3.org/1999/xhtml">
-					  
-					  
-						<summary>'.$teaser.'</summary>
-					
-					  
-					</div>
-			   </content>
-			</entry>
-			
-			';
-			
-			$feed_entryObject = array();
-				
-			$feed_entryObject['entry'] = $entry;
-			
-			return $feed_entryObject;					
-			
-		}
-			
-		$dir = "content/".$content_type."/";
-		
-		$files = scandir($dir);
-		//usort($files, 'compare_time');
-		
-		$files = array_diff($files, array('.', '..', '.DS_Store','imgs'));
-		
-		$items = array('items' => array());
-	
-		$i = 0;
-		
-		foreach($files as $key => $val) {
-		
-			$filename = $val;
-			$num = $i++;
-			$feed_entryObject = feed_item($dir.$filename,$filename);
-				
-		
-			$items['item'][$num] = array(
-				'entry' => $feed_entryObject['entry']
-			);
-													
-		}
-		
-		header('Content-type: application/atom+xml');
-		return $items;		
-	}
-   
-   
-   
-  
-	
-	   
-    
-    //public function set_path() {}
-    
+    public function add_looper($name,$feed_type,$content_type,$date_format) {
+	    
+	    $this->$name = looper(
+	    		$feed_type,
+	    		$content_type,
+	    		$date_format
+	    	);
+	    		      
+    }
+        
     public function get_path() {
 	    
 	    return $this->_path;

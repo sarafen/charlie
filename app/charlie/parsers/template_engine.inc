@@ -18,9 +18,20 @@ foreach (glob("./app/custom/classes/class.*.inc") as $filename)
 
 $page = new Data();
 
-
 //Load Default Loops
-//$page->feed_looper = feed_looper();
+/*
+$page->feed_looper = looper(
+	$feed_type = 'feed',
+	$content_type = 'blog'
+);
+*/
+
+$page->add_looper(
+	'feed_looper',
+	'feed',
+	'blog'
+);
+
 
 //Load Custom Loops
 require_once './themes/'.THEME.'/loops.inc';
@@ -94,31 +105,27 @@ function error_handler($type,$description){
 
 ////////////////////////////////////////////////////
 
-function render_template($page,$view,$data) {	
+function render_template($page,$view) {	
 
 	$template = "";
 	$ext = '.ms';
 	
-	//Check for FRONT Page - Load 'index.tpl.php'
+	//Check for FRONT Page - Load 'index.ms'
 	if ($page->get_type() == 'index') {
 	
-		 //$template = './themes/'.THEME.'/index.tpl.php';
-		 //$template = 'index.tpl.php';
-		 
+		 //$template = 'index.ms';
 		 $template = 'index';
-		 //$partials;
 
 	}
 					
 	//Check for PAGE Content Type - Load 'page.tpl.php' default
 	
-	//Establish 'page-[pagename].tpl.php' Template File Name Scheme
-	
+	//Establish 'page-[pagename].ms' Template File Name Scheme
 	
 	//Check for PAGE Content Type - Load 'page[type].tpl.php' specific
 	if 	($page->get_type() == 'page' && file_exists('./themes/'.THEME.'/page-'.$page->get_path().$ext)) {
 		
-		//$template = './themes/'.THEME.'/page-'.$page->get_path().'.tpl.php';
+		//$template = './themes/'.THEME.'/page-'.$page->get_path().'.ms';
 		$template = 'page-'.$page->get_path();
 		
 	}
@@ -126,28 +133,28 @@ function render_template($page,$view,$data) {
 	//Fallback to default PAGE template - Load 'page.tpl.php' generic
 	if ($page->get_type() == 'page' && !file_exists('./themes/'.THEME.'/page-'.$page->get_path().$ext)) {
 	
-		//$template ='./themes/'.THEME.'/page.tpl.php';	
+		//$template ='./themes/'.THEME.'/page.ms';	
 		$template = 'page';
 	} 
 	
-	//Check for POST Content Type - Load 'post-[type].tpl.php' specific
+	//Check for POST Content Type - Load 'post-[type].ms' specific
 	if 	($page->get_type() == 'post' && file_exists('./themes/'.THEME.'/post-'.$page->get_parent().$ext)) {
 		
-		//$template = './themes/'.THEME.'/post-'.$page->get_parent().'.tpl.php';
+		//$template = './themes/'.THEME.'/post-'.$page->get_parent().'.ms';
 		$template = 'post-'.$page->get_parent();
 	}
 	
-	//Check for FEED Content Type - Load 'feed.tpl.php'
+	//Check for FEED Content Type - Load 'feed.ms'
 	if ($page->get_type() == 'feed' && empty($path)) {
 	
-		 //$template = './themes/'.THEME.'/feed.tpl.php';
+		 //$template = './themes/'.THEME.'/feed.ms';
 		 //include $template;
 		 
 		 $template = 'feed';	 
 	} 
 		
 	//Include the Appropriate Template		
-	//if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.tpl.php';}
+	//if (MAINTENANCE_TOGGLE == TRUE) {include './themes/'.THEME.'/maintenance.ms';}
 	
 	if (MAINTENANCE_TOGGLE == TRUE) {$template = 'maintenance';echo $view->render($template,$page);}  
 	
@@ -165,16 +172,13 @@ function render_template($page,$view,$data) {
 	}			
 };
 
-
 ////////////////////////////////////////////////////
 
 // Combine Page Regions & Render FULL PAGE
 
 ////////////////////////////////////////////////////
-
-		
-render_template($page,$view,$page);
-
+	
+render_template($page,$view);
 
 ////////////////////////////////////////////////////
 
@@ -195,22 +199,6 @@ function return_md($file) {
 	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
 	
 	return $content;
-
-}
-
-////////////////////////////////////////////////////
-
-// Parse FEED content
-
-////////////////////////////////////////////////////
-
-function feed($file) {
-
-	$raw_content = file_get_contents($file);
-	
-	header('Content-type: text/xml');
-	
-	echo $raw_content;
 
 }
 
