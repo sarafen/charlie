@@ -1,6 +1,6 @@
 <?php
 
-//Build base POST
+//Build single POST
 function the_post($file,$path,$content_type,$date_format,$loop_type) {
 
 	//Get frontmatter
@@ -47,7 +47,7 @@ function the_post($file,$path,$content_type,$date_format,$loop_type) {
 }
 
 
-//Build base LOOPER   
+//Build single LOOPER   
 function looper($loop_type = 'default',$content_type,$date_format = 'l jS \of F Y h:i:s A') {
 	    
     //Render LOOP
@@ -69,17 +69,6 @@ function looper($loop_type = 'default',$content_type,$date_format = 'l jS \of F 
 		$items['item'][$num] = the_post($dir.$filename,$filename,$content_type,$date_format,$loop_type);		
 										
 	}
-	
-/*
-	
-	if ($loop_type == 'feed') {
-		
-		//header('Content-type: application/atom+xml');
-	
-		
-	}
-*/
-		
-	return $items;		    
-	   
+			
+	return $items;		    	   
 }

@@ -93,5 +93,7 @@ require_once './app/charlie/parsers/loop_engine.inc';
 ////////////////////////////////////////////////////
 
 require_once './app/charlie/parsers/template_engine.inc';
+//Charlie_Template_Engine::init();
+
 
 };

@@ -13,84 +13,76 @@ class Charlie_Data {
     private $_date;
     private $_teaser;
     
-	public $theme_dir;
+	
 	public $title;
 	public $content;
-		
-	public $current_year;
 	
     
     // METHODS       
     public function __construct() { 
-    	
+    
+    
 		//////////////////////////////////////////////
-        //
-        // Path
-        //
-        //////////////////////////////////////////////
-        
-        //URI
-    	$uri = $_SERVER['REQUEST_URI'];
+	    //
+	    // Path
+	    //
+	    //////////////////////////////////////////////
+	    
+	    //URI
+		$uri = $_SERVER['REQUEST_URI'];
 		$path_part = explode('/', $uri);
 		$path = end($path_part); 
 		if ($path == null) {$path = prev($path_part);}
-        
-        $this->_path = $path;
-        
-        //////////////////////////////////////////////
-        //
-        // Type
-        //
-        //////////////////////////////////////////////
-        
-        if ($path == $path_part[1] && $path == 'feed') {
+	    
+	    $this->_path = $path;
+	    
+	    //////////////////////////////////////////////
+	    //
+	    // Type
+	    //
+	    //////////////////////////////////////////////
+	    
+	    if ($path == $path_part[1] && $path == 'feed') {
 	        
 	        header('Content-type: application/atom+xml');
 	        $type = 'feed';
 	        
-        } else if(!empty($path) && $path == $path_part[1] && $path_part[1] != '404') {
+	    } else if(!empty($path) && $path == $path_part[1]) {
 	        
 	        $type = 'page'; 
 	        
-        } else if (!empty($path) && $path == $path_part[2]) {
-        
+	    } else if (!empty($path) && $path == $path_part[2]) {
+	    
 	        $type = 'post';
 	        
-        } else if(empty($path_part[2])) {
-        
+	    } else if(empty($path_part[2])) {
+	    
 	        $type = 'index';
 	        
-        }
-        
-        $this->_type = $type;
-        
-        //////////////////////////////////////////////
-        //
-        // Parent
-        //
-        //////////////////////////////////////////////
-        
-        if ($type == 'post') {
-        
-        	$parent = $path_part[1];
+	    } 
+	    
+	    $this->_type = $type;
+	    
+	    //////////////////////////////////////////////
+	    //
+	    // Parent
+	    //
+	    //////////////////////////////////////////////
+	    
+	    if ($type == 'post') {
+	    
+	    	$parent = $path_part[1];
 	        
-        } else {$parent = 'None';}
-        
-        $this->_parent = $parent;
-        
-        //////////////////////////////////////////////
-        //
-        // Theme Dir // Should be moved to config
-        //
-        //////////////////////////////////////////////
-        
-        $this->theme_dir = 'http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME;
-        
-        //////////////////////////////////////////////
-        //
-        // Content File
-        //
-        //////////////////////////////////////////////
+	    } else {$parent = 'None';}
+	    
+	    $this->_parent = $parent;
+	   
+	    
+	    //////////////////////////////////////////////
+	    //
+	    // Content File
+	    //
+	    //////////////////////////////////////////////
 			
 		$file = "";
 					 
@@ -120,20 +112,20 @@ class Charlie_Data {
 		$this->_content_file = $file;
 			
 		//////////////////////////////////////////////
-        //
-        // Title Default (before frontmatter)
-        //
-        //////////////////////////////////////////////
- 
+	    //
+	    // Title Default (before frontmatter)
+	    //
+	    //////////////////////////////////////////////
+	
 	    $this->title = ucwords(str_replace('-', ' ', $path));
-
+	
 		//////////////////////////////////////////////
-        //
-        // Frontmatter Fields
-        //
-        //////////////////////////////////////////////
-        
-        if (file_exists($this->_content_file)) {
+	    //
+	    // Frontmatter Fields
+	    //
+	    //////////////////////////////////////////////
+	    
+	    if (file_exists($this->_content_file) && $this->_content_file != './content/pages/404.md') {
 		
 			$fm = new FrontMatter($this->_content_file);
 			
@@ -145,13 +137,13 @@ class Charlie_Data {
 		}
 				
 		//////////////////////////////////////////////
-        //
-        // Content
-        //
-        //////////////////////////////////////////////
+	    //
+	    // Content
+	    //
+	    //////////////////////////////////////////////
 					
 		//Include Content & Parse Inline Fields		
-		if (file_exists($this->_content_file) && $this->_content_file != null) {
+		if (file_exists($this->_content_file) && $this->_content_file != null && $this->_content_file != './content/pages/404.md') {
 				
 			$m = new Mustache_Engine;
 			
@@ -172,25 +164,24 @@ class Charlie_Data {
 			$this->content = return_md('./app/charlie/404.php');
 		}
 		
-		//////////////////////////////////////////////
-        //
-        // Date(s)
-        //
-        //////////////////////////////////////////////
-        
-		$this->current_year = date("Y"); 				
+		echo $this->content_file;
+		    	
     } 
     
-    public function add_looper($name,$feed_type,$content_type,$date_format) {
+    public function add_value($name,$args) {
 	    
-	    $this->$name = looper(
-	    		$feed_type,
-	    		$content_type,
-	    		$date_format
-	    	);
-	    		      
+	    $this->$name = $args;
     }
-        
+         
+    public function add_looper($name,$args) {
+    
+	    $this->$name = looper(
+    		$args[loop_type],
+    		$args[content_type],
+    		$args[date_format]
+	    );    		      
+    }
+         
     public function get_path() {
 	    
 	    return $this->_path;

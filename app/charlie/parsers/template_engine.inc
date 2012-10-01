@@ -18,24 +18,25 @@ foreach (glob("./app/custom/classes/class.*.inc") as $filename)
 
 $page = new Data();
 
-//Load Default Loops
-/*
-$page->feed_looper = looper(
-	$feed_type = 'feed',
-	$content_type = 'blog'
-);
-*/
+//Load Misc. Default Values
+$page->add_value('current_year',date("Y"));
+$page->add_value('theme_dir','http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME);
 
+//Load Default Loops
 $page->add_looper(
 	'feed_looper',
-	'feed',
-	'blog'
+	array(
+		'loop_type' => 'feed',
+		'content_type' => 'blog'
+	)
 );
 
-
 //Load Custom Loops
-require_once './themes/'.THEME.'/loops.inc';
+if (file_exists('./themes/'.THEME.'/loops.inc')) {
 
+	require_once './themes/'.THEME.'/loops.inc';
+	
+}
 
 ////////////////////////////////////////////////////
 
@@ -101,7 +102,7 @@ function error_handler($type,$description){
 
 ////////////////////////////////////////////////////
 
-// Construct the BODY area.
+// Construct the PAGE area.
 
 ////////////////////////////////////////////////////
 
@@ -223,4 +224,3 @@ function info_handler($switch = FALSE){
 	} else {$switch = "";}
 */
 };
-

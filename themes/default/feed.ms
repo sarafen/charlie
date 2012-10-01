@@ -37,8 +37,4 @@
 		{{/item}}
 {{/feed_looper}}
 
-
-{{! Add more stuff to edit here in the future. }}
-{{! For now you can just specify what content to put in the feed. }}
-
 </feed>
