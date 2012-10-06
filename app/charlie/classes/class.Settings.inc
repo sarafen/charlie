@@ -1,18 +1,38 @@
 <?php
 
-// Sets up the Config Object 
-
-class Charlie_Config {  
+class Charlie_Settings {
 
 	// PROPERTIES
 	static $theme;
     static $theme_dir;
     static $maintenance_toggle;
-    static $info_handler_toggle;
-    
-    // METHODS 
-             
-    public function set_theme($theme) {
+
+	
+	// METHODS
+	public function _contruct($file) {
+	
+		$ini = INI::getInstance('./app/config.info');
+
+		// Maintenance Toggle
+		$setting_maintenance = strip_tags($ini->General_Info['maintenance_mode']); // ! This and others throw ERROR because of direct property access.!
+		
+		if ($setting_maintenance == 'ON,1') {
+		
+			self::$maintenance_toggle = TRUE;
+		}
+		
+		
+		// Theme
+		self::$theme = strip_tags($ini->Theme_Settings['theme']); 
+				
+		
+		
+		// Theme Dir
+		self::$theme_dir = 'themes/'.$theme;
+		
+	}
+	
+	public function set_theme($theme) {
 	    
 	    self::$theme = $theme;
     }
@@ -56,19 +76,5 @@ class Charlie_Config {
 	    
 	    echo self::$maintenance_toggle;
     }
-    
-    public function set_info_handler_toggle($info_handler_toggle) {
-	    
-	    self::$info_handler_toggle = $info_handler_toggle;
-    }
-     
-    public function get_info_handler_toggle() {
-	    
-	    return self::$info_handler_toggle;
-    }
-    
-    public function the_info_handler_toggle() {
-	    
-	    echo self::$info_handler_toggle;
-    } 
-} 
+	
+}

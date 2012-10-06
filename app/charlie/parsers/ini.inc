@@ -1,6 +1,6 @@
 <?php
 
-class Charlie_Settings { 
+class INI {
 
 /////////////////////////////////////
 //  PROPERTIES
@@ -35,4 +35,4 @@ class Charlie_Settings {
             } 
         } 
     }     
-} 
+}

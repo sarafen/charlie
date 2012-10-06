@@ -1,9 +1,7 @@
 <?php
 
-// Sets up the Page Object 
-
-class Charlie_Data {  
-
+class Charlie_Page_Data { //Needs a better name
+	
 	// PROPERTIES
     private $_path;
     private $_type;
@@ -19,7 +17,7 @@ class Charlie_Data {
 	
     
     // METHODS       
-    public function __construct() { 
+    public function __construct($path_route) { 
     
     
 		//////////////////////////////////////////////
@@ -28,19 +26,18 @@ class Charlie_Data {
 	    //
 	    //////////////////////////////////////////////
 	    
-	    //URI
-		$uri = $_SERVER['REQUEST_URI'];
-		$path_part = explode('/', $uri);
-		$path = end($path_part); 
-		if ($path == null) {$path = prev($path_part);}
-	    
-	    $this->_path = $path;
+	    $this->_path = $path_route->path;
 	    
 	    //////////////////////////////////////////////
 	    //
 	    // Type
 	    //
 	    //////////////////////////////////////////////
+	    
+	    $path = $this->_path;
+	    $path_part = $path_route->path_part;
+	    
+	    $type = '';
 	    
 	    if ($path == $path_part[1] && $path == 'feed') {
 	        
@@ -127,9 +124,9 @@ class Charlie_Data {
 	    
 	    if (file_exists($this->_content_file) && $this->_content_file != './content/pages/404.md') {
 		
-			$fm = new FrontMatter($this->_content_file);
+			$frontmatter = new FrontMatter($this->_content_file);
 			
-			foreach ($fm->data as $key => $value) {
+			foreach ($frontmatter->data as $key => $value) {
 			
 				$this->$key = $value;
 			}
@@ -145,10 +142,10 @@ class Charlie_Data {
 		//Include Content & Parse Inline Fields		
 		if (file_exists($this->_content_file) && $this->_content_file != null && $this->_content_file != './content/pages/404.md') {
 				
-			$m = new Mustache_Engine;
+			$mustache = new Mustache_Engine;
 			
 			//Treat the Content field with Markdown and Mustache
-			$this->content = Markdown($m->render($fm->fetch('content'), $fm->data));
+			$this->content = Markdown($mustache->render($frontmatter->fetch('content'), $frontmatter->data));
 		
 		} 
 		
@@ -225,4 +222,5 @@ class Charlie_Data {
 	    $this->content = $content;
     }
 
-} 
+		
+}
