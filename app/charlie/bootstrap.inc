@@ -23,7 +23,7 @@ require_once './app/charlie/parsers/ini.inc';
 
 ////////////////////////////////////////////////////
 
-require_once './app/charlie/parsers/loop_engine.inc';
+//require_once './app/charlie/parsers/loop_engine.inc';
 
 ////////////////////////////////////////////////////
 
@@ -42,6 +42,8 @@ require_once './app/charlie/classes/class.Page_Data.inc';
 require_once './app/custom/classes/class.custom.Page_Data.inc';
 
 require_once './app/charlie/classes/class.Template.inc';
+
+require_once './app/charlie/classes/class.Loop.inc';
 
 require_once './app/charlie/classes/class.View.inc';
 

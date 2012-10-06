@@ -10,17 +10,15 @@ class Charlie_Page_Data { //Needs a better name
     private $_template;
     private $_date;
     private $_teaser;
-    
-	
+        
 	public $title;
 	public $content;
 	
     
     // METHODS       
     public function __construct($path_route) { 
-    
-    
-		//////////////////////////////////////////////
+            
+    	//////////////////////////////////////////////
 	    //
 	    // Path
 	    //
@@ -169,8 +167,10 @@ class Charlie_Page_Data { //Needs a better name
     }
          
     public function add_looper($name,$args) {
+        	
+    	$looper = new Charlie_Loop();
     
-	    $this->$name = looper(
+	    $this->$name = $looper->fetch(
     		$args['loop_type'],
     		$args['content_type'],
     		$args['date_format']

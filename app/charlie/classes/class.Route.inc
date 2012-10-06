@@ -3,6 +3,7 @@
 class Charlie_Route {
 
 	// PROPERTIES
+	public $domain;
 	public $uri;
 	public $path;
 	public $path_part;
@@ -10,6 +11,9 @@ class Charlie_Route {
 		
 	// METHODS
 	public function __construct() {
+	
+		// Set Domain
+		$this->domain = 'http://'.$_SERVER['SERVER_NAME'];
 		
 		// Set URI
 		$this->uri = $_SERVER['REQUEST_URI'];
@@ -24,9 +28,13 @@ class Charlie_Route {
 		// Set PATH
 		$this->path = $path;
 		
-	}	
+	}
 	
+	public function get_domain() {
 		
+		return $this->domain;
+	}	
+			
 	public function get_uri() {
 		
 		return $this->uri;

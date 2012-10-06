@@ -20,12 +20,11 @@ function return_md($file) {
 
 ////////////////////////////////////////////////////
 
-// Create SETTINGS Object
+// Create PAGE ROUTE Object
 
 ////////////////////////////////////////////////////
 
-//$settings = Charlie_Settings::('./app/config.info');
-
+$page_route = new Charlie_Route();
 
 ////////////////////////////////////////////////////
 
@@ -33,19 +32,11 @@ function return_md($file) {
 
 ////////////////////////////////////////////////////
 
-define('DOMAIN', 'http://'.$_SERVER['SERVER_NAME']);
+define('DOMAIN', $page_route->get_domain());
 //define('THEME', Charlie_Settings::get_theme());
 define('THEME', 'default');
 define('THEME_DIR', Charlie_Settings::get_theme_dir());
 define('MAINTENANCE_TOGGLE',  Charlie_Settings::get_maintenance_toggle());
-
-////////////////////////////////////////////////////
-
-// Create PAGE ROUTE Object
-
-////////////////////////////////////////////////////
-
-$page_route = new Charlie_Route();
 
 ////////////////////////////////////////////////////
 

@@ -4,7 +4,7 @@ class Charlie_Template {
 
 	// PROPERTIES
 	public $template;
-	
+		
 	
 	// METHODS
 	public function __construct($page_data) {
