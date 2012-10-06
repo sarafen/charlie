@@ -29,7 +29,7 @@ $page_data = new Page_data($page_route);
 
 //Load Misc. Default Values
 $page_data->add_value('current_year',date("Y"));
-$page_data->add_value('theme_dir','http://'.$_SERVER['SERVER_NAME'].'/themes/'.THEME);
+$page_data->add_value('theme_dir', DOMAIN.'/themes/'.THEME);
 
 //Load Default Loops
 $page_data->add_looper(
@@ -42,10 +42,10 @@ $page_data->add_looper(
 );
 
 //Load Custom Loops
-if (file_exists('./themes/'.THEME.'/loops.inc')) {
+if (file_exists(THEME_DIR.'/loops.inc')) {
 
-	require_once './themes/'.THEME.'/loops.inc';
-	
+	require_once (THEME_DIR.'/loops.inc');
+		
 }
 
 ////////////////////////////////////////////////////
@@ -79,13 +79,13 @@ elseif (file_exists('./themes/'.THEME.'/'.$template->fetch().'.ms')) { //make ex
 	
 	// Add a config.info toggle for which templating engine to use.
 	
-	echo $view->render($template->fetch(),$page_data);
+	echo $view->render($template->fetch(),$page_data);	
 	
 }
 
 else {
 
 	//include './themes/'.THEME.'/page.ms';	
-	echo $view->render('page',$page_data);	
-	
+	echo $view->render('page',$page_data);
+			
 }	
