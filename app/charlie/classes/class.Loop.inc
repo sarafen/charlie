@@ -7,6 +7,8 @@ class Charlie_Loop {
 	}
 	
 	private function the_post($file,$path,$content_type,$date_format,$loop_type) {
+	
+		$helpers = new Charlie_Helpers();
 			
 		//Get frontmatter
 		$post_fm = new FrontMatter($file);
@@ -18,7 +20,7 @@ class Charlie_Loop {
 		$path = '/'.$content_type.'/'.$path.'/';
 	
 		//$file = "./content/blog/one.md";
-		$html = return_md($file);
+		$html = $helpers->return_md($file);
 	
 		//Get TITLE
 	    preg_match_all("/<h1>(.*?)<\/h1>/", $html, $matches);

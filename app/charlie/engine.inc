@@ -1,23 +1,5 @@
 <?php
 
-// Random Functions that need handling
-
-function md($file) {
-
-	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
-	
-	echo $content;
-
-}
-
-function return_md($file) {
-
-	$raw_content = file_get_contents($file); $content = Markdown($raw_content);
-	
-	return $content;
-
-}
-
 ////////////////////////////////////////////////////
 
 // Create PAGE ROUTE Object
