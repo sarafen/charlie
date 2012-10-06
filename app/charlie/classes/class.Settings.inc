@@ -6,13 +6,12 @@ class Charlie_Settings {
 	static $theme;
     static $theme_dir;
     static $maintenance_toggle;
-
 	
 	// METHODS
-	public function _contruct($file) {
+	public function init() {
 	
-		$ini = INI::getInstance('./app/config.info');
-
+		$ini = Ini::getInstance('./app/config.info');
+	
 		// Maintenance Toggle
 		$setting_maintenance = strip_tags($ini->General_Info['maintenance_mode']); // ! This and others throw ERROR because of direct property access.!
 		
@@ -26,10 +25,9 @@ class Charlie_Settings {
 		self::$theme = strip_tags($ini->Theme_Settings['theme']); 
 				
 		
-		
 		// Theme Dir
-		self::$theme_dir = 'themes/'.$theme;
-		
+		self::$theme_dir = 'themes/'.self::$theme;
+						
 	}
 	
 	public function set_theme($theme) {

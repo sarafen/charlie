@@ -1,6 +1,6 @@
 <?php
 
-class INI {
+class Ini { 
 
 /////////////////////////////////////
 //  PROPERTIES
@@ -19,7 +19,7 @@ class INI {
     
     public static function getInstance($ini_file) { 
         if(! isset(self::$instance)) { 
-            self::$instance = new Charlie_Settings($ini_file);            
+            self::$instance = new Ini($ini_file);            
         } 
         return self::$instance; 
     } 
@@ -35,4 +35,4 @@ class INI {
             } 
         } 
     }     
-}
+} 

@@ -15,8 +15,7 @@ $page_route = new Charlie_Route();
 ////////////////////////////////////////////////////
 
 define('DOMAIN', $page_route->get_domain());
-//define('THEME', Charlie_Settings::get_theme());
-define('THEME', 'default');
+define('THEME', Charlie_Settings::get_theme());
 define('THEME_DIR', Charlie_Settings::get_theme_dir());
 define('MAINTENANCE_TOGGLE',  Charlie_Settings::get_maintenance_toggle());
 

@@ -32,6 +32,7 @@ require_once './app/charlie/parsers/ini.inc';
 ////////////////////////////////////////////////////
 
 require_once './app/charlie/classes/class.Settings.inc';
+Charlie_Settings::init();
 
 require_once './app/charlie/classes/class.Helpers.inc';
 
