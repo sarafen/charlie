@@ -14,7 +14,6 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * Add hooks to inject at certain points. (info handler ?)
 * Page Caching
 * Dropbox integration w/ content folder.
-* More OOP and Class usage, omit orphaned functions or group into master toolbox class.
 * Add .js pagination to core.
 * Add optional feed formats (rss, xml,…)
 * Create default theme with informational default content.
@@ -32,6 +31,8 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * [X] Make Feed Looper themeable with mustache parts (load feed object)
 * [X] Add Post Dates as parts of file titles? (other ideas?) (used frontmatter as solution)
 * [X] Update Feed Loop to match regular Content Looper. (merged into single looper)
+* [X] More OOP and Class usage, omit orphaned functions or group into master toolbox class.
+
 
 
 
