@@ -128,9 +128,8 @@ class Charlie_Page_Data { //Needs a better name
 			
 				$this->$key = $value;
 			}
-		
 		}
-				
+						
 		//////////////////////////////////////////////
 	    //
 	    // Content
