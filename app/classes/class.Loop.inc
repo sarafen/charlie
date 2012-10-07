@@ -43,10 +43,18 @@ class Charlie_Loop {
 		$postObject['teaser'] = $teaser;
 		$postObject['link'] = $link;
 		$postObject['id'] = $id;
+		
+		$date = $postObject['date'];
+		list($month, $day, $year) = explode('/', $date);
+		$timeStamp = mktime(0, 0, 0, $month, $day, $year);
+		
+		$date = date($date_format,$timeStamp);
+		
 		if ($loop_type == 'feed') {
-			$date = date(DATE_ATOM, filemtime($file));
-			$postObject['date'] = $date;
+			$date = date(DATE_ATOM, $timeStamp);		
 		}
+		
+		$postObject['date'] = $date;
 	
 		return $postObject;
 	}

@@ -8,6 +8,6 @@ $page_data->add_looper(
 	array(
 		'loop_type' => 'default',
 		'content_type' => 'blog',
-		'date_format' => 'F jS Y'
+		'date_format' => 'F j, Y'
 	)
 );
