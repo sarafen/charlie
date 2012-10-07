@@ -136,9 +136,7 @@ class Charlie_Page_Data { //Needs a better name
 	    // Content
 	    //
 	    //////////////////////////////////////////////
-	    
-	    $helpers = new Charlie_Helpers();
-					
+	    					
 		//Include Content & Parse Inline Fields		
 		if (file_exists($this->_content_file) && $this->_content_file != null && $this->_content_file != './content/pages/404.md') {
 				
@@ -152,13 +150,13 @@ class Charlie_Page_Data { //Needs a better name
 		else if (file_exists('./content/pages/404.md') && $path_part[1] != 'feed') { //do better job of feed error handling
 			
 			header('HTTP/1.0 404 Not Found'); 
-			$this->content = $helpers->return_md('./content/pages/404.md');
+			$this->content = Charlie_Helpers::return_md('./content/pages/404.md');
 		}
 		
 		else if ($path_part[1] != 'feed') { //do better job of feed 404 handling
 					
 			header('HTTP/1.0 404 Not Found'); 
-			$this->content = $helpers->return_md('./app/charlie/404.php');
+			$this->content = Charlie_Helpers::return_md('./app/charlie/404.php');
 		}
 				    	
     } 

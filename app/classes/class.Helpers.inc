@@ -4,7 +4,7 @@ class Charlie_Helpers {
 
 
 	// METHODS
-	public function md($file) {
+	static function md($file) {
 	
 		$raw_content = file_get_contents($file); $content = Markdown($raw_content);
 		
@@ -12,7 +12,7 @@ class Charlie_Helpers {
 	
 	}
 	
-	public function return_md($file) {
+	static function return_md($file) {
 	
 		$raw_content = file_get_contents($file); $content = Markdown($raw_content);
 		
