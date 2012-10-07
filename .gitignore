@@ -60,7 +60,5 @@ app/_deprecated/
 app/_deprecated/*
 themes/_deprecated/
 themes/_deprecated/*
-app/charlie/parsers/tmp/cache/mustache/
-app/charlie/parsers/tmp/cache/mustache/*
-app/charlie/parsers/twig/
-app/charlie/parsers/twig/*
+app/parsers/tmp/cache/mustache/
+app/parsers/tmp/cache/mustache/*
