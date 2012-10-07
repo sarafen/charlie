@@ -10,7 +10,7 @@ class Charlie_Settings {
 	// METHODS
 	public function init() {
 	
-		$ini = Ini::getInstance('./app/config.info');
+		$ini = Ini::getInstance('./config.info');
 	
 		// Maintenance Toggle
 		$setting_maintenance = strip_tags($ini->General_Info['maintenance_mode']); // ! This and others throw ERROR because of direct property access.!

@@ -8,7 +8,7 @@ if(phpversion() < 5) {
 } else {
 
 
-  require_once $_SERVER['DOCUMENT_ROOT'].'/app/charlie/bootstrap.inc'; 
+  require_once $_SERVER['DOCUMENT_ROOT'].'/app/bootstrap.inc'; 
   bootstrap_full(); 
   
 }
