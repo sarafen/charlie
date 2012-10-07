@@ -5,8 +5,8 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 
 ## To Do (Bugs, Issues)
 * Template is inherited on 404 errors for post pages (which results in tweet footer.
-* Isolate Charlie into one directory. [charlie][public] (.htaccess). That way git can be used to easily update charlie. Public folder will contain [themes] & [content]. charlie will have a default themes and content folder within it, for when the site is first setup. Will need add a few IF statements to check for public stuff. 
 * Needs a license.
+* Feed Dates are wrong
 
 ## Roadmap (Features, Dreams, Wishes)
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
@@ -32,6 +32,7 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * [X] Add Post Dates as parts of file titles? (other ideas?) (used frontmatter as solution)
 * [X] Update Feed Loop to match regular Content Looper. (merged into single looper)
 * [X] More OOP and Class usage, omit orphaned functions or group into master toolbox class.
+* [X] Reorg directory structure.
 
 
 
