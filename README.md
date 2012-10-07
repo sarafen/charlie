@@ -6,7 +6,6 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 ## To Do (Bugs, Issues)
 * Template is inherited on 404 errors for post pages (which results in tweet footer.
 * Needs a license.
-* Feed Dates are wrong
 
 ## Roadmap (Features, Dreams, Wishes)
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
@@ -33,6 +32,8 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * [X] Update Feed Loop to match regular Content Looper. (merged into single looper)
 * [X] More OOP and Class usage, omit orphaned functions or group into master toolbox class.
 * [X] Reorg directory structure.
+* [X] Feed Dates are wrong
+
 
 
 
