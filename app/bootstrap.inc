@@ -8,7 +8,7 @@ function bootstrap_full() {
 
 ////////////////////////////////////////////////////
 
-require_once './app/parsers/mustache/Autoloader.php';
+require_once './app/parsers/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 
 require_once './app/parsers/markdown.inc';
