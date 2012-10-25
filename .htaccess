@@ -21,9 +21,9 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ /index.php/$1 [L]
-Redirect 301 /front http://charlie.dev/
-Redirect 301 /index http://charlie.dev/
-Redirect 301 /home http://charlie.dev/
+Redirect 301 /front /
+Redirect 301 /index /
+Redirect 301 /home /
 <FilesMatch "(\.(conf|info|inc|blk|md|tpl(\.php)?))$">
 
   Order allow,deny
