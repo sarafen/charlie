@@ -4,8 +4,7 @@ charlie
 A simple, no DB cms using [mustache][1] & [markdown][2].
 
 ## To Do (Bugs, Issues)
-* Template is inherited on 404 errors for post pages (which results in tweet footer.
-* Needs a license.
+* Template is inherited on 404 errors for post pages (which results in tweet footer).
 
 ## Roadmap (Features, Dreams, Wishes)
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
@@ -16,6 +15,7 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * Add .js pagination to core.
 * Add optional feed formats (rss, xml,…)
 * Create default theme with informational default content.
+* Proper OOP overhaul
 
 
 ## Done
@@ -33,6 +33,7 @@ A simple, no DB cms using [mustache][1] & [markdown][2].
 * [X] More OOP and Class usage, omit orphaned functions or group into master toolbox class.
 * [X] Reorg directory structure.
 * [X] Feed Dates are wrong
+* [X] Needs a license.
 
 
 
