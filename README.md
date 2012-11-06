@@ -3,6 +3,10 @@ charlie
 
 A simple, no DB cms using [mustache][1] & [markdown][2].
 
+## Alpha Notice
+
+Charlie is still under active developmnt and has a ways to go. I would not recommend production use at this time. Use at your own risk.
+
 ## To Do (Bugs, Issues)
 * Template is inherited on 404 errors for post pages (which results in tweet footer).
 
