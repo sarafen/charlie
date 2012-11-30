@@ -18,7 +18,6 @@ RewriteEngine On
 RewriteBase /
 
 RewriteRule ^(app) - [F,L]
-RewriteRule ^(content) - [F,L]
 RewriteRule ^(extensions) - [F,L]
 
 #Removes index.php
