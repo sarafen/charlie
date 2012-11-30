@@ -9,6 +9,7 @@ Charlie is still under active development and has a ways to go. I would not reco
 
 ## To Do (Bugs, Issues)
 * Template is inherited on 404 errors for post pages (which results in tweet footer).
+* 404 Pages Title Needs to be 404, instead of slug.
 
 ## Roadmap (Features, Dreams, Wishes)
 * Add draft ability. Files with draft_ prepended are ignored and not accessible.
