@@ -1,7 +1,7 @@
 charlie
 ==================
 
-[mustache][1] & [markdown][2], ~~mySQL~~, magic.
+[mustache][1], [markdown][2], ~~mySQL~~, magic.
 
 ## Alpha Notice
 
