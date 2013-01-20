@@ -1,7 +1,7 @@
 charlie
 ==================
 
-A simple, no DB cms using [mustache][1] & [markdown][2].
+[mustache][1] & [markdown][2], ~~mySQL~~, magic.
 
 ## Alpha Notice
 
