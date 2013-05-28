@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Charlie Page Data
+ *
+ * Assembles Data appropriate for the Page.
+ */
+
 class Charlie_Page_Data { //Needs a better name
 	
 	// PROPERTIES

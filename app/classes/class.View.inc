@@ -1,5 +1,11 @@
 <?php
 
+/**
+  * Charlie View
+  *
+  * Glues the Data and the Template together to render the appropriate View.
+  */
+
 class Charlie_View {
 	
 	// PROPERTIES

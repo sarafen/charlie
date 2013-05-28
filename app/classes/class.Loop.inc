@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Charlie Loop
+ *
+ * Allows for the creation of dynamic Post loops similar to a light version
+ * of the WordPress Loop. Loops are either standard or as a feed.
+ */
+
 class Charlie_Loop {
 		
 	public function __construct() {

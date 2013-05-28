@@ -1,5 +1,11 @@
 <?php
 
+/**
+  * INI
+  *
+  * Processes an INI config file and outputs an Object of associated data.
+  */
+
 class Ini { 
 
 /////////////////////////////////////

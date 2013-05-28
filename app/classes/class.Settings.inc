@@ -1,5 +1,11 @@
 <?php
 
+/**
+  * Charlie Settings
+  *
+  * Builds Settings Object based on INI format.
+  */
+
 class Charlie_Settings {
 
 	// PROPERTIES

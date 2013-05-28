@@ -1,5 +1,11 @@
 <?php 
 
+/**
+  * Charlie Route
+  *
+  * Builds Route Object for each URI.
+  */
+
 class Charlie_Route {
 
 	// PROPERTIES
@@ -45,7 +51,7 @@ class Charlie_Route {
 		return $this->path;
 	}
 	
-	public function get_parth_part() {
+	public function get_path_part() {
 		
 		return $this->path_part;
 	}

@@ -1,11 +1,19 @@
 <?php
 
+/**
+  * Bootstrap
+  *
+  * Starts things up.
+  * 
+  * Needs an Autoloader at some point.
+  */
+
 function bootstrap_full() {
 
 ////////////////////////////////////////////////////
-
+//
 // Include PARSERS
-
+//
 ////////////////////////////////////////////////////
 
 require_once './app/parsers/Mustache/Autoloader.php';
@@ -18,17 +26,17 @@ require_once './app/parsers/frontmatter.inc';
 require_once './app/parsers/ini.inc';
 
 ////////////////////////////////////////////////////
-
+//
 // Include RANDOM (for now)
-
+//
 ////////////////////////////////////////////////////
 
 //require_once './app/parsers/loop_engine.inc';
 
 ////////////////////////////////////////////////////
-
+//
 // Include CORE Classes
-
+//
 ////////////////////////////////////////////////////
 
 require_once './app/classes/class.Settings.inc';
@@ -49,9 +57,9 @@ require_once './app/classes/class.Loop.inc';
 require_once './app/classes/class.View.inc';
 
 ////////////////////////////////////////////////////
-
+//
 // Include ENGINE
-
+//
 ////////////////////////////////////////////////////
 
 require_once './app/engine.inc';

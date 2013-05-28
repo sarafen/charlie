@@ -1,5 +1,11 @@
 <?php
 
+/**
+  * Charlie Template
+  *
+  * Assembles the appropriate template based on the content viewed.
+  */
+
 class Charlie_Template {
 
 	// PROPERTIES
