@@ -25,6 +25,7 @@ Charlie is still under active development and has a ways to go. I would not reco
 * General File naming scheme and Reorg.
 * Proper Extension Handling OR all out removal.
 * Handle Loops as part of config file rather than array in loops.inc.
+* Establish a standard documentation format and general file format throughout the App.
 
 
 ## Done
