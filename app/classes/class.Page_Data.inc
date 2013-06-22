@@ -178,7 +178,8 @@ class Charlie_Page_Data { //Needs a better name
 	    $this->$name = $looper->fetch(
     		$args['loop_type'],
     		$args['content_type'],
-    		$args['date_format']
+    		$args['date_format'],
+    		$args['limit']
 	    );    		      
     }
          

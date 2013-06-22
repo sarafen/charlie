@@ -67,7 +67,7 @@ class Charlie_Loop {
 	}
 
 	
-	public function fetch($loop_type = 'default',$content_type,$date_format = 'l jS \of F Y h:i:s A') {
+	public function fetch($loop_type = 'default',$content_type,$date_format = 'l jS \of F Y h:i:s A',$limit='0') {
 		
 		//Build single POST
 			
@@ -89,7 +89,8 @@ class Charlie_Loop {
 			$num = $i++;
 			
 			$items['item'][$num] = $this->the_post($dir.$filename,$filename,$content_type,$date_format,$loop_type);		
-											
+			
+			if($i!=0 && $i==$limit) break;							
 		}
 				
 		return $items;		    	 		
