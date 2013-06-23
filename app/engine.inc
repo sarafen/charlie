@@ -39,6 +39,7 @@ $page_data->add_value('theme_dir', DOMAIN.'/themes/'.THEME);
 $page_data->add_value('img_dir', DOMAIN.'/content/imgs');
 
 //Load Default Loops
+/*
 $page_data->add_looper(
 	'feed_looper',
 	array(
@@ -47,6 +48,7 @@ $page_data->add_looper(
 		'date_format' => ''
 	)
 );
+*/
 
 //Load Custom Loops
 if (file_exists(THEME_DIR.'/loops.inc')) {
