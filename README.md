@@ -5,7 +5,8 @@ charlie
 
 ## Alpha Notice
 
-Charlie is still under active development and has a ways to go. I would not recommend production use at this time. Use at your own risk. 
+
+Charlie is still under active development and has a ways to go. Right now it is really more of a "proof of concept". I would not recommend production use at this time. Use at your own risk. 
 
 Once the feature set and overall structure of Charlie is solidified I'll be doing an organization, format, etc. overhaul to make the entire project more "developer friendly" :)
 
