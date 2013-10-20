@@ -1,1 +1,0 @@
-<footer role="contentinfo"><p>&copy; {{current_year}} John Doe</p></footer>
