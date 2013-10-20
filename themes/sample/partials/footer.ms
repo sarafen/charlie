@@ -1,1 +1,1 @@
-<footer role="contentinfo"><p>&copy; {{current_year}} John Doe</p></footer>
+<footer role="contentinfo"><p>&copy; {{current_year}} {{author}}</p></footer>

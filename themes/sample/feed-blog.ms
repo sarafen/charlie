@@ -17,7 +17,7 @@
 <id>tag:{{domain}},2012:/feed/</id>
 <rights> {{current_year}} {{author}}</rights>
 
-{{#feed_looper}}
+{{#blog-feed_looper}}
 		{{#item}}
 		
 		<entry>
@@ -35,6 +35,6 @@
 		</entry>
 			
 		{{/item}}
-{{/feed_looper}}
+{{/blog-feed_looper}}
 
 </feed>

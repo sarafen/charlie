@@ -3,8 +3,10 @@
 {{#item}}
 	<li>
 		<article>
-			<h2><a href="{{{link}}}">{{title}}</a></h2>
+			<h3><a href="{{{link}}}">{{title}}</a></h3>
 			<time class="article-date">{{date}}</time>
+			
+			<p>{{teaser}}</p>
 			
 		</article>
 	</li>
@@ -13,7 +15,7 @@
 {{^item}}
 	<li>
 		<article>
-			<h2>Nothing, Nada, Zip &hellip;</h2>
+			<h3>Nothing, Nada, Zip &hellip;</h3>
 		</article>
 	</li>
 {{/item}}
