@@ -53,6 +53,8 @@ Thumbs.db
 ######################
 cache/
 cache/*
+tmp/
+tmp/*
 tests/
 tests/*
 fonts/
@@ -60,5 +62,7 @@ app/_deprecated/
 app/_deprecated/*
 themes/_deprecated/
 themes/_deprecated/*
-app/parsers/tmp/cache/mustache/
-app/parsers/tmp/cache/mustache/*
+app/lib/classes/wip
+app/lib/classes/wip/*
+app/tmp
+app/tmp/*
