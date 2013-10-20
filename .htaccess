@@ -17,7 +17,11 @@ RewriteEngine On
 
 RewriteBase /
 
-RewriteRule ^(app) - [F,L]
+#RewriteRule ^(app) - [F,L]
+RewriteRule ^(app/lib) - [F,L]
+RewriteRule ^(app/vendor) - [F,L]
+RewriteRule ^(app/tmp) - [F,L]
+RewriteRule ^(app/startup.php) - [F,L]
 RewriteRule ^(extensions) - [F,L]
 
 #Removes index.php
@@ -27,7 +31,7 @@ RewriteRule ^(.*)$ /index.php/$1 [L]
 Redirect 301 /front /
 Redirect 301 /index /
 Redirect 301 /home /
-<FilesMatch "(\.(conf|info|inc|blk|md|tpl(\.php)?))$">
+<FilesMatch "(\.(ini|ms|md|inc(\.php)?))$">
 
   Order allow,deny
   Deny from all
