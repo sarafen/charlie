@@ -1,0 +1,1 @@
+<footer role="contentinfo"><p>&copy; {{current_year}} {{author}}</p></footer>
