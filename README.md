@@ -1,4 +1,4 @@
-charlie (alpha v2.0
+charlie (alpha v2.0)
 ==================
 
 [mustache][1], [markdown][2], ~~mySQL~~, magic.
