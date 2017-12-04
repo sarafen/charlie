@@ -1,9 +1,9 @@
-charlie
+charlie (alpha v2.0
 ==================
 
 [mustache][1], [markdown][2], ~~mySQL~~, magic.
 
-## Alpha Notice
+## Alpha 2.0 Notice
 
 Charlie is still under active development and has a ways to go. Right now it is really more of a "proof of concept". I would not recommend production use at this time. Use at your own risk. 
 
