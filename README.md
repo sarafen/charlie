@@ -1,4 +1,4 @@
-charlie (alpha v2.0)
+charlie (v1.0.0-beta)
 ==================
 
 A lightweight cms, built for creatives.
