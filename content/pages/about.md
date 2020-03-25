@@ -1,8 +1,7 @@
 ---
-title: About
+title: About Page
 ---
 
-# The About Page
+# About Page
 
-This is the about page.
-
+About content here.
