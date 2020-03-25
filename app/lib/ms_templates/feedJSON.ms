@@ -1,6 +1,6 @@
 {
   "version": "https://jsonfeed.org/version/1",
-  "user_comment": "This feed allows you to read the posts from this site in any feed reader that supports the JSON Feed format. To add this feed to your reader, copy the following URL â€” http://{{site_domain}}/{{post.type}}/feed/json â€” and add it your reader.",
+  "user_comment": "This feed allows you to read the posts from this site in any feed reader that supports the JSON Feed format. To add this feed to your reader, copy the following URL — http://{{site_domain}}/{{post.type}}/feed/json — and add it your reader.",
   "title": "{{site_author}}'s {{post.type}} Feed",
   "description": "{{site_description}}",
   "home_page_url": "http://{{site_domain}}",
