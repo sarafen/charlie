@@ -1,0 +1,113 @@
+html {
+	font-family: Cambria, Georgia, "Times New Roman",Times,serif;
+	color: #333;
+	width: 800px;
+	padding: 0 10px;
+	margin: 80px auto 0 auto;
+}
+
+body {font-size: 10px;}
+
+.logo {
+    display: inline-block;
+    font-size: 4.8em;
+    margin-bottom: 20px;
+
+    text-decoration: none;
+    color: #333;
+
+    /* background: black; */
+    color: black;
+    overflow: hidden;
+
+    /* display: none; */
+}
+
+/* .logo:before {
+    content: '\02190';
+} */
+
+.logo:hover, .logo:focus {
+    background: white;
+    transition: .1s ease-in-out;
+    color: #0000EE;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    /* justify-content: flex-end; */
+}
+
+nav {
+    font-size: 1.6em;
+}
+
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    margin-right: 15px;
+}
+
+h1 {
+
+	font-size: 2.4em;
+	line-height: 140%;
+}
+
+h2 {
+	font-size: 2.1em;
+	line-height: 140%;
+}
+
+h3 {
+	font-size: 1.8em;
+	line-height: 140%;
+}
+
+a.rss {
+	font-size: 1.2em;
+	text-decoration: none;
+	font-style: italic;
+
+}
+
+p {
+	font-size: 1.8em;
+	line-height: 160%;
+}
+
+
+footer {
+	margin-top: 200px;
+}
+
+time {
+
+	font-size: 1.4em;
+	font-style: italic;
+	opacity: .9;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.work-gallery {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    text-align: center;
+}
+
+.work-gallery img {
+    width: 100%;
+}
