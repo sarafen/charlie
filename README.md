@@ -1,11 +1,14 @@
 charlie (alpha v2.0)
 ==================
 
-[mustache][1], [markdown][2], ~~mySQL~~, magic.
+# A lightweight cms, built for creatives
+## Run your own site with less overhead and more control
+
+No installation files, no database.
 
 ## Alpha 2.0 Notice
 
-Charlie is still under active development and has a ways to go. Right now it is really more of a "proof of concept". I would not recommend production use at this time. Use at your own risk. 
+Charlie is still under active development and has a ways to go. Right now it is really more of a "proof of concept". I would not recommend production use at this time. Use at your own risk.
 
 Once the feature set and overall structure of Charlie is solidified I'll be doing an organization, format, etc. overhaul to make the entire project more "developer friendly" :)
 
