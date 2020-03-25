@@ -1,13 +1,13 @@
-{{#blog_looper}}	
+{{#looper.blog}}
 <ul class="article-list">
 {{#item}}
 	<li>
 		<article>
 			<h3><a href="{{{link}}}">{{title}}</a></h3>
 			<time class="article-date">{{date}}</time>
-			
+
 			<p>{{teaser}}</p>
-			
+
 		</article>
 	</li>
 {{/item}}
@@ -20,4 +20,4 @@
 	</li>
 {{/item}}
 </ul>
-{{/blog_looper}}
+{{/looper.blog}}

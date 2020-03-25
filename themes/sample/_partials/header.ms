@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -15,3 +15,23 @@
 <link rel="stylesheet" media="screen, projection" href="{{theme_dir}}/css/style.css" />
 
 </head>
+
+<header>
+    <a class="logo" href="/">home</a>
+    <nav>
+        <ul>
+            <li>
+                <a href="/about">about</a>
+            </li>
+            <li>
+                <a href="/contact">contact</a>
+            </li>
+            <li>
+                <a href="/work">work</a>
+            </li>
+            <li>
+                <a href="/blog">blog</a>
+            </li>
+        </ul>
+    </nav>
+</header>
