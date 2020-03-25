@@ -2,10 +2,6 @@
 
 <body>
 
-
 {{{content}}}
 
 {{>footer}}
-
-</body>
-</html>
