@@ -1,0 +1,25 @@
+{
+    "globals": {
+        "site_domain"           : "website.com",
+        "site_title"            : "A Website",
+        "site_description"      : "a website that has stuff on it",
+        "site_author"           : "A. Person",
+        "img_dir"               : "/content/imgs",
+        "files_dir"             : "/content/files"
+    },
+    "settings" : {
+        "theme"                 : "sample",
+        "archives" : {
+            "blog" : {
+                "enabled"       : true,
+                "limit"         : 10
+            }
+        },
+        "feeds" : {
+            "blog" : {
+                "enabled"       : true,
+                "limit"         : 50
+            }
+        }
+    }
+}
