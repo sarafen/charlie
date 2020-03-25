@@ -5,6 +5,3 @@
 {{{content}}}
 
 {{>footer}}
-
-</body>
-</html>
