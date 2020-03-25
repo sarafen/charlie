@@ -1,27 +1,22 @@
 charlie (alpha v2.0)
 ==================
 
-# A lightweight cms, built for creatives
-## Run your own site with less overhead and more control
+A lightweight cms, built for creatives.
+
+Run your own site with less overhead and more control.
 
 No installation files, no database.
 
-## Alpha 2.0 Notice
+## Beta Notice (v1.0.0-beta)
 
-Charlie is still under active development and has a ways to go. Right now it is really more of a "proof of concept". I would not recommend production use at this time. Use at your own risk.
+Charlie is still under active development, might have a few bugs. Use at your own risk.
 
 Once the feature set and overall structure of Charlie is solidified I'll be doing an organization, format, etc. overhaul to make the entire project more "developer friendly" :)
 
 
 ## Roadmap (ToDo, Features, Dreams, Wishes)
 
-* Finish proper rss feed template render
-* Page Caching
-* Add .js pagination to core.
-* Create default theme with informational default content.
-* Appropriate and fleshed out Documentation once structure and feature-set is "frozen".
-* Add more advanced loop options (sort_by, order_by, include multiple types, etc.)
-* Add ability to extend Charlie with non-core 'extensions'.
+( see [ROADMAP.md](https://github.com/StephenLovell/charlie/blob/beta/ROADMAP.md) )
 
 
 
