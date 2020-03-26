@@ -96,7 +96,12 @@ class FrontMatter
         }
 
         # Store Content in Final array
-        $final['content'] = $tmp[2];
+        // modified this to check if content is empty so there's no array offset error.
+        if (array_key_exists(2, $tmp)) {
+          $final['content'] = $tmp[2];
+        } else {
+          $final['content'] = '';
+        }
 
         # Return Final array
         return $final;
