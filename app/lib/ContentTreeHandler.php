@@ -10,8 +10,13 @@ class ContentTreeHandler {
 
         $types = array_slice(scandir($this->contentDir), 2);
 
+        // need to filter out .dot files here and any particular dirs
+
         foreach($types as $key => $val) {
-            $tree[$val] = array_slice(scandir($this->contentDir.'/'.$val), 2);
+
+            if (is_dir($this->contentDir.'/'.$val)) {
+                $tree[$val] = array_slice(scandir($this->contentDir.'/'.$val), 2);
+            }
         }
 
         $this->contentTree = $tree;
