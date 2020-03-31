@@ -15,9 +15,29 @@ class ContentTreeHandler {
         foreach($types as $key => $val) {
 
             if (is_dir($this->contentDir.'/'.$val)) {
-                $tree[$val] = array_slice(scandir($this->contentDir.'/'.$val), 2);
+              
+                $tree[$val] = preg_grep('/^([^.])/', array_slice(scandir($this->contentDir.'/'.$val), 2));
+
             }
         }
+
+
+        // foreach($types as $type_key => $type_val) {
+        //     foreach($tree[$val] as $file_key => $file_val) {
+        //       if(is_dir($this->contentDir.'/'.$type_val.'/'.$file_val)){
+        //           unset($tree[$val][$file_key]);
+        //       }
+        //
+        //     }
+        //
+        // }
+
+
+
+
+
+
+
 
         $this->contentTree = $tree;
 
