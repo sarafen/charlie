@@ -160,8 +160,26 @@ class TagDataHandler {
         if(isset($params->sort_by)) {
 
             $sort_by = $params->sort_by;
-            array_multisort(array_column($items['item'], $sort_by), SORT_ASC, $items['item']);
 
+            if(isset($params->sort_order)) {
+
+                $sort_order = $params->sort_order;
+
+                switch ($sort_order) {
+                    case 'ASC' :
+                        array_multisort(array_column($items['item'], $sort_by), SORT_ASC, $items['item']);
+                        break;
+
+                    case 'DESC' :
+                        array_multisort(array_column($items['item'], $sort_by), SORT_DESC, $items['item']);
+                        break;
+                }
+
+            } else {
+
+              array_multisort(array_column($items['item'], $sort_by), SORT_ASC, $items['item']);
+
+            }
         }
 
         return $items;
@@ -203,8 +221,36 @@ class TagDataHandler {
         }
         $items['post']['type'] = $pathArr[0];
 
-        $this->fields = array_merge($this->fields, $items);
 
+        if(isset($config->settings->archives->{$pathArr[0]}->sort_by)) {
+
+            $sort_by = $config->settings->archives->{$pathArr[0]}->sort_by;
+
+            if(isset($config->settings->archives->{$pathArr[0]}->sort_order)) {
+
+                $sort_order = $config->settings->archives->{$pathArr[0]}->sort_order;
+
+                switch ($sort_order) {
+                    case 'ASC' :
+                        array_multisort(array_column($items['post']['feed']['item'], 'date'), SORT_ASC, $items['post']['feed']['item']);
+                        break;
+
+                    case 'DESC' :
+                        array_multisort(array_column($items['post']['feed']['item'], 'date'), SORT_DESC, $items['post']['feed']['item']);
+                        break;
+                }
+
+            } else {
+
+              array_multisort(array_column($items['post']['feed']['item'], 'date'), SORT_DESC, $items['post']['feed']['item']);
+
+            }
+        } else {
+          
+          array_multisort(array_column($items['post']['feed']['item'], 'date'), SORT_DESC, $items['post']['feed']['item']);
+        }
+
+        $this->fields = array_merge($this->fields, $items);
 
         // this loop would generate a valid RSS feed in atom format, for now its just a clone of the default
         // $frontmatter = $this->helpers['frontmatter'];
@@ -285,6 +331,36 @@ class TagDataHandler {
                 $i++;
             }
         }
+
+        if(isset($config->settings->archives->{$pathArr[0]}->sort_by)) {
+
+            $sort_by = $config->settings->archives->{$pathArr[0]}->sort_by;
+
+            if(isset($config->settings->archives->{$pathArr[0]}->sort_order)) {
+
+                $sort_order = $config->settings->archives->{$pathArr[0]}->sort_order;
+
+                switch ($sort_order) {
+                    case 'ASC' :
+                        array_multisort(array_column($items['post']['archive']['item'], 'date'), SORT_ASC, $items['post']['archive']['item']);
+                        break;
+
+                    case 'DESC' :
+                        array_multisort(array_column($items['post']['archive']['item'], 'date'), SORT_DESC, $items['post']['archive']['item']);
+                        break;
+                }
+
+            } else {
+
+              array_multisort(array_column($items['post']['archive']['item'], 'date'), SORT_DESC, $items['post']['archive']['item']);
+
+            }
+        } else {
+
+            array_multisort(array_column($items['post']['archive']['item'], 'date'), SORT_DESC, $items['post']['archive']['item']);
+
+        }
+
 
         $this->fields = array_merge($this->fields, $items);
 

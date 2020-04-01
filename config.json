@@ -34,6 +34,7 @@
             "loop_type"         : "default",
             "content_filter"    : "blog",
             "sort_by"           : "date",
+            "sort_order"        : "DESC",
             "date_format"       : "F j, Y",
             "limit"             : 3,
             "offset"            : 0
@@ -43,6 +44,7 @@
             "loop_type"         : "default",
             "content_filter"    : "work",
             "sort_by"           : "order",
+            "sort_order"        : "ASC",
             "date_format"       : "F j, Y",
             "limit"             : 0,
             "offset"            : 0
@@ -58,6 +60,7 @@
             "loop_type"         : "default",
             "content_filter"    : "blog",
             "sort_by"           : "date",
+            "sort_order"        : "ASC",
             "date_format"       : "F j, Y",
             "limit"             : 5,
             "offset"            : 0
