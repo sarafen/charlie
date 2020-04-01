@@ -11,6 +11,7 @@ last updated: 03.31.20
 - update LICENSE
 - add customizable redirects in the config.json. Someone might want the blog archive and the /blog page to be one and the same. In this instance you might want to collapse them into one so that you had /blog/pg/1, but if you tried to go to /blog you'd get redirected to /blog/pg/1.
 - refactor sort_by and sort_order logic for regular loopers, archives loopers, and feeds loopers, lotta repeating sections
+- most of the code could do with better comment documentation
 
 ## resolved
 - `/content/_blocks` & `/content/imgs` are considered valid content that tries to load. Potentially exlude these from the Content Tree.
