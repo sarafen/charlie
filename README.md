@@ -11,8 +11,6 @@ No installation files, no database.
 
 Charlie is still under active development, might have a few bugs. Use at your own risk.
 
-Once the feature set and overall structure of Charlie is solidified I'll be doing an organization, format, etc. overhaul to make the entire project more "developer friendly" :)
-
 ## Documentation
 
 (docs url here)
