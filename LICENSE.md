@@ -1,4 +1,4 @@
-Charlie CMS Copyright (C) 2020 Stephen Lovell(“Licensor”)
+Charlie CMS Copyright (C) 2020 Stephen Lovell (“Licensor”)
 
 Hippocratic License Version Number: 2.1.
 
