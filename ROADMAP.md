@@ -16,7 +16,7 @@ last updated: 04.06.20
 - look into making pagination more flexible (example use-case a daily strip comic)
 
 ## resolved
-- `/content/_blocks` & `/content/imgs` are considered valid content that tries to load. Potentially exlude these from the Content Tree.
+- `/content/_blocks` & `/content/imgs` are considered valid content that tries to load. Potentially exclude these from the Content Tree.
 - there are odd special characters in the json feed and rss feed files that will need correcting
 - .dotfiles and dirs inside of content type folders are properly ignored now. This means that someone can make a /drafts folder to work inside of.
 - need to add a sort_by_direction (ASC, DES), to looper config
