@@ -3,7 +3,7 @@
 /*
  * This file is part of Mustache.php.
  *
- * (c) 2012 Justin Hileman
+ * (c) 2010-2017 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,11 +16,15 @@
  */
 abstract class Mustache_Template
 {
-
     /**
      * @var Mustache_Engine
      */
     protected $mustache;
+
+    /**
+     * @var bool
+     */
+    protected $strictCallables = false;
 
     /**
      * Mustache Template constructor.
@@ -33,7 +37,7 @@ abstract class Mustache_Template
     }
 
     /**
-     * Mustache Template instances can be treated as a function and rendered by simply calling them:
+     * Mustache Template instances can be treated as a function and rendered by simply calling them.
      *
      *     $m = new Mustache_Engine;
      *     $tpl = $m->loadTemplate('Hello, {{ name }}!');
@@ -59,7 +63,9 @@ abstract class Mustache_Template
      */
     public function render($context = array())
     {
-        return $this->renderInternal($this->prepareContextStack($context));
+        return $this->renderInternal(
+            $this->prepareContextStack($context)
+        );
     }
 
     /**
@@ -67,13 +73,14 @@ abstract class Mustache_Template
      *
      * This is where the magic happens :)
      *
+     * NOTE: This method is not part of the Mustache.php public API.
+     *
      * @param Mustache_Context $context
      * @param string           $indent  (default: '')
-     * @param bool             $escape  (default: false)
      *
      * @return string Rendered template
      */
-    abstract public function renderInternal(Mustache_Context $context, $indent = '', $escape = false);
+    abstract public function renderInternal(Mustache_Context $context, $indent = '');
 
     /**
      * Tests whether a value should be iterated over (e.g. in a section context).
@@ -102,23 +109,26 @@ abstract class Mustache_Template
      *
      * @param mixed $value
      *
-     * @return boolean True if the value is 'iterable'
+     * @return bool True if the value is 'iterable'
      */
     protected function isIterable($value)
     {
-        if (is_object($value)) {
-            return $value instanceof Traversable;
-        } elseif (is_array($value)) {
-            $i = 0;
-            foreach ($value as $k => $v) {
-                if ($k !== $i++) {
-                    return false;
-                }
-            }
+        switch (gettype($value)) {
+            case 'object':
+                return $value instanceof Traversable;
 
-            return true;
-        } else {
-            return false;
+            case 'array':
+                $i = 0;
+                foreach ($value as $k => $v) {
+                    if ($k !== $i++) {
+                        return false;
+                    }
+                }
+
+                return true;
+
+            default:
+                return false;
         }
     }
 
@@ -133,7 +143,7 @@ abstract class Mustache_Template
      */
     protected function prepareContextStack($context = null)
     {
-        $stack = new Mustache_Context;
+        $stack = new Mustache_Context();
 
         $helpers = $this->mustache->getHelpers();
         if (!$helpers->isEmpty()) {
@@ -145,5 +155,26 @@ abstract class Mustache_Template
         }
 
         return $stack;
+    }
+
+    /**
+     * Resolve a context value.
+     *
+     * Invoke the value if it is callable, otherwise return the value.
+     *
+     * @param mixed            $value
+     * @param Mustache_Context $context
+     *
+     * @return string
+     */
+    protected function resolveValue($value, Mustache_Context $context)
+    {
+        if (($this->strictCallables ? is_object($value) : !is_string($value)) && is_callable($value)) {
+            return $this->mustache
+                ->loadLambda((string) call_user_func($value))
+                ->renderInternal($context);
+        }
+
+        return $value;
     }
 }
