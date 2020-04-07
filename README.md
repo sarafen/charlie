@@ -9,7 +9,7 @@ No installation files, no database.
 
 ## Beta Notice (v1.0.0-beta)
 
-Charlie is still under active development, might have a few bugs, code is certainly not the prettiest at the moment. Use at your own risk. 
+Charlie is still under active development, might have a few bugs, code is certainly not the prettiest at the moment. Use at your own risk.
 
 ## Documentation
 
@@ -17,11 +17,11 @@ Charlie is still under active development, might have a few bugs, code is certai
 
 ## Contributing
 
-( see [CONTRIBUTING.md](https://github.com/StephenLovell/charlie/blob/beta/CONTRIBUTING.md) )
+( see [CONTRIBUTING.md](https://github.com/StephenLovell/charlie/blob/master/CONTRIBUTING.md) )
 
 ## Roadmap (ToDo, Features, Dreams, Wishes)
 
-( see [ROADMAP.md](https://github.com/StephenLovell/charlie/blob/beta/ROADMAP.md) )
+( see [ROADMAP.md](https://github.com/StephenLovell/charlie/blob/master/ROADMAP.md) )
 
 
 
