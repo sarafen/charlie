@@ -1,6 +1,6 @@
 
 # ROADMAP
-last updated: 03.31.20
+last updated: 04.06.20
 
 ## todo
 - Generally the code could do with some overall refactor, cleanup, inline documentation, etc. It works, but is it "pretty"? Probably not. If you'd like to help make it "pretty", feel free to fork the repo and initiate a PR in accordance with the [Contribution guidelines](https://github.com/StephenLovell/charlie/#contributing)
