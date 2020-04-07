@@ -5,7 +5,7 @@ class ContentFileHandler {
     private $contentDir;
 
     public $fileExists;
-	public $fileName;
+    public $fileName;
     public $fileExtension;
     public $filePath;
     //public $fileRelativePath;

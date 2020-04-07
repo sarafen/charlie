@@ -5,7 +5,7 @@ class TemplateFileHandler {
     private $themeDir;
 
     public $fileExists;
-	public $fileName;
+    public $fileName;
     public $fileExtension;
     public $filePath;
     //public $fileRelativePath;
