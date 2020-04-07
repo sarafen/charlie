@@ -1,7 +1,0 @@
-{{>header}}
-
-<body>
-
-{{{content}}}
-
-{{>footer}}
