@@ -9,16 +9,15 @@ No installation files, no database.
 
 ## Beta Notice (v1.0.0-beta)
 
-Charlie is still under active development, might have a few bugs. Use at your own risk.
+Charlie is still under active development, might have a few bugs, code is certainly not the prettiest at the moment. Use at your own risk. 
 
 ## Documentation
 
-(docs url here)
+( see [charliecms.org](https://charliecms.org) )
 
 ## Contributing
 
-(contribution guidelines forthcoming)
-
+( see [CONTRIBUTING.md](https://github.com/StephenLovell/charlie/blob/beta/CONTRIBUTING.md) )
 
 ## Roadmap (ToDo, Features, Dreams, Wishes)
 
