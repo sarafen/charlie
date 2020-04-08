@@ -180,7 +180,7 @@ class TemplateFileHandler {
 
         } else {
 
-            return $this->themeDir.'index'.$this->fileExtension;
+            return $this->themeDir.'page'.$this->fileExtension;
 
         }
 

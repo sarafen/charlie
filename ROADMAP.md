@@ -1,8 +1,9 @@
 
 # ROADMAP
-last updated: 04.06.20
+last updated: 04.07.20
 
 ## todo
+- doc root path not working on apache, files don't get included.
 - Generally the code could do with some overall refactor, cleanup, inline documentation, etc. It works, but is it "pretty"? Probably not. If you'd like to help make it "pretty", feel free to fork the repo and initiate a PR in accordance with the [Contribution guidelines](https://github.com/StephenLovell/charlie/#contributing)
 - create a default folio template, visual work centered.
 - create a default comics template, strips/dailes/chapter-based focused.
@@ -22,3 +23,4 @@ last updated: 04.06.20
 - need to add a sort_by_direction (ASC, DES), to looper config
 - need to add sort_by_direction (ASC, DESC), to archive config (possibly feed, but not seeing a proper usecase there?)
 - update LICENSE
+- template cascade stops at index.ms instead of page.ms
