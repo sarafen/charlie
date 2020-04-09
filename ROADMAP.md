@@ -1,9 +1,10 @@
 
 # ROADMAP
-last updated: 04.07.20
+last updated: 04.08.20
 
 ## todo
-- doc root path not working on apache, files don't get included.
+
+
 - Generally the code could do with some overall refactor, cleanup, inline documentation, etc. It works, but is it "pretty"? Probably not. If you'd like to help make it "pretty", feel free to fork the repo and initiate a PR in accordance with the [Contribution guidelines](https://github.com/StephenLovell/charlie/#contributing)
 - create a default folio template, visual work centered.
 - create a default comics template, strips/dailes/chapter-based focused.
@@ -15,6 +16,7 @@ last updated: 04.07.20
 - refactor sort_by and sort_order logic for regular loopers, archives loopers, and feeds loopers, lotta repeating sections
 - most of the code could do with better comment documentation
 - look into making pagination more flexible (example use-case a daily strip comic)
+- make a filter capability on loopers to drill down by a specified field + value.
 
 ## resolved
 - `/content/_blocks` & `/content/imgs` are considered valid content that tries to load. Potentially exclude these from the Content Tree.
@@ -24,3 +26,6 @@ last updated: 04.07.20
 - need to add sort_by_direction (ASC, DESC), to archive config (possibly feed, but not seeing a proper usecase there?)
 - update LICENSE
 - template cascade stops at index.ms instead of page.ms
+- Mustache folder name is case-sensitive and that does not work well on a case-sensitive system.
+- posts dir can't be empty, throws array offset error.
+- set a DOCUMENT_ROOT constant instead of relying on the default global, which is not available on some shared hosing environments.
