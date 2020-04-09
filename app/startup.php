@@ -3,8 +3,8 @@
 function startup_full() {
 
 // basic json config settings
-$default_config = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/app/config.json');
-$custom_config = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/config.json');
+$default_config = file_get_contents(DOCUMENT_ROOT.'/app/config.json');
+$custom_config = file_get_contents(DOCUMENT_ROOT.'/config.json');
 
 $merged_config = json_encode(
     array_replace_recursive(
@@ -15,25 +15,25 @@ $merged_config = json_encode(
 $config = json_decode($merged_config);
 
 // require and register Mustache
-require $_SERVER['DOCUMENT_ROOT'].'/app/vendor/mustache/Autoloader.php';
+require DOCUMENT_ROOT.'/app/vendor/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 $options =  array('extension' => '.ms');
 $theme = $config->settings->theme;
 $mustache = new Mustache_Engine(array(
-    'partials_loader' => new Mustache_Loader_FilesystemLoader($_SERVER['DOCUMENT_ROOT'] . '/themes/'.$theme.'/_partials', $options),
+    'partials_loader' => new Mustache_Loader_FilesystemLoader(DOCUMENT_ROOT . '/themes/'.$theme.'/_partials', $options),
 ));
 
 //require markdown and use Markdown
-require $_SERVER['DOCUMENT_ROOT'].'/app/vendor/markdown/Markdown.inc.php';
+require DOCUMENT_ROOT.'/app/vendor/markdown/Markdown.inc.php';
 $markdown = new Michelf\Markdown;
 
 //require Frontmatter
-require $_SERVER['DOCUMENT_ROOT'].'/app/vendor/frontmatter/Frontmatter.php';
+require DOCUMENT_ROOT.'/app/vendor/frontmatter/Frontmatter.php';
 $frontmatter = new FrontMatter;
 
 //require /app/lib
 spl_autoload_register(function ($class) {
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/app/lib/' . $class . '.php';
+	require_once DOCUMENT_ROOT . '/app/lib/' . $class . '.php';
 });
 
 // setup base objects work work from

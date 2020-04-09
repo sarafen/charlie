@@ -65,7 +65,7 @@ class TagDataHandler {
         $fields = [];
 
         $fields['current_year'] = date("Y");
-		$fields['theme_dir'] = '/themes/'.$settings->theme;
+		    $fields['theme_dir'] = '/themes/'.$settings->theme;
 
         return $fields;
 
@@ -127,12 +127,13 @@ class TagDataHandler {
         $frontmatter = $this->helpers['frontmatter'];
         $markdown = $this->helpers['markdown'];
         $items = array();
+        $items['item'] = array();
 
         $i = 0;
         foreach ($tree->query($params->content_filter) as $key => $val) {
             $name = basename($val, ".md");
 
-            $fm = $frontmatter->process($_SERVER['DOCUMENT_ROOT'].'/content/'.$params->content_filter.'/'.$val);
+            $fm = $frontmatter->process(DOCUMENT_ROOT.'/content/'.$params->content_filter.'/'.$val);
 
             //var_dump($fm);
             //echo 'base_name: '.$name.'<br />';
@@ -194,12 +195,13 @@ class TagDataHandler {
 
 
         $items = array();
+        $items['post']['feed']['item'] = array();
         $i = 0;
         foreach ($tree->query($pathArr[0]) as $key => $val) {
 
 
             $name = basename($val, ".md");
-            $fm = $frontmatter->process($_SERVER['DOCUMENT_ROOT'].'/content/'.$pathArr[0].'/'.$val);
+            $fm = $frontmatter->process(DOCUMENT_ROOT.'/content/'.$pathArr[0].'/'.$val);
 
             foreach ($fm as $key => $val) {
 
@@ -246,7 +248,7 @@ class TagDataHandler {
 
             }
         } else {
-          
+
           array_multisort(array_column($items['post']['feed']['item'], 'date'), SORT_DESC, $items['post']['feed']['item']);
         }
 
@@ -291,13 +293,14 @@ class TagDataHandler {
         }
 
         $items = array();
+        $items['post']['archive']['item'] = array();
         $i = 0;
         foreach ($tree->query($pathArr[0]) as $key => $val) {
 
             if ($key < $offset) continue;
 
             $name = basename($val, ".md");
-            $fm = $frontmatter->process($_SERVER['DOCUMENT_ROOT'].'/content/'.$pathArr[0].'/'.$val);
+            $fm = $frontmatter->process(DOCUMENT_ROOT.'/content/'.$pathArr[0].'/'.$val);
 
             foreach ($fm as $key => $val) {
 
@@ -382,7 +385,7 @@ class TagDataHandler {
             $markdown = $this->helpers['markdown'];
 
             $name = basename($val, '.md');
-            $content = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/content/_blocks/'.$val);
+            $content = file_get_contents(DOCUMENT_ROOT.'/content/_blocks/'.$val);
 
             $items['block'][$name] = $markdown->transform($content);
         }

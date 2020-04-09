@@ -7,7 +7,9 @@ if(phpversion() < 7.2) {
 
 } else {
 
-  require_once $_SERVER['DOCUMENT_ROOT'].'/app/startup.php';
+  # set a more reliable DOCUMENT_ROOT for shared hosting environments
+  define('DOCUMENT_ROOT', dirname(__FILE__));
+  require_once DOCUMENT_ROOT.'/app/startup.php';
   startup_full();
 
 }

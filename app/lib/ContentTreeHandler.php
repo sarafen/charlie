@@ -6,7 +6,7 @@ class ContentTreeHandler {
     public $contentTree;
 
     public function __construct() {
-        $this->contentDir = $_SERVER['DOCUMENT_ROOT'].'/content/';
+        $this->contentDir = DOCUMENT_ROOT.'/content/';
 
         $types = array_slice(scandir($this->contentDir), 2);
 

@@ -24,11 +24,12 @@
 {{/item}}
 
 {{^item}}
-	<li>
+
 		<article>
-			<h3>Nothing, Nada, Zip &hellip;</h3>
+		<h2>no blog posts found</h2>
+			<p>( Nothing, Nada, Zip &hellip; )</p>
 		</article>
-	</li>
+
 {{/item}}
 
 {{/looper.blog}}
