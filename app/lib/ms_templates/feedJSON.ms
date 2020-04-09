@@ -21,6 +21,6 @@
       "summary": "{{summary}}"
     }
 	{{/item}}
-  ]
   {{/post.feed}}
+  ]
 }
