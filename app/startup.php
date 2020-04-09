@@ -15,7 +15,7 @@ $merged_config = json_encode(
 $config = json_decode($merged_config);
 
 // require and register Mustache
-require $_SERVER['DOCUMENT_ROOT'].'/app/vendor/mustache/Autoloader.php';
+require $_SERVER['DOCUMENT_ROOT'].'/app/vendor/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 $options =  array('extension' => '.ms');
 $theme = $config->settings->theme;
