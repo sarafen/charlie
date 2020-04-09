@@ -17,7 +17,7 @@ class TemplateFileHandler {
     public function __construct($config_obj) {
         $theme = $config_obj->settings->theme;
 
-        $this->themeDir = $_SERVER['DOCUMENT_ROOT'].'/themes/'.$theme.'/';
+        $this->themeDir = DOCUMENT_ROOT.'/themes/'.$theme.'/';
         $this->fileExtension = '.ms';
     }
 
@@ -141,7 +141,7 @@ class TemplateFileHandler {
                 } elseif(file_exists($this->themeDir.$parentDir.$this->fileName.$this->fileExtension)) {
                     return $this->themeDir.$parentDir.$this->fileName.$this->fileExtension;
                 } else {
-                    return $_SERVER['DOCUMENT_ROOT'].'/app/lib/ms_templates/'.$this->fileName.$this->fileExtension;
+                    return DOCUMENT_ROOT.'/app/lib/ms_templates/'.$this->fileName.$this->fileExtension;
                 }
                 break;
 
@@ -152,7 +152,7 @@ class TemplateFileHandler {
                 } elseif(file_exists($this->themeDir.'/'.$this->fileName.$this->fileExtension)) {
                     return $this->themeDir.'/'.$this->fileName.$this->fileExtension;
                 } else {
-                    return $_SERVER['DOCUMENT_ROOT'].'/app/lib/ms_templates/'.$this->fileName.$this->fileExtension;
+                    return DOCUMENT_ROOT.'/app/lib/ms_templates/'.$this->fileName.$this->fileExtension;
                 }
                 break;
 
