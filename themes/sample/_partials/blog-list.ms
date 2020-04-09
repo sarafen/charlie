@@ -11,13 +11,14 @@
 		</article>
 	</li>
 {{/item}}
-
-{{^item}}
-	<li>
-		<article>
-			<h3>Nothing, Nada, Zip &hellip;</h3>
-		</article>
-	</li>
-{{/item}}
 </ul>
+{{^item}}
+
+		<article>
+			<h3>no blog posts found</h3>
+			<p>( Nothing, Nada, Zip &hellip; )</p>
+		</article>
+
+{{/item}}
+
 {{/looper.blog}}
