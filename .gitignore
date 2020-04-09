@@ -51,8 +51,8 @@ Thumbs.db
 
 # Directories #
 ######################
-cache/
-cache/*
+#cache/
+#cache/*
 tmp/
 tmp/*
 tests/
