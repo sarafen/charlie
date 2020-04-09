@@ -127,6 +127,7 @@ class TagDataHandler {
         $frontmatter = $this->helpers['frontmatter'];
         $markdown = $this->helpers['markdown'];
         $items = array();
+        $items['item'] = array();
 
         $i = 0;
         foreach ($tree->query($params->content_filter) as $key => $val) {
@@ -194,6 +195,7 @@ class TagDataHandler {
 
 
         $items = array();
+        $items['post']['feed']['item'] = array();
         $i = 0;
         foreach ($tree->query($pathArr[0]) as $key => $val) {
 
@@ -246,7 +248,7 @@ class TagDataHandler {
 
             }
         } else {
-          
+
           array_multisort(array_column($items['post']['feed']['item'], 'date'), SORT_DESC, $items['post']['feed']['item']);
         }
 
@@ -291,6 +293,7 @@ class TagDataHandler {
         }
 
         $items = array();
+        $items['post']['archive']['item'] = array();
         $i = 0;
         foreach ($tree->query($pathArr[0]) as $key => $val) {
 
