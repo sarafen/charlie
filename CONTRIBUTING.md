@@ -1,5 +1,7 @@
 # How to contribute to Charlie
 
+First, please make sure you read and follow the [Code of Conduct](https://github.com/StephenLovell/charlie/blob/master/CODE_OF_CONDUCT.md)
+
 **Do not open up a GitHub issue if the issue you have found or intend to fix is a security vulnerability
   in Charlie**, instead contact (security "at" charliecms.org), with details about the issue. Please do not share the vulnerability in a public setting until it has been addressed.
 
@@ -19,4 +21,4 @@ Fork the repo, make changes, and initiate a PR with a detailed description that 
 
 ## Contributing to the Charlie Documentation
 
-Fork the [Charlie Docs Repo](https://github.com/StephenLovell/charlie-docs), make changes, and initiate a PR with a detailed description that clearly describes what you're adding or changing, and why. 
+Fork the [Charlie Docs Repo](https://github.com/StephenLovell/charlie-docs), make changes, and initiate a PR with a detailed description that clearly describes what you're adding or changing, and why.
