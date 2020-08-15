@@ -70,12 +70,13 @@ $data = new TagDataHandler($config, $tree, array(
 ));
 
 // [T] this might need to become a router of sorts
-// Get the request
-$request = $_SERVER['REQUEST_URI'];
+// Get the request_uri & process, setup request obj
+$request_uri = new RequestHandler($_SERVER['REQUEST_URI']);
+$request = $request_uri->path;
 
-$uriArr = parse_url($request);
-$pathArr = explode('/', trim($uriArr['path'], '/'));
-$pathArrLength = count($pathArr);
+// $uriArr = parse_url($request);
+// $pathArr = explode('/', trim($uriArr['path'], '/'));
+// $pathArrLength = count($pathArr);
 
 // Get what content & template file should be
 $content->get($request);
@@ -87,7 +88,7 @@ if($view->validate('feed', $request)) {
     // let's create our big bulky data object without fm to pass to mustache
     $data->create('feed', array(
         'config_obj' => $config,
-        'path_arr' => $pathArr,
+        'path_arr' => $request_uri->pathArr,
         'tree_obj' => $tree
     ));
     echo $mustache->render($template->fileContentsRaw, $data->fields);
@@ -100,7 +101,7 @@ elseif($view->validate('archive', $request)) {
     // let's create our big bulky data object without fm to pass to mustache
     $data->create('archive', array(
         'config_obj' => $config,
-        'path_arr' => $pathArr,
+        'path_arr' => $request_uri->pathArr,
         'tree_obj' => $tree
     ));
 

@@ -33,3 +33,4 @@ last updated: 07.15.20
 - posts dir can't be empty, throws array offset error.
 - set a DOCUMENT_ROOT constant instead of relying on the default global, which is not available on some shared hosing environments.
 - accessing /blog/feed indicates two Notices regarding the third-level format being empty as an array_key, it should 404 only.
+- add a proper request handler to cleanup uri input
