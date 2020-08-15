@@ -1,6 +1,6 @@
 
 # ROADMAP
-last updated: 04.08.20
+last updated: 07.15.20
 
 ## todo
 
@@ -9,7 +9,7 @@ last updated: 04.08.20
 - create a default folio template, visual work centered.
 - create a default comics template, strips/dailes/chapter-based focused.
 - consider removing date formatting from looper config, and instead let it be done with a lambda. Alternatively you can write out your own custom formatting as a frontmatter field too. Might be worth mentioning in the docs as a fallback route.
-- look into markdown extra capabilities to do classes more easily
+- look into markdown extra capabilities to do html classes more easily
 - enable check for maintenance_mode & create a custom template for it, first check in chain.
 - static site generation capability: build a tree of all possible VIEWS, then create a build script to allow for a static build output so that charlie could be hosted on netlify, gh pages, etc.
 - add customizable redirects in the config.json. Someone might want the blog archive and the /blog page to be one and the same. In this instance you might want to collapse them into one so that you had /blog/pg/1, but if you tried to go to /blog you'd get redirected to /blog/pg/1.
@@ -17,6 +17,9 @@ last updated: 04.08.20
 - most of the code could do with better comment documentation
 - look into making pagination more flexible (example use-case a daily strip comic)
 - make a filter capability on loopers to drill down by a specified field + value.
+- per page/post password protection fm field option for things like hidden portfolios or projects.
+- accessing /blog/feed indicates two Notices regarding the third-level format being empty as an array_key, it should 404 only.
+- remove duplicate uri parsing throughout the classes.
 
 ## resolved
 - `/content/_blocks` & `/content/imgs` are considered valid content that tries to load. Potentially exclude these from the Content Tree.
@@ -29,3 +32,4 @@ last updated: 04.08.20
 - Mustache folder name is case-sensitive and that does not work well on a case-sensitive system.
 - posts dir can't be empty, throws array offset error.
 - set a DOCUMENT_ROOT constant instead of relying on the default global, which is not available on some shared hosing environments.
+- accessing /blog/feed indicates two Notices regarding the third-level format being empty as an array_key, it should 404 only.

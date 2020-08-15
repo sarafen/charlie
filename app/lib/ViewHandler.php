@@ -87,7 +87,7 @@ class ViewHandler {
 
         if (
             !array_key_exists(3, $pathArr) &&
-            array_key_exists(1, $pathArr)
+            array_key_exists(2, $pathArr)
         ) {
 
             if (
